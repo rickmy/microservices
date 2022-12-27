@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+    {
+    "type": "java",
+    "name": "Launch ApiCitasApplication",
+    "request": "launch",
+    "mainClass": "Bienestar.Estudiantil.api_citas.ApiCitasApplication",
+    "projectName": "api_citas"
+    }
+    ]
+}
