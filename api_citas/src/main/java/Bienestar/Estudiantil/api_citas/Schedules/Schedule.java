@@ -18,5 +18,6 @@ public class Schedule {
  private Date availableDate;
  private String availableTime;
  private Boolean condition;
+ private Integer doctorId;
   
 }
