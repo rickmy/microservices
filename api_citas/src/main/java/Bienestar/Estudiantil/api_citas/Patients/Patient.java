@@ -14,16 +14,16 @@ public class Patient {
  @Id
  @GeneratedValue(strategy = GenerationType.AUTO)
  private Long id;
- private String firs_Name;
- private String second_name;
- private String last_name;
- private String mother_last_name;
- private String identification_card;
+ private String firsName;
+ private String secondName;
+ private String lastName;
+ private String motherLastName;
+ private String identificationCard;
  private String email;
  private String phone;
- private String home_address;
+ private String homeAddress;
  private String sex;
  private Boolean condition;
- private Date birth_date;
+ private Date birthDate;
  
 }
