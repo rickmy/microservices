@@ -15,7 +15,7 @@ public class Specialty {
  @GeneratedValue(strategy = GenerationType.AUTO)
 
  private Long id;
- private String especialty_name;
+ private String especialtyName;
  private Boolean condition;
  
 }
