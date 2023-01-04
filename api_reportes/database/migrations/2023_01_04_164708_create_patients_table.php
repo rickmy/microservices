@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('home_adress');
-            $table->string('email');
             $table->boolean('state')->default(true);
             $table->string('gender');
             $table->date('date_birth')->nullable();

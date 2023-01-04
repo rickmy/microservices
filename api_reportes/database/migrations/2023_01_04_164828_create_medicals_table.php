@@ -22,12 +22,7 @@ return new class extends Migration
             $table->string('mother_last_name');
             $table->string('email');
             $table->string('senecyt_code');
-            $table->string('email');
             $table->boolean('state')->default(true);
-
-            
-
-
             $table->timestamps();
         });
     }
