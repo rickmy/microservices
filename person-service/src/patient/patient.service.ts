@@ -108,11 +108,11 @@ export class PatientService {
     return await this.prisma.patient.findMany();
   }
 
-  update(
+  async update(
     id: number,
     updatePatientDto: UpdatePatientDto,
   ): Promise<PatientEntity> {
-    return this.prisma.patient
+    return await this.prisma.patient
       .update({
         where: {
           id,
