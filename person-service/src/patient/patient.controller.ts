@@ -10,7 +10,12 @@ import {
 import { PatientService } from './patient.service';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger/dist';
+import {
+  ApiBody,
+  ApiOkResponse,
+  ApiParam,
+  ApiTags,
+} from '@nestjs/swagger/dist';
 import { PatientEntity } from './entities/patient.entity';
 import { UploadedFile, UseInterceptors } from '@nestjs/common/decorators';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -33,6 +38,10 @@ export class PatientController {
     description: 'Paciente creado',
     isArray: true,
   })
+  @ApiBody({
+    description: 'Archivo de excel con los pacientes',
+    type: 'file',
+  })
   loadPatients(
     @UploadedFile() file: Express.Multer.File,
   ): Promise<PatientEntity[]> {
@@ -40,22 +49,30 @@ export class PatientController {
   }
 
   @Get()
-  findAll() {
+  @ApiOkResponse({
+    type: PatientEntity,
+    description: 'Pacientes encontrado',
+    isArray: true,
+  })
+  findAll(): Promise<PatientEntity[]> {
     return this.patientService.findAll();
   }
 
   @Get(':id')
+  @ApiOkResponse({ type: PatientEntity, description: 'Paciente encontrado' })
   findOne(@Param('id') id: string) {
-    return this.patientService.findOne(+id);
+    return this.patientService.findOneById(+id);
   }
 
   @Patch(':id')
+  @ApiOkResponse({ type: PatientEntity, description: 'Paciente actualizado' })
+  @ApiParam({ name: 'id', type: 'number' })
   update(@Param('id') id: string, @Body() updatePatientDto: UpdatePatientDto) {
     return this.patientService.update(+id, updatePatientDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: string): Promise<string> {
     return this.patientService.remove(+id);
   }
 }

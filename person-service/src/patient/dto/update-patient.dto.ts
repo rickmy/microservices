@@ -6,6 +6,7 @@ import {
   IsEnum,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
 } from 'class-validator';
 import { CreatePatientDto } from './create-patient.dto';
@@ -63,9 +64,10 @@ export class UpdatePatientDto extends PartialType(CreatePatientDto) {
 
   @IsNumber({}, { message: 'El id de la discapacidad debe ser un numero' })
   @IsEmpty({ message: 'El id de la discapacidad puede o no ser enviado.' })
+  @IsOptional()
   @ApiProperty({
     description: 'Id de la discapacidad',
-    example: 0,
+    example: null,
   })
   disabilityId: number;
 
@@ -73,10 +75,13 @@ export class UpdatePatientDto extends PartialType(CreatePatientDto) {
     {},
     { message: 'El porcentaje de la discapacidad debe ser un numero' },
   )
-  @IsEmpty({ message: 'El id de la ocupacion puede o no ser enviado.' })
+  @IsEmpty({
+    message: 'El porcentaje de la discapacidad puede o no ser enviado.',
+  })
+  @IsOptional()
   @ApiProperty({
     description: 'porcentaje de discapacidad',
-    example: 0,
+    example: null,
     required: false,
   })
   percentage: number;

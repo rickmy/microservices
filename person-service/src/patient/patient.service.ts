@@ -6,6 +6,7 @@ import { UpdatePatientDto } from './dto/update-patient.dto';
 import { PatientEntity } from './entities/patient.entity';
 import * as xlsx from 'xlsx';
 import { WorkBook, WorkSheet } from 'xlsx';
+import { PatientStatus } from '@prisma/client';
 
 @Injectable()
 export class PatientService {
@@ -48,7 +49,7 @@ export class PatientService {
       let col = 0;
 
       const newPatient: CreatePatientDto = {
-        dni: sheet[xlsx.utils.encode_cell({ c: col++, r: R })]?.v.toStringa(),
+        dni: sheet[xlsx.utils.encode_cell({ c: col++, r: R })]?.v.toString(),
         firstName: sheet[xlsx.utils.encode_cell({ c: col++, r: R })]?.v,
         middleName: sheet[xlsx.utils.encode_cell({ c: col++, r: R })]?.v,
         firstSurname: sheet[xlsx.utils.encode_cell({ c: col++, r: R })]?.v,
@@ -88,19 +89,62 @@ export class PatientService {
     });
   }
 
-  findAll(): string {
-    return `This action returns all patient`;
+  async findOneById(id: number): Promise<PatientEntity | null> {
+    return await this.prisma.patient
+      .findUnique({
+        where: {
+          id,
+        },
+      })
+      .catch((err) => {
+        console.log(err);
+        throw new UnprocessableEntityException(
+          `No se ha podido encontrar el paciente con id ${id}`,
+        );
+      });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} patient`;
+  async findAll(): Promise<PatientEntity[]> {
+    return await this.prisma.patient.findMany();
   }
 
-  update(id: number, updatePatientDto: UpdatePatientDto) {
-    return `This action updates a #${id} patient , ${updatePatientDto}}`;
+  update(
+    id: number,
+    updatePatientDto: UpdatePatientDto,
+  ): Promise<PatientEntity> {
+    return this.prisma.patient
+      .update({
+        where: {
+          id,
+        },
+        data: {
+          ...updatePatientDto,
+        },
+      })
+      .catch((err) => {
+        console.log(err);
+        throw new UnprocessableEntityException(
+          `No se ha podido actualizar el paciente con id ${id}`,
+        );
+      });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} patient`;
+  async remove(id: number): Promise<string> {
+    await this.prisma.patient
+      .update({
+        where: {
+          id,
+        },
+        data: {
+          status: PatientStatus.D,
+        },
+      })
+      .catch((err) => {
+        console.log(err);
+        throw new UnprocessableEntityException(
+          `No se ha podido eliminar el paciente con id ${id}`,
+        );
+      });
+    return 'El paciente ha sido eliminado';
   }
 }
