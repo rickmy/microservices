@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('home_adress');
             $table->boolean('state')->default(true);
             $table->string('gender');
-            $table->date('date_birth')->nullable();
+            $table->date('date_birth');
             $table->timestamps();
         });
     }
