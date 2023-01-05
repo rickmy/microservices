@@ -40,6 +40,27 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         Route::delete('/delete/{id}', [PatientController::class, 'deletePatient'])->middleware('can:ELIMINAR_PACIENTES');
     });
 
+        //Medicals
+     Route::prefix('medicals')->group(function () {
+
+            //ruta para obtener todos los MEDICOS
+        Route::get('/', [MedicalController::class, 'getMedicals'])->middleware('can:LEER_MEDICOS');
+        //ruta para obtener medico por id
+        Route::get('/{id}', [MedicalController::class, 'getMedicalById'])->middleware('can:LEER_MEDICOS');
+        //ruta para obtener medico por cedula de persona
+        Route::get('/search/{value}', [MedicalController::class, 'searchMedicalByCedula'])->middleware('can:LEER_MEDICOS');
+        //ruta para crear medico
+        Route::post('/create', [MedicalController::class, 'createMedical'])->middleware('can:CREAR_MEDICOS');
+        //ruta para actualizar medico
+        Route::put('/update/{id}', [MedicalController::class, 'updateMedical'])->middleware('can:ACTUALIZAR_MEDICOS');
+        //ruta para archivar medico
+        Route::put('/archive/{id}', [MedicalController::class, 'archiveMedical'])->middleware('can:ARCHIVAR_MEDICOS');
+        //ruta para restaurar medico
+        Route::put('/restore/{id}', [MedicalController::class, 'restoreMedical'])->middleware('can:RESTAURAR_MEDICOS');
+        //ruta para eliminar medico
+        Route::delete('/delete/{id}', [MedicalController::class, 'deleteMedical'])->middleware('can:ELIMINAR_MEDICOS');
+   });
+
     //Clinical_histories
     Route::prefix('clinical_histories')->group(function () {
 
