@@ -15,29 +15,25 @@ use App\Http\Controllers\ClinicHistoryController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+/*
+Route::middleware()->get('/user', function (Request $request) {
+    return $request->user(); */
 
 
      //Patients
      Route::prefix('patients')->group(function () {
         //ruta para obtener todos los pacientes
-        Route::get('/', [PatientController::class, 'getPatients'])->middleware('can:LEER_PACIENTES');
+        Route::get('/', [PatientController::class, 'getPatients']);
         //ruta para obtener paciente por id
-        Route::get('/{id}', [PatientController::class, 'getPatientById'])->middleware('can:LEER_PACIENTES');
+        Route::get('/{id}', [PatientController::class, 'getPatientById']);
         //ruta para obtener paciente por cedula de persona
-        Route::get('/search/{value}', [PatientController::class, 'searchPatientByCedula'])->middleware('can:LEER_PACIENTES');
+        Route::get('/search/{term?}', [PatientController::class, 'searchPatientsByterm']);
         //ruta para crear paciente
-        Route::post('/create', [PatientController::class, 'createPatient'])->middleware('can:CREAR_PACIENTES');
+        Route::post('/create', [PatientController::class, 'createPatient']);
         //ruta para actualizar paciente
-        Route::put('/update/{id}', [PatientController::class, 'updatePatient'])->middleware('can:ACTUALIZAR_PACIENTES');
-        //ruta para archivar paciente
-        Route::put('/archive/{id}', [PatientController::class, 'archivePatient'])->middleware('can:ARCHIVAR_PACIENTES');
-        //ruta para restaurar paciente
-        Route::put('/restore/{id}', [PatientController::class, 'restorePatient'])->middleware('can:RESTAURAR_PACIENTES');
-        //ruta para eliminar paciente
-        Route::delete('/delete/{id}', [PatientController::class, 'deletePatient'])->middleware('can:ELIMINAR_PACIENTES');
+        Route::put('/update/{id}', [PatientController::class, 'updatePatient']);
+       //ruta para eliminar paciente
+        Route::delete('/delete/{id}', [PatientController::class, 'deletePatient']);
     });
 
         //Medicals
@@ -144,5 +140,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
     });
 
-
+/*
 });
+ */

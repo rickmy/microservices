@@ -11,7 +11,7 @@ class ClinicHistoryController extends Controller
      public function getClinicHistories()
      {
          //obtener la histortria clinica y no archivados excepto el paciente logueado y el paciente admin
-         $histories = clinic_history::where()->get();
+         $histories = clinic_history::get();
 
         //devolver historias
          return response()->json($histories);
