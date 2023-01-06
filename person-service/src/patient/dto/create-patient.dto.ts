@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsEmail } from 'class-validator';
+import { IsNotEmpty, IsString, IsEmail, IsOptional } from 'class-validator';
 
 export class CreatePatientDto {
   @IsString({ message: 'El número de documento debe ser un string' })
@@ -13,7 +13,7 @@ export class CreatePatientDto {
   firstName: string;
 
   @IsString({ message: 'El segundon nombre debe ser un string' })
-  @IsNotEmpty({ message: 'El segundo nombre es requerido.' })
+  @IsOptional()
   @ApiProperty({ description: 'Nombre', example: 'Adrian' })
   middleName: string;
 
@@ -23,7 +23,7 @@ export class CreatePatientDto {
   firstSurname: string;
 
   @IsString({ message: 'El apellido materno debe ser un string' })
-  @IsNotEmpty({ message: 'El apellido materno es requerido.' })
+  @IsOptional()
   @ApiProperty({ description: 'Apellido materno', example: 'Perez' })
   secondSurname: string;
 

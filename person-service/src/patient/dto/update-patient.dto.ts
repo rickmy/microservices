@@ -23,7 +23,7 @@ export class UpdatePatientDto extends PartialType(CreatePatientDto) {
   firstName: string;
 
   @IsString({ message: 'El segundon nombre debe ser un string' })
-  @IsNotEmpty({ message: 'El segundo nombre es requerido.' })
+  @IsOptional()
   @ApiProperty({ description: 'Nombre', example: 'Adrian' })
   middleName: string;
 

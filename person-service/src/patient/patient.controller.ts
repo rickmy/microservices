@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
 } from '@nestjs/common';
@@ -17,7 +16,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger/dist';
 import { PatientEntity } from './entities/patient.entity';
-import { UploadedFile, UseInterceptors } from '@nestjs/common/decorators';
+import { Put, UploadedFile, UseInterceptors } from '@nestjs/common/decorators';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('patient')
@@ -64,7 +63,7 @@ export class PatientController {
     return this.patientService.findOneById(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   @ApiOkResponse({ type: PatientEntity, description: 'Paciente actualizado' })
   @ApiParam({ name: 'id', type: 'number' })
   update(@Param('id') id: string, @Body() updatePatientDto: UpdatePatientDto) {
