@@ -16,10 +16,13 @@ class DiagnosticController extends Controller
         {
 
             $diagnostic = new diagnostic();
-            $diagnostic->name = $request->diagnostic['name'];
-            $diagnostic->description = $request->diagnostic['description'];
-            $diagnostic->state = $request->diagnostic['state'];
+            $diagnostic->name = $request->name;
+            $diagnostic->description = $request->description;
+            $diagnostic->state = $request->state;
             $diagnostic->save();
+            return response()->json([
+                ['message' => 'Diagnostico creado correctamente']
+            ]);
 
         }    catch (\Throwable $th) {
              return response()->json([

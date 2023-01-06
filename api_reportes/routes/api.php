@@ -4,7 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ClinicHistoryController;
-
+use App\Http\Controllers\TreatmentController;
+use App\Http\Controllers\MedicalController;
+use App\Http\Controllers\DiagnosticController;
+use App\Http\Controllers\SymptomController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,82 +43,82 @@ Route::middleware()->get('/user', function (Request $request) {
      Route::prefix('medicals')->group(function () {
 
             //ruta para obtener todos los MEDICOS
-        Route::get('/', [MedicalController::class, 'getMedicals'])->middleware('can:LEER_MEDICOS');
+        Route::get('/', [MedicalController::class, 'getMedicals']);
         //ruta para obtener medico por id
-        Route::get('/{id}', [MedicalController::class, 'getMedicalById'])->middleware('can:LEER_MEDICOS');
+        Route::get('/{id}', [MedicalController::class, 'getMedicalById']);
         //ruta para obtener medico por cedula de persona
-        Route::get('/search/{value}', [MedicalController::class, 'searchMedicalByCedula'])->middleware('can:LEER_MEDICOS');
+        Route::get('/search/{value}', [MedicalController::class, 'searchMedicalByCedula']);
         //ruta para crear medico
-        Route::post('/create', [MedicalController::class, 'createMedical'])->middleware('can:CREAR_MEDICOS');
+        Route::post('/create', [MedicalController::class, 'createMedical']);
         //ruta para actualizar medico
-        Route::put('/update/{id}', [MedicalController::class, 'updateMedical'])->middleware('can:ACTUALIZAR_MEDICOS');
+        Route::put('/update/{id}', [MedicalController::class, 'updateMedical']);
         //ruta para archivar medico
-        Route::put('/archive/{id}', [MedicalController::class, 'archiveMedical'])->middleware('can:ARCHIVAR_MEDICOS');
+        Route::put('/archive/{id}', [MedicalController::class, 'archiveMedical']);
         //ruta para restaurar medico
-        Route::put('/restore/{id}', [MedicalController::class, 'restoreMedical'])->middleware('can:RESTAURAR_MEDICOS');
+        Route::put('/restore/{id}', [MedicalController::class, 'restoreMedical']);
         //ruta para eliminar medico
-        Route::delete('/delete/{id}', [MedicalController::class, 'deleteMedical'])->middleware('can:ELIMINAR_MEDICOS');
+        Route::delete('/delete/{id}', [MedicalController::class, 'deleteMedical']);
    });
 
     //Clinical_histories
     Route::prefix('clinical_histories')->group(function () {
 
          //ruta para obtener todos los historia clinicas
-        Route::get('/', [ClinicHistoryController::class, 'getClinicHistories'])->middleware('can:LEER_HISTORIAS_CLINICAS');
+        Route::get('/', [ClinicHistoryController::class, 'getClinicHistories']);
         //ruta para obtener historia clinica por id
-        Route::get('/{id}', [ClinicHistoryController::class, 'getClinicHistoryById'])->middleware('can:LEER_HISTORIAS_CLINICAS');
+        Route::get('/{id}', [ClinicHistoryController::class, 'getClinicHistoryById']);
         //ruta para obtener historia clinica por cedula de persona
-        Route::get('/search/{value}', [ClinicHistoryController::class, 'searchClinicHistoryByCedula'])->middleware('can:LEER_HISTORIAS_CLINICAS');
+        Route::get('/search/{value}', [ClinicHistoryController::class, 'searchClinicHistoryByCedula']);
         //ruta para crear historia clinica
-        Route::post('/create', [ClinicHistoryController::class, 'createClinicHistory'])->middleware('can:CREAR_HISTORIAS_CLINICAS');
+        Route::post('/create', [ClinicHistoryController::class, 'createClinicHistory']);
         //ruta para actualizar historia clinica
-        Route::put('/update/{id}', [ClinicHistoryController::class, 'updateClinicHistory'])->middleware('can:ACTUALIZAR_HISTORIAS_CLINICAS');
+        Route::put('/update/{id}', [ClinicHistoryController::class, 'updateClinicHistory']);
         //ruta para archivar historia clinica
-        Route::put('/archive/{id}', [ClinicHistoryController::class, 'archiveClinicHistory'])->middleware('can:ARCHIVAR_HISTORIAS_CLINICAS');
+        Route::put('/archive/{id}', [ClinicHistoryController::class, 'archiveClinicHistory']);
         //ruta para restaurar historia clinica
-        Route::put('/restore/{id}', [ClinicHistoryController::class, 'restoreClinicHistory'])->middleware('can:RESTAURAR_HISTORIAS_CLINICAS');
+        Route::put('/restore/{id}', [ClinicHistoryController::class, 'restoreClinicHistory']);
         //ruta para eliminar historia clinica
-        Route::delete('/delete/{id}', [ClinicHistoryController::class, 'deleteClinicHistory'])->middleware('can:ELIMINAR_HISTORIAS_CLINICAS');
+        Route::delete('/delete/{id}', [ClinicHistoryController::class, 'deleteClinicHistory']);
 
      });
 
     //Treatments
     Route::prefix('treatments')->group(function () {
         //ruta para obtener todos los tratamientos
-        Route::get('/', [TreatmentController::class, 'getTreatments'])->middleware('can:LEER_TREATMENTS');
+        Route::get('/', [TreatmentController::class, 'getTreatments']);
         //ruta para obtener tratamiento por id
-        Route::get('/{id}', [TreatmentController::class, 'getTreatmentById'])->middleware('can:LEER_TREATMENTS');
-        Route::get('/search/{value}', [TreatmentController::class, 'searchTreatmentById'])->middleware('can:LEER_TRATAMIENTOS');
+        Route::get('/{id}', [TreatmentController::class, 'getTreatmentById']);
+        Route::get('/search/{value}', [TreatmentController::class, 'searchTreatmentById']);
        //ruta para crear tratamiento
-        Route::post('/create', [TreatmentController::class, 'createTreatment'])->middleware('can:CREAR_TRATAMIENTOS');
+        Route::post('/create', [TreatmentController::class, 'createTreatment']);
        //ruta para actualizar tratamiento
-         Route::put('/update/{id}', [TreatmentController::class, 'updateTreatment'])->middleware('can:ACTUALIZAR_TRATAMIENTOS');
+         Route::put('/update/{id}', [TreatmentController::class, 'updateTreatment']);
        //ruta para archivar tratamiento
-        Route::put('/archive/{id}', [TreatmentController::class, 'archiveTreatment'])->middleware('can:ARCHIVAR_TRATAMIENTOS');
+        Route::put('/archive/{id}', [TreatmentController::class, 'archiveTreatment']);
         //ruta para restaurar tratamiento
-        Route::put('/restore/{id}', [TreatmentController::class, 'restoreTreatment'])->middleware('can:RESTAURAR_TRATAMIENTOS');
+        Route::put('/restore/{id}', [TreatmentController::class, 'restoreTreatment']);
         //ruta para eliminar tratamiento
-        Route::delete('/delete/{id}', [TreatmentController::class, 'deleteTreatment'])->middleware('can:ELIMINAR_TRATAMIENTOS');
+        Route::delete('/delete/{id}', [TreatmentController::class, 'deleteTreatment']);
 
     });
 
         //Diagnostics
      Route::prefix('diagnostics')->group(function () {
              //ruta para obtener todos los DIAGNOSTICOS
-        Route::get('/', [DiagnosticController::class, 'getDiagnostics'])->middleware('can:LEER_DIAGNOSTICOS');
+        Route::get('/', [DiagnosticController::class, 'getDiagnostics']);
         //ruta para obtener diagnostico por id
-        Route::get('/{id}', [DiagnosticController::class, 'getDiagnosticById'])->middleware('can:LEER_DIAGNOSTICOS');
-        Route::get('/search/{value}', [DiagnosticController::class, 'searchDiagnosticById'])->middleware('can:LEER_DIAGNOSTICOS');
+        Route::get('/{id}', [DiagnosticController::class, 'getDiagnosticById']);
+        Route::get('/search/{value}', [DiagnosticController::class, 'searchDiagnosticById']);
         //ruta para crear diagnostico
-        Route::post('/create', [DiagnosticController::class, 'createDiagnostic'])->middleware('can:CREAR_DIAGNOSTICOS');
+        Route::post('/create', [DiagnosticController::class, 'createDiagnostic']);
         //ruta para actualizar diagnostico
-        Route::put('/update/{id}', [DiagnosticController::class, 'updateDiagnostic'])->middleware('can:ACTUALIZAR_DIAGNOSTICOS');
+        Route::put('/update/{id}', [DiagnosticController::class, 'updateDiagnostic']);
         //ruta para archivar diagnostico
-        Route::put('/archive/{id}', [DiagnosticController::class, 'archiveDiagnostic'])->middleware('can:ARCHIVAR_DIAGNOSTICOS');
+        Route::put('/archive/{id}', [DiagnosticController::class, 'archiveDiagnostic']);
         //ruta para restaurar diagnostico
-        Route::put('/restore/{id}', [DiagnosticController::class, 'restoreDiagnostic'])->middleware('can:RESTAURAR_DIAGNOSTICOS');
+        Route::put('/restore/{id}', [DiagnosticController::class, 'restoreDiagnostic']);
         //ruta para eliminar diagnostico
-        Route::delete('/delete/{id}', [DiagnosticController::class, 'deleteDiagnostic'])->middleware('can:ELIMINAR_DIAGNOSTICOS');
+        Route::delete('/delete/{id}', [DiagnosticController::class, 'deleteDiagnostic']);
 
     });
 
@@ -123,21 +126,20 @@ Route::middleware()->get('/user', function (Request $request) {
 
       Route::prefix('symptoms')->group(function () {
         //ruta para obtener todos los Symptomas
-        Route::get('/', [SymptomController::class, 'getSymptoms'])->middleware('can:LEER_SINTOMAS');
+        Route::get('/', [SymptomController::class, 'getSymptoms']);
         //ruta para obtener Symptomo por id
-        Route::get('/{id}', [SymptomController::class, 'getSymptomById'])->middleware('can:LEER_SINTOMAS');
-        Route::get('/search/{value}', [SymptomController::class, 'searchSymptomById'])->middleware('can:LEER_SINTOMAS');
+        Route::get('/{id}', [SymptomController::class, 'getSymptomById']);
+        Route::get('/search/{value}', [SymptomController::class, 'searchSymptomById']);
         //ruta para crear Symptomo
-        Route::post('/create', [SymptomController::class, 'createSymptom'])->middleware('can:CREAR_SINTOMAS');
+        Route::post('/create', [SymptomController::class, 'createSymptom']);
         //ruta para actualizar Symptomo
-        Route::put('/update/{id}', [SymptomController::class, 'updateSymptom'])->middleware('can:ACTUALIZAR_SINTOMAS');
+        Route::put('/update/{id}', [SymptomController::class, 'updateSymptom']);
         //ruta para archivar Symptomo
-        Route::put('/archive/{id}', [SymptomController::class, 'archiveSymptom'])->middleware('can:ARCHIVAR_SINTOMAS');
+        Route::put('/archive/{id}', [SymptomController::class, 'archiveSymptom']);
         //ruta para restaurar Symptomo
-        Route::put('/restore/{id}', [SymptomController::class, 'restoreSymptom'])->middleware('can:RESTAURAR_SINTOMAS');
+        Route::put('/restore/{id}', [SymptomController::class, 'restoreSymptom']);
         //ruta para eliminar Symptomo
-        Route::delete('/delete/{id}', [SymptomController::class, 'deleteSymptom'])->middleware('can:ELIMINAR_SINTOMAS');
-
+        Route::delete('/delete/{id}', [SymptomController::class, 'deleteSymptom']);
     });
 
 /*

@@ -11,14 +11,15 @@ class TreatmentController extends Controller
     {
          try
 
-        {
-
-            $treatment = new treatment();
-            $treatment->name = $request->treatment['name'];
-            $treatment->description = $request->treatment['description'];
-            $treatment->state = $request->treatment['state'];
+        {   $treatment = new treatment();
+            $treatment->name = $request->name;
+            $treatment->description = $request->description;
+            $treatment->state = $request->state;
             $treatment->save();
-
+            return response()->json([
+                ['message' => 'Tratamiento creado correctamente']
+            ]);
+            
         }    catch (\Throwable $th) {
              return response()->json([
                'message' => 'Error al crear el treatmento',

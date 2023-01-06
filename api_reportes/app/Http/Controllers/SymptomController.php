@@ -9,21 +9,25 @@ class SymptomController extends Controller
 {
     public function createSymptom(Request $request)
     {
-         try
+          try
 
         {
 
             $symptom = new symptom();
-            $symptom->name = $request->symptom['name'];
-            $symptom->description = $request->symptom['description'];
-            $symptom->state = $request->symptom['state'];
+            $symptom->name = $request->name;
+            $symptom->description = $request->description;
+            $symptom->state = $request->state;
             $symptom->save();
+            return response()->json([
+                ['message' => 'Sintoma creado correctamente']
+            ]);
 
         }    catch (\Throwable $th) {
              return response()->json([
-               'message' => 'Error al crear el symptomo',
+               'message' => 'Error al crear el sintoma',
                'error' => $th
            ]);
-       }
+
     }
+  }
 }

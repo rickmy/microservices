@@ -11,68 +11,119 @@ class ClinicHistoryController extends Controller
      public function getClinicHistories()
      {
          //obtener la histortria clinica y no archivados excepto el paciente logueado y el paciente admin
-         $histories = clinic_history::get();
+         $histories = clinic_history::all();
 
         //devolver historias
          return response()->json($histories);
      }
 
-     public function getClinicHistoryById($id)
-     {
-         //obtener paciente por id activo y no archivado excepto el paciente logueado y el paciente admin
-         $history = clinic_history::where('id', $id)
-            ->first();
-         //verificar si existe el paciente
-         if (!$history) {
-             return response()->json([
-                 'message' => 'Historia no eencontrada'
-             ]);
-         }
+     public function getClinicHistoryById($id){
 
-         return response()->json($history);
-     }
+        $history = clinic_history::find($id);
+        return response()->json($history);
+    }
+
 
      public function createClinicHistory(Request $request)
      {
        try  {
 
             $history = new clinic_history();
-            $history->attention_date = $request->history['attention_date'];
-            $history->attention_hour = $request->history['attention_hour'];
-            $history->appointment_reason = $request->history['appointment_reason'];
-            $history->state = $request->history['state'];
+            $history->attention_date = $request->attention_date;
+            $history->attention_hour = $request->attention_hour;
+            $history->appointment_reason = $request->appointment_reason;
+            $history->diagnostic_id = $request->diagnostic_id;
+            $history->medical_observation = $request->medical_observation;
+            $history->patient_id = $request->patient_id;
+            $history->medical_id = $request->medical_id;
+            $history->symptom_id = $request->symptom_id;
+            $history->diagnostic_id = $request->diagnostic_id;
+            $history->treatment_id = $request->treatment_id;
+            $history->save();
+            return response()->json([
+                ['message' => 'Historia Clinica Creada Correctamente',]
 
-            $history->medical_observation = $request->history['medical_observation'];
-            $history->patient_id = $request->history['patient_id']['id'];
-            $history->symptom_id = $request->history['symptom_id']['id'];
-            $history->diagnostic_id = $request->history['diagnostic_id']['id'];
-            $history->treatment_id = $request->history['treatment_id']['id'];
-
-        $history->save();
+            ]);
 
        }  catch (\Throwable $th) {
             return response()->json([
-                'message' => 'Error al crear la historia clinica',
-                'error' => $th
+                ['message' => 'Error al crear la historia clinica',
+                'error' => $th]
             ]);
         }
      }
 
+        public function updateClinicHistory(Request $request, $id){
 
-        //funcion para eliminar una historia clinica por id
-        public function deleteClinicHistory($id)
-        {
-            //obtener paciente por id
-            $history = clinic_history::find($id);
-            //verificar si existe el paciente
-            if (!$history) {
+
+            try {
+                  $history = clinic_history::find($id);
+
+                if (!empty($request->attention_date)) {
+                  $history->attention_date= $request->attention_date;
+                 }
+
+                 if (!empty($request->attention_hour)) {
+                    $history->attention_hour = $request->attention_hour;
+                }
+                if (!empty($request->appointment_reason)) {
+                    $history->appointment_reason = $request->appointment_reason;
+                }
+                if (!empty($request->state)) {
+                    $history->state = $request->state;
+                }
+                if (!empty($request->medical_observation)) {
+                    $history->medical_observation = $request->medical_observation;
+                }
+                if (!empty($request->patient_id)) {
+                    $history->patient_id = $request->patient_id;
+                }
+                if (!empty($request->medical_id)) {
+                    $history->medical_id = $request->medical_id;
+                }
+                if (!empty($request->symptom_id)) {
+                    $history->symptom_id = $request->symptom_id;
+                }
+                if (!empty($request->diagnostic_id)) {
+                    $history->diagnostic_id = $request->diagnostic_id;
+                }
+                if (!empty($request->treatment_id)) {
+                    $history->treatment_id = $request->treatment_id;
+                }
+
+
+
+                $history->save();
+
+                return response()->json(['message'=>'Historia Clinica  actualizada correctamente']);
+
+            } catch (\Throwable $th) {
                 return response()->json([
-                    'message' => 'historia clinica  no encontrada'
+                    'message' => 'Error al actualizar la historia clinica',
+                    'error' => $th
                 ]);
             }
-            //eliminar paciente
-            $history->delete();
-            //devolver paciente
-            return response()->json(['history' => $history]);
+
         }
+
+
+
+        public function deleteClinicHistory(Request $request, $id){
+            try {
+
+               $history = clinic_history::find($id);
+               if ($history === null) {
+                  return response()->json(['message'=>'Historia no encontrada']);
+               }
+               $history->delete();
+               return response()->json(['message'=>'Historia eliminada correctamente']);
+
+            }catch (\Throwable $th) {
+               return response()->json([
+                   'message' => 'Error al eliminar la historia',
+                   'error' => $th
+               ]);
+           }
+
+          }
 }
