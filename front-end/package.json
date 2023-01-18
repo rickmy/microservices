@@ -1,6 +1,6 @@
 {
-  "name": "sakai-ng",
-  "version": "14.0.5-SNAPSHOT",
+  "name": "bienestar",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
