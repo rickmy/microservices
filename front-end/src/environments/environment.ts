@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-    api_personas: 'http://localhost:3000/api/'
+    api_personas: 'http://localhost:3000/api/',
+
+
 };
 
 /*
