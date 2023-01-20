@@ -3,6 +3,7 @@ import { MedicalAppoService } from './medical-appo.service';
 import { CreateMedicalAppoDto } from './dto/create-medical-appo.dto';
 import { UpdateMedicalAppoDto } from './dto/update-medical-appo.dto';
 
+@ApiTags('Citas Medicas')
 @Controller('medical-appo')
 export class MedicalAppoController {
   constructor(private readonly medicalAppoService: MedicalAppoService) {}
