@@ -4,6 +4,6 @@ import { MedicalAppoController } from './medical-appo.controller';
 
 @Module({
   controllers: [MedicalAppoController],
-  providers: [MedicalAppoService]
+  providers: [MedicalAppoService],
 })
 export class MedicalAppoModule {}
