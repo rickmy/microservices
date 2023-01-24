@@ -1,7 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { MedicalAppoService } from './medical-appo.service';
 import { CreateMedicalAppoDto } from './dto/create-medical-appo.dto';
 import { UpdateMedicalAppoDto } from './dto/update-medical-appo.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Citas Medicas')
 @Controller('medical-appo')
@@ -24,7 +33,10 @@ export class MedicalAppoController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMedicalAppoDto: UpdateMedicalAppoDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateMedicalAppoDto: UpdateMedicalAppoDto,
+  ) {
     return this.medicalAppoService.update(+id, updateMedicalAppoDto);
   }
 
