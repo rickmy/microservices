@@ -10,7 +10,6 @@ export class PatientsService {
     const patients = await axios.get(this.urlPatients).then((response) => {
       return response.data;
     });
-
     return patients;
   }
 
