@@ -1,10 +1,14 @@
 package facturacion.api_factura.cliente;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 @Data
 public class CustomerDTO {
     private Long id;
-    private String razon_social;
-    private String nro_identificacion;
+    private String firsName;
+    private String lastName;
+    private String sex;
+    private Date birthDate;
 }

@@ -50,11 +50,11 @@ public class FacturaService {
         if (factura.getId()==null)
             return null;
         
-        reportParameters.put("nro", factura.getNumeroFactura());
         reportParameters.put("fecha",Date.valueOf(factura.getFecha()));
 
         CustomerDTO cliente =  customerClient.findCustomerById(factura.getClienteId());
-        reportParameters.put("nombre_cliente", cliente.getRazon_social());
+        reportParameters.put("nombrePaciente", cliente.getFirsName() );
+        reportParameters.put("apellidoPaciente", cliente.getLastName());
         reportParameters.put("identificacion", cliente.getNro_identificacion());
         
         List<Map<String, Object>> dataList = new ArrayList<>();

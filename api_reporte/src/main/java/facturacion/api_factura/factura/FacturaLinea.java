@@ -20,7 +20,6 @@ class FacturaLinea {
 
     @ManyToOne
     private Producto producto;
-
     private BigDecimal cantidad;
     private BigDecimal precio;
 }
