@@ -5,13 +5,11 @@ import { UpdatePatientDto } from './dto/update-patient.dto';
 
 @Injectable()
 export class PatientsService {
+  urlPatients = 'http://localhost:3000/api/patient';
   async findAll(): Promise<any> {
-    const patients = await axios
-      .get('http://localhost:3000/api/patient')
-      .then((response) => {
-        return response.data;
-      });
-
+    const patients = await axios.get(this.urlPatients).then((response) => {
+      return response.data;
+    });
     return patients;
   }
 
@@ -34,7 +32,7 @@ export class PatientsService {
   async create(patient: CreatePatientDto) {
     if (!patient) throw new UnprocessableEntityException('Solicitud invalida');
     const newPatient = await axios
-      .post('http://localhost:3000/api/patient', patient)
+      .post(this.urlPatients, patient)
       .then((response) => {
         return response.data;
       })

@@ -5,21 +5,22 @@ import axios from 'axios';
 
 @Injectable()
 export class MedicalAppoService {
+  urlMedicalAppo = 'http://localhost:8080/api/medicalAppo/';
   async findAll() {
     const informacion = await axios
-      .get('http://localhost:8080/api/medicalAppo/')
+      .get(this.urlMedicalAppo)
       .then((res) => {
         return res.data;
       })
       .catch((err) => {
         console.log(err);
-        throw new UnprocessableEntityException('Un error existe aqui');
+        throw new UnprocessableEntityException('Existe un error aqui');
       });
     return informacion;
   }
-  async findOne(id: number): Promise<CreateMedicalAppoDto>{
+  async findOne(id: number): Promise<CreateMedicalAppoDto> {
     return await axios
-      .get('http://localhost:8080/api/medicalAppo/' + id)
+      .get(this.urlMedicalAppo + id)
       .then((res) => {
         return res.data;
       })
@@ -28,11 +29,28 @@ export class MedicalAppoService {
         throw new UnprocessableEntityException('Existe un error aqui');
       });
   }
-  update(id: number, updateMedicalAppoDto: UpdateMedicalAppoDto) {
-    return `This action updates a #${id} medicalAppo`;
+  async update(id: number, updateMedicalAppoDto: UpdateMedicalAppoDto) {
+    const actualizar = await axios
+      .put(this.urlMedicalAppo, { ...updateMedicalAppoDto, id })
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        throw new UnprocessableEntityException('No se puede actualizar');
+      });
+    return actualizar;
   }
-  remove(id: number) {
-    return `This action removes a #${id} medicalAppo`;
+  async remove(id: number) {
+    return await axios
+      .delete(this.urlMedicalAppo + id)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        throw new UnprocessableEntityException('Eliminado con exito');
+      });
   }
 
   getHello(): string {
