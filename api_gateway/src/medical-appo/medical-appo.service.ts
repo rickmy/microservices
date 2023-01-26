@@ -14,7 +14,7 @@ export class MedicalAppoService {
       })
       .catch((err) => {
         console.log(err);
-        throw new UnprocessableEntityException('Existe un error aqui');
+        throw new UnprocessableEntityException('Error');
       });
     return informacion;
   }
@@ -60,7 +60,7 @@ export class MedicalAppoService {
     if (!medicalAppo)
       throw new UnprocessableEntityException('Solicitud denegada');
     const newDatos = await axios
-      .post('http://localhost:8080/api/medicalAppo', medicalAppo)
+      .post(this.urlMedicalAppo, medicalAppo)
       .then((response) => {
         return response.data;
       })

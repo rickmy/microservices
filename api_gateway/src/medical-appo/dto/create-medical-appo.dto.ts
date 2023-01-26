@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDate, IsNotEmpty, IsString } from 'class-validator';
+import { IsDate, IsDateString, IsNotEmpty, IsString } from "class-validator";
 
 export class CreateMedicalAppoDto {
   @IsNotEmpty({ message: 'El campo fecha de atencion es requerido' })
