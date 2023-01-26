@@ -5,7 +5,9 @@ import { SwaggerModule } from '@nestjs/swagger/dist';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: ['error', 'warn', 'debug', 'log'],
+  });
   app.setGlobalPrefix('api');
   const config = new DocumentBuilder()
     .setTitle('Api Gateway Bienestar')
