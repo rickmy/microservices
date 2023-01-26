@@ -20,43 +20,26 @@ public class MedicalAppoController {
  @Autowired MedicalAppoService medicalAppoService;
 
  @GetMapping("/")
-
  public List<MedicalAppo> findAll(){
-
- return medicalAppoService.findAll();
-
+  return medicalAppoService.findAll();
  }
-
- @GetMapping("/{id}")
-
+ @GetMapping("/{id}/")
  public MedicalAppo findById(@PathVariable Long id){
-
- return medicalAppoService.findById(id);
-
+  return medicalAppoService.findById(id);
  }
-
  @PostMapping("/")
-
  public MedicalAppo save(@RequestBody MedicalAppo entity){
-
- return medicalAppoService.save(entity);
-
+  return medicalAppoService.save(entity);
  }
-
  @PutMapping("/")
-
  public MedicalAppo update(@RequestBody MedicalAppo entity){
-
- return medicalAppoService.save(entity);
-
+  return medicalAppoService.save(entity);
  }
 
  @DeleteMapping("/{id}/")
-
  public void deleteById(@PathVariable Long id){
-
- medicalAppoService.deleteById(id);
-
+  medicalAppoService.deleteById(id);
  }
- 
+
 }
+
