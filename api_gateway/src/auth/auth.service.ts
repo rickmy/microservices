@@ -1,4 +1,5 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import axios from 'axios';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { LoginDto, TokenDto } from './dto/login.dto';
@@ -8,6 +9,7 @@ import { UpdateAuthDto } from './dto/update-auth.dto';
 @Injectable()
 export class AuthService {
   urlAuth = 'http://localhost:8081';
+  constructor(private jwtService: JwtService) {}
   create(createAuthDto: CreateAuthDto) {
     return 'This action adds a new auth';
   }
@@ -38,8 +40,6 @@ export class AuthService {
     if (!token) {
       throw new UnprocessableEntityException('Token is required');
     }
-    /* const token =
-      'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTc0NjcxMjUwNywicm9sIjoiUk9MRV9BRE1JTiJ9.g5XvoUaWDFx-pPHnxUx7BtCaRnlFf_ogvE1ovcr9eXGqaOSuo_zZ6LT2UE1eXAMNXpwGX3-udIzthjfxQvvodg'; */
     return await axios
       .post(
         this.urlAuth + '/api/user/',

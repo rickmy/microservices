@@ -11,9 +11,10 @@ import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { LoginDto, TokenDto } from './dto/login.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger/dist';
+import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger/dist';
 import { RegisterDto } from './dto/register.dto';
-import { Headers, Request } from '@nestjs/common/decorators';
+import { Headers, Request, UseGuards } from '@nestjs/common/decorators';
+import { JwtAuthGuard } from './guards/jwtauth.guard';
 
 @ApiTags('Autenticacion y Autorización')
 @Controller('auth')
@@ -33,6 +34,8 @@ export class AuthController {
 
   @Post('registerPatient')
   @ApiOkResponse({ type: null })
+  //@ApiBearerAuth()
+  //@UseGuards(JwtAuthGuard)
   registerPatient(
     @Body() registerDto: RegisterDto,
     @Headers('Authorization') token: string,
