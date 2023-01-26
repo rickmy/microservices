@@ -1,16 +1,19 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import axios from 'axios';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { LoginDto, TokenDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 
 @Injectable()
 export class AuthService {
   urlAuth = 'http://localhost:8081';
-
+  constructor(private jwtService: JwtService) {}
   create(createAuthDto: CreateAuthDto) {
     return 'This action adds a new auth';
   }
+
   async login(loginDto: LoginDto): Promise<TokenDto> {
     return await axios
       .post(
@@ -25,6 +28,30 @@ export class AuthService {
         return {
           token: headerToken.split(' ')[1],
         };
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        throw new UnprocessableEntityException(error.response.data.message);
+      });
+  }
+
+  async registerPatient(registerDto: RegisterDto, token: string): Promise<any> {
+    console.log(registerDto);
+    if (!token) {
+      throw new UnprocessableEntityException('Token is required');
+    }
+    return await axios
+      .post(
+        this.urlAuth + '/api/user/',
+        {
+          ...registerDto,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      )
+      .then((response) => {
+        return response.data;
       })
       .catch((error) => {
         console.log(error.response.data);

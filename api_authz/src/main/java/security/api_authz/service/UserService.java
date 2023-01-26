@@ -31,7 +31,10 @@ public class UserService implements UserDetailsService {
 
     //Create and update
     public User save(User entity){
-        
+        User userDb = findByUsername(entity.getName());
+        if (userDb != null){
+            throw new RuntimeException("Ya existe un usuario con ese name o userName");
+        }
         entity.setPassword(encoder.encode(entity.getPassword()));
         return userRepository.save(entity);
     }
