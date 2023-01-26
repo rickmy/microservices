@@ -12,6 +12,8 @@ import { CreateAuthDto } from './dto/create-auth.dto';
 import { LoginDto, TokenDto } from './dto/login.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger/dist';
+import { RegisterDto } from './dto/register.dto';
+import { Headers, Request } from '@nestjs/common/decorators';
 
 @ApiTags('Autenticacion y Autorización')
 @Controller('auth')
@@ -27,6 +29,15 @@ export class AuthController {
   @ApiOkResponse({ type: TokenDto })
   login(@Body() login: LoginDto): Promise<TokenDto> {
     return this.authService.login(login);
+  }
+
+  @Post('registerPatient')
+  @ApiOkResponse({ type: null })
+  registerPatient(
+    @Body() registerDto: RegisterDto,
+    @Headers('Authorization') token: string,
+  ): Promise<any> {
+    return this.authService.registerPatient(registerDto, token);
   }
 
   @Get()
