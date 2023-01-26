@@ -6,11 +6,8 @@ import { UpdateAuthDto } from './dto/update-auth.dto';
 
 @Injectable()
 export class AuthService {
-<<<<<<< HEAD
-  urlAutz = 'http://localhost:8081/';
-=======
   urlAuth = 'http://localhost:8081';
->>>>>>> da13fc567a1b9d57a9b374b431766d358aadd02f
+
   create(createAuthDto: CreateAuthDto) {
     return 'This action adds a new auth';
   }

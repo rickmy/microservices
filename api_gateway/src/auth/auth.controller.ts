@@ -7,21 +7,19 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-<<<<<<< HEAD
-=======
+
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
->>>>>>> da13fc567a1b9d57a9b374b431766d358aadd02f
+
 import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { LoginDto, TokenDto } from './dto/login.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
-<<<<<<< HEAD
-import { ApiTags } from '@nestjs/swagger/dist';
 
-@ApiTags('Autenticacion y Autorización')
-=======
-@ApiTags('Autorización')
->>>>>>> da13fc567a1b9d57a9b374b431766d358aadd02f
+
+
+
+@ApiTags('Autorización Y Autenticacion')
+
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
