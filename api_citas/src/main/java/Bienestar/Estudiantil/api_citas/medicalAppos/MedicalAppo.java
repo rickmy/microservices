@@ -22,5 +22,7 @@ public class MedicalAppo {
  private Boolean condition;
  private Integer patientId;
  private Integer doctorId;
- 
+
+
+
 }
