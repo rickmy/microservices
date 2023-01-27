@@ -8,7 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 @Entity
@@ -27,15 +27,17 @@ public class MedicalAppo {
     private Integer patientId;
     private Integer doctorId;
 
-   // @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-   // @JoinColumn(name = "medical_appo_id")
-    //private List<Treatment> treatments = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "medical_appo_id")
+    private List<Treatment> treatments = new ArrayList<>();
 
-   // @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-   // @JoinColumn(name = "medical_appo_id")
-   // private List<Symptom> symptoms = new ArrayList<>();
+    
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "medical_appo_id")
+    private List<Symptom> symptoms = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "medical_appo_id")
     private List<Diagnostic> diagnostics = new ArrayList<>();
 
