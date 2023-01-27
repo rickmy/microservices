@@ -13,8 +13,17 @@ export class PatientsService {
     return patients;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} patient`;
+  async findOne(id: number) {
+    const patient = await axios
+      .get(`${this.urlPatients}/${id}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        throw new UnprocessableEntityException(error.response.data.message);
+      });
+    return patient;
   }
 
   update(id: number, updatePatientDto: UpdatePatientDto) {
