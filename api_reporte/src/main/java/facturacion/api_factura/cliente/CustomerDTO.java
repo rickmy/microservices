@@ -8,7 +8,7 @@ import lombok.Data;
 public class CustomerDTO {
     private Long id;
     private String firsName;
-    private String lastName;
-    private String sex;
-    private Date birthDate;
+    private String dni;
+    private String email;
+ 
 }
