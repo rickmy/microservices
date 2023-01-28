@@ -9,5 +9,5 @@ public class PatientDTO {
     private String dni;
     private String email;
     private String sex;
-    
+
 }
