@@ -6,11 +6,12 @@ import { UpdatePatientDto } from './dto/update-patient.dto';
 import { PatientEntity } from './entities/patient.entity';
 import * as xlsx from 'xlsx';
 import { WorkBook, WorkSheet } from 'xlsx';
-import { PatientStatus } from '@prisma/client';
+import { PatientSex, PatientStatus } from '@prisma/client';
+import { PatientDto } from './dto/patient.dt';
 
 @Injectable()
 export class PatientService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
   async create(createPatientDto: CreatePatientDto): Promise<PatientEntity> {
     const dniExist = await this.findOneByDni(createPatientDto.dni);
     if (dniExist)
@@ -89,8 +90,8 @@ export class PatientService {
     });
   }
 
-  async findOneById(id: number): Promise<PatientEntity | null> {
-    return await this.prisma.patient
+  async findOneById(id: number): Promise<PatientDto | null> {
+    const patientDB = await this.prisma.patient
       .findUnique({
         where: {
           id,
@@ -102,6 +103,18 @@ export class PatientService {
           `No se ha podido encontrar el paciente con id ${id}`,
         );
       });
+    const oldYear =
+      new Date(patientDB.DateOfBirth).getFullYear() - new Date().getFullYear();
+
+    const patient: PatientDto = {
+      id: patientDB.id,
+      dni: patientDB.dni,
+      completeName: `${patientDB.firstName} ${patientDB.firstSurname}`,
+      email: patientDB.email,
+      sex: patientDB.sex || PatientSex.Otro,
+      oldYear: oldYear,
+    };
+    return patient;
   }
 
   async findAll(): Promise<PatientEntity[]> {
