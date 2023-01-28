@@ -4,6 +4,7 @@ import { PatientService } from './patient.service';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
 import {
+  ApiBadRequestResponse,
   ApiBody,
   ApiOkResponse,
   ApiParam,
@@ -12,6 +13,7 @@ import {
 import { PatientEntity } from './entities/patient.entity';
 import { Put, UploadedFile, UseInterceptors } from '@nestjs/common/decorators';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { PatientDto } from './dto/patient.dt';
 
 @ApiTags('patient')
 @Controller('patient')
@@ -52,7 +54,8 @@ export class PatientController {
   }
 
   @Get(':id')
-  @ApiOkResponse({ type: PatientEntity, description: 'Paciente encontrado' })
+  @ApiOkResponse({ type: PatientDto, description: 'Paciente encontrado' })
+  @ApiBadRequestResponse({ description: 'Paciente no encontrado' })
   findOne(@Param('id') id: string) {
     return this.patientService.findOneById(+id);
   }
