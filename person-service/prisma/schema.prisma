@@ -1,0 +1,92 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:123@localhost:5432/persondb"
+}
+
+model Patient {
+  id            Int           @id @default(autoincrement())
+  dni           String?       @unique() @db.VarChar(150)
+  firstName     String?       @db.VarChar(50)
+  middleName    String?       @db.VarChar(50)
+  firstSurname  String?       @db.VarChar(50)
+  secondSurname String?       @db.VarChar(50)
+  sex           PatientSex?
+  DateOfBirth   String?       @db.VarChar(10)
+  civilStatus   CivilStatus?
+  address       String?       @db.VarChar(200)
+  phone         String?       @db.VarChar(10)
+  email         String        @unique() @db.VarChar(255)
+  disability    Disability?   @relation(fields: [disabilityId], references: [id])
+  disabilityId  Int?
+  percentage    Int?          @default(0)
+  status        PatientStatus @default(R)
+
+  @@unique([email, dni], map: "patientId")
+}
+
+model Doctor {
+  id          Int          @id @default(autoincrement())
+  dni         String       @unique(map: "dni") @db.VarChar(150)
+  name        String       @db.VarChar(100)
+  lastName    String       @db.VarChar(100)
+  address     String?      @db.VarChar(100)
+  codeSenecyt Int          @unique(map: "codeSenecyt")
+  email       String       @unique(map: "email")
+  specialty   Specialty    @relation(fields: [specialtyId], references: [id])
+  specialtyId Int
+  status      Boolean      @default(true)
+  DoctorHour  DoctorHour[]
+}
+
+model Specialty {
+  id        Int      @id @default(autoincrement())
+  specialty String   @db.VarChar(100)
+  father    Int
+  iconPath  String   @default("outline/symbols/health_alt") @db.VarChar(255)
+  status    Boolean  @default(true)
+  Doctor    Doctor[]
+}
+
+model Disability {
+  id      Int       @id @default(autoincrement())
+  name    String    @db.VarChar(100)
+  patient Patient[]
+}
+
+model DoctorHour {
+  id            Int      @id @default(autoincrement())
+  doctor        Doctor   @relation(fields: [doctorId], references: [id])
+  doctorId      Int
+  availableDate DateTime @default(now())
+  availableHour String   @db.VarChar(10)
+  estado        Boolean  @default(true)
+}
+
+enum PatientSex {
+  Masculino
+  Femenino
+  LGBTQ_    @map("LGBTQ+")
+  Otro
+}
+
+enum CivilStatus {
+  Soltero_a    @map("Soltero/a")
+  Casado_a     @map("Casado/a")
+  Divorciado_a @map("Divorciado/a")
+  UnionLibre   @map("Unión Libre")
+}
+
+enum PatientStatus {
+  R
+  V
+  B
+  D
+}
