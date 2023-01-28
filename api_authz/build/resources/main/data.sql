@@ -44,8 +44,8 @@ INSERT INTO authorities (name, endpoint) values ('InvoicePdf_Read', 'GET:/api/fa
 
 
 INSERT INTO roles (name) values ('ROLE_ADMIN');
-INSERT INTO roles (name) values ('ROLE_ASESOR');
-INSERT INTO roles (name) values ('ROLE_FACTURADOR');
+INSERT INTO roles (name) values ('ROLE_PACIENTE');
+INSERT INTO roles (name) values ('ROLE_MEDICO');
 
 INSERT INTO roles_authorities (role_id, authority_id) (select (SELECT id FROM roles where name = 'ROLE_ADMIN')  AS role_id, e.id from authorities e );
 

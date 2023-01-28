@@ -13,8 +13,8 @@ export class TreatmentService {
     });
     return treatments;
   }
-  
-findOne(id: number) {
+
+  findOne(id: number) {
     return `This action returns a #${id} treatment`;
   }
 
@@ -27,7 +27,8 @@ findOne(id: number) {
   }
 
   async create(treatment: CreateTreatmentDto) {
-    if (!treatment) throw new UnprocessableEntityException('Solicitud invalida');
+    if (!treatment)
+      throw new UnprocessableEntityException('Solicitud invalida');
     const newtreatment = await axios
       .post(this.urlTreatments, treatment)
       .then((response) => {

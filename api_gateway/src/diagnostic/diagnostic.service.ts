@@ -5,15 +5,15 @@ import { UpdateDiagnosticDto } from './dto/update-diagnostic.dto';
 
 @Injectable()
 export class DiagnosticService {
-
   urlDiagnostics = 'http://localhost:8000/api/diagnostic';
   async findAll(): Promise<any> {
-    const diagnostics = await axios.get(this.urlDiagnostics).then((response) => {
-      return response.data;
-    });
+    const diagnostics = await axios
+      .get(this.urlDiagnostics)
+      .then((response) => {
+        return response.data;
+      });
     return diagnostics;
   }
-
 
   findOne(id: number) {
     return `This action returns a #${id} diagnostic`;
@@ -28,7 +28,8 @@ export class DiagnosticService {
   }
 
   async create(diagnostic: CreateDiagnosticDto) {
-    if (!diagnostic) throw new UnprocessableEntityException('Solicitud invalida');
+    if (!diagnostic)
+      throw new UnprocessableEntityException('Solicitud invalida');
     const newdiagnostic = await axios
       .post(this.urlDiagnostics, diagnostic)
       .then((response) => {

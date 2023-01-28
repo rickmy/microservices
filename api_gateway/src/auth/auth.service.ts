@@ -8,7 +8,7 @@ import { UpdateAuthDto } from './dto/update-auth.dto';
 
 @Injectable()
 export class AuthService {
-  urlAuth = 'http://localhost:8081';
+  urlAuth = 'http://localhost:8081/api';
   constructor(private jwtService: JwtService) {}
   create(createAuthDto: CreateAuthDto) {
     return 'This action adds a new auth';
@@ -52,6 +52,24 @@ export class AuthService {
       )
       .then((response) => {
         return response.data;
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        throw new UnprocessableEntityException(error.response.data.message);
+      });
+  }
+
+  async verifyToken(token: string): Promise<any> {
+    if (!token) {
+      throw new UnprocessableEntityException('Token is required');
+    }
+    return await axios
+      .get(this.urlAuth + '/user/hasAuthority/', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        console.log(response.data);
+        return true;
       })
       .catch((error) => {
         console.log(error.response.data);
