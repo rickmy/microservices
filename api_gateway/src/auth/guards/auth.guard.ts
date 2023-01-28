@@ -1,4 +1,5 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { UnauthorizedException } from '@nestjs/common/exceptions';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 
@@ -10,7 +11,7 @@ export class AuthGuard implements CanActivate {
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
     if (!request.headers.authorization) {
-      return false;
+      throw new UnauthorizedException('No tiene permisos para acceder');
     }
     const token = request.headers.authorization;
     const route = `${request.method} ${request.route.path}`;

@@ -31,6 +31,7 @@ export class PatientsController {
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
     return this.patientsService.findOne(+id);
   }
