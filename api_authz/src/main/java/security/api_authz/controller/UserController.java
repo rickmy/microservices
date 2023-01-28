@@ -96,7 +96,6 @@ public class UserController {
         if (username==null || endpointHeader == null )
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         List<Authority> authorities = authorityService.findByUsername(username);
-
         for (Authority auth: authorities){
             if (endpointHeader.equals(auth.getEndpoint())){
                 return ResponseEntity.ok("ok");
