@@ -1,13 +1,14 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:ricky0812@localhost:5432/bienestar"
+  url      = "postgresql://postgres:123@localhost:5432/persondb"
 }
 
 model Patient {

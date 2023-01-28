@@ -41,4 +41,4 @@ public class MedicalAppo {
     @JoinColumn(name = "medical_appo_id")
     private List<Diagnostic> diagnostics = new ArrayList<>();
 
-}   
+}  
