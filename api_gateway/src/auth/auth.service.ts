@@ -1,5 +1,5 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
+import { UnauthorizedException } from '@nestjs/common/exceptions';
 import axios from 'axios';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { LoginDto, TokenDto } from './dto/login.dto';
@@ -8,8 +8,7 @@ import { UpdateAuthDto } from './dto/update-auth.dto';
 
 @Injectable()
 export class AuthService {
-  urlAuth = 'http://localhost:8081/api';
-  constructor(private jwtService: JwtService) {}
+  urlAuth = 'http://localhost:8081';
   create(createAuthDto: CreateAuthDto) {
     return 'This action adds a new auth';
   }
@@ -30,16 +29,12 @@ export class AuthService {
         };
       })
       .catch((error) => {
-        console.log(error.response.data);
+        console.log(error);
         throw new UnprocessableEntityException(error.response.data.message);
       });
   }
 
   async registerPatient(registerDto: RegisterDto, token: string): Promise<any> {
-    console.log(registerDto);
-    if (!token) {
-      throw new UnprocessableEntityException('Token is required');
-    }
     return await axios
       .post(
         this.urlAuth + '/api/user/',
@@ -59,21 +54,18 @@ export class AuthService {
       });
   }
 
-  async verifyToken(token: string): Promise<any> {
-    if (!token) {
-      throw new UnprocessableEntityException('Token is required');
-    }
+  async verifyToken(token: string, route: string): Promise<boolean> {
+    console.log(route);
     return await axios
-      .get(this.urlAuth + '/user/hasAuthority/', {
-        headers: { Authorization: `Bearer ${token}` },
+      .get(this.urlAuth + '/api/user/hasAuthority/', {
+        headers: { Authorization: token, Endpoint: route },
       })
-      .then((response) => {
-        console.log(response.data);
+      .then(() => {
         return true;
       })
       .catch((error) => {
         console.log(error.response.data);
-        throw new UnprocessableEntityException(error.response.data.message);
+        throw new UnauthorizedException('No tiene permisos para acceder');
       });
   }
 

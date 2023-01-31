@@ -1,7 +1,4 @@
 package facturacion.api_factura.factura;
-
-import java.math.BigDecimal;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +16,7 @@ class FacturaLinea {
     private Long id;
 
     @ManyToOne
-    private Producto producto;
-    private BigDecimal cantidad;
-    private BigDecimal precio;
+    private String sintomas;
+    private String tratamiento;
+    private String diagnostico;
 }
