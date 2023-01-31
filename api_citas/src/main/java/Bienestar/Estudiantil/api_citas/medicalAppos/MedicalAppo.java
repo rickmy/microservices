@@ -27,18 +27,9 @@ public class MedicalAppo {
     private Integer patientId;
     private Integer doctorId;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "medical_appo_id")
-    private List<Treatment> treatments = new ArrayList<>();
-
-    
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "medical_appo_id")
-    private List<Symptom> symptoms = new ArrayList<>();
-
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "medical_appo_id")
-    private List<Diagnostic> diagnostics = new ArrayList<>();
+   
+    private Integer treatmentId;
+    private Integer symptomId;
+    private Integer diagnosticId;
 
 }  

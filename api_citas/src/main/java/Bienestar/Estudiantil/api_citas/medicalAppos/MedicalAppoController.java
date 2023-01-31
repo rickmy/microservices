@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import Bienestar.Estudiantil.api_citas.Patient.PatientClient;
+import Bienestar.Estudiantil.api_citas.medicalAppos.DTO.MedicalAppoDTO;
+
 @RestController
 @RequestMapping("api/medicalAppo")
 @CrossOrigin({"*"})
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MedicalAppoController {
 
  @Autowired MedicalAppoService medicalAppoService;
+
 
  @GetMapping("/")
  public List<MedicalAppo> findAll(){
@@ -27,6 +31,12 @@ public class MedicalAppoController {
  public MedicalAppo findById(@PathVariable Long id){
   return medicalAppoService.findById(id);
  }
+
+ @GetMapping({"/reportMedical/{id}/"})
+ public MedicalAppoDTO findByIdReport(@PathVariable Long id){
+    return medicalAppoService.findByIdReport(id);
+   }
+
  @PostMapping("/")
  public MedicalAppo save(@RequestBody MedicalAppo entity){
   return medicalAppoService.save(entity);

@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface DiagnosticClient {
 
     @GetMapping("/{id}/")
-    DiagnosticDTO findById(@PathVariable("id") Long id);
+    DiagnosticDTO findById(@PathVariable("id") Integer id);
 }
