@@ -13,5 +13,5 @@ public interface CustomerClient {
     CustomerDTO findCustomerById(@PathVariable("id") Long id);
 }
 
-@FeignClient(name = "bff.catalog", url = "http://localhost:8000")
+
 
