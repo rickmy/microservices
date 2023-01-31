@@ -103,8 +103,7 @@ export class PatientService {
           `No se ha podido encontrar el paciente con id ${id}`,
         );
       });
-    const oldYear =
-      new Date(patientDB.DateOfBirth).getFullYear() - new Date().getFullYear();
+    const oldYear = 20;
 
     const patient: PatientDto = {
       id: patientDB.id,
