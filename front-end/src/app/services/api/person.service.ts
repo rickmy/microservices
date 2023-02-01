@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
     providedIn: 'root'
 })
 export class PersonService {
-    api_persona = environment.api_personas
+    api_url = environment.api_url;
 
     headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -19,6 +19,6 @@ export class PersonService {
     }
 
     getPersonas(): Observable<any> {
-        return this.http.get<any>(`${this.api_persona}patient`, {headers: this.headers})
+        return this.http.get<any>(`${this.api_url}patient`, {headers: this.headers})
     }
 }
