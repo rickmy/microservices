@@ -9,22 +9,24 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
+import {ToastModule} from "primeng/toast";
 
 
 @NgModule({
   declarations: [
     LoginComponent
   ],
-  imports: [
-    CommonModule,
-    AuthzRoutingModule,
-      PasswordModule,
-      CheckboxModule,
-      FormsModule,
-      ReactiveFormsModule,
-      InputTextModule,
-      ButtonModule,
-      RippleModule
-  ]
+    imports: [
+        CommonModule,
+        AuthzRoutingModule,
+        PasswordModule,
+        CheckboxModule,
+        FormsModule,
+        ReactiveFormsModule,
+        InputTextModule,
+        ButtonModule,
+        RippleModule,
+        ToastModule
+    ]
 })
 export class AuthzModule { }

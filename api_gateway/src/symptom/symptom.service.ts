@@ -14,7 +14,16 @@ export class SymptomService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} symptom`;
+    const symptom = axios
+      .get(`${this.urlSymptoms}/${id}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        throw new UnprocessableEntityException(error.response.data.message);
+      });
+    return symptom;
   }
 
   update(id: number, updateSymptomDto: UpdateSymptomDto) {

@@ -16,8 +16,20 @@ export class DiagnosticService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} diagnostic`;
+    const diagnostic = axios
+    .get(`${this.urlDiagnostics}/${id}`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+      throw new UnprocessableEntityException(error.response.data.message);
+    });
+   return diagnostic;
   }
+  
+
+  
 
   update(id: number, updateDiagnosticDto: UpdateDiagnosticDto) {
     return `This action updates a #${id} diagnostic`;

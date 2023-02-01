@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UnprocessableEntityException } from '@nestjs/common/exceptions';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from './../prisma/prisma.service';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
 import { PatientEntity } from './entities/patient.entity';
@@ -11,7 +11,7 @@ import { PatientDto } from './dto/patient.dt';
 
 @Injectable()
 export class PatientService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
   async create(createPatientDto: CreatePatientDto): Promise<PatientEntity> {
     const dniExist = await this.findOneByDni(createPatientDto.dni);
     if (dniExist)
