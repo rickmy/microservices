@@ -15,6 +15,7 @@ import {AuthzModule} from "./pages/authz/authz.module";
 import {RouterModule} from "@angular/router";
 import {AppoinmentModule} from "./pages/appoinment/appoinment.module";
 import {HttpClientModule} from "@angular/common/http";
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import {HttpClientModule} from "@angular/common/http";
         AuthzModule,
         RouterModule,
         AppoinmentModule,
-        HttpClientModule
+        HttpClientModule,
+        SharedModule
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
