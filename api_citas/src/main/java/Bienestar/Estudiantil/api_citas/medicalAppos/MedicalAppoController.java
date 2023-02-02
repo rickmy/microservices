@@ -46,7 +46,7 @@ public class MedicalAppoController {
   return medicalAppoService.save(entity);
  }
 
- @DeleteMapping("/{id}/")
+ @DeleteMapping("/{id}")
  public void deleteById(@PathVariable Long id){
   medicalAppoService.deleteById(id);
  }

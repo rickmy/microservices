@@ -58,15 +58,16 @@ public class MedicalAppoService {
 }
 
  public void deleteById(Long id){
-
+    MedicalAppo medicalAppo = this.findById(id);
+    medicalAppo.setCondition(false);
     
- medicalAppoRepository.deleteById(id);
-
+ medicalAppoRepository.save(medicalAppo);
+return;
  }
 
  public List<MedicalAppo> findAll(){
 
- return medicalAppoRepository.findAll();
+ return medicalAppoRepository.findByCondition(true);
 
  }
 
