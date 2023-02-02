@@ -29,7 +29,6 @@ export class AuthService {
         };
       })
       .catch((error) => {
-        console.log(error);
         throw new UnprocessableEntityException(error.response.data.message);
       });
   }

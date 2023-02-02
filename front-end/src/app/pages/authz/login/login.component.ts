@@ -10,6 +10,7 @@ import {AuthService} from "../../../services/api/auth.service";
 export class LoginComponent implements OnInit {
 
     formLogin!: FormGroup;
+    loading = false;
 
     constructor(
         private fb: FormBuilder,
@@ -30,13 +31,17 @@ export class LoginComponent implements OnInit {
 
     login(){
         console.log(this.formLogin.value);
+        this.loading = true;
         const {userName, password} = this.formLogin.value;
         this.authService.postLogin(userName,password)
             .subscribe({
                 next: (res)=>{
+                    this.loading = false;
                     console.log(res);
                 },
                 error: (err)=>{
+                    this.loading = false;
+
                     console.log(err);
                 }
             });

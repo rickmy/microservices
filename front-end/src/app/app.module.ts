@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {HashLocationStrategy, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppLayoutModule} from './layout/app.layout.module';
@@ -31,7 +31,7 @@ import {SharedModule} from "./shared/shared.module";
         SharedModule
     ],
     providers: [
-        {provide: LocationStrategy, useClass: HashLocationStrategy},
+        {provide: LocationStrategy, useClass: PathLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService
     ],

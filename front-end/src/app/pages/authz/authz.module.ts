@@ -10,6 +10,7 @@ import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
 import {ToastModule} from "primeng/toast";
+import {BlockUIModule} from "primeng/blockui";
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {ToastModule} from "primeng/toast";
         InputTextModule,
         ButtonModule,
         RippleModule,
-        ToastModule
+        ToastModule,
+        BlockUIModule
     ]
 })
 export class AuthzModule { }
