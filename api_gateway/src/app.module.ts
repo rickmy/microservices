@@ -8,6 +8,7 @@ import { DoctorModule } from './doctor/doctor.module';
 import { TreatmentModule } from './treatment/treatment.module';
 import { SymptomModule } from './symptom/symptom.module';
 import { DiagnosticModule } from './diagnostic/diagnostic.module';
+import { ReportsModule } from './reports/reports.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { DiagnosticModule } from './diagnostic/diagnostic.module';
     TreatmentModule,
     SymptomModule,
     DiagnosticModule,
+    ReportsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
