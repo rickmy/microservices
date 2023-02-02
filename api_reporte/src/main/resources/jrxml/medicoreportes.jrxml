@@ -58,120 +58,203 @@
 		</queryString>
 	</subDataset>
 	<parameter name="nombrePaciente" class="java.lang.String"/>
-	<parameter name="edadPaciente" class="java.lang.String"/>
+	<parameter name="emailPaciente" class="java.lang.String"/>
 	<parameter name="generoPaciente" class="java.lang.String"/>
-	<parameter name="fecha" class="java.sql.Date"/>
 	<parameter name="lineasreporte" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
-	<parameter name="apellidoPaciente" class="java.lang.String"/>
+	<parameter name="identificacion" class="java.lang.String"/>
+	<parameter name="sintomas" class="java.lang.String"/>
+	<parameter name="tratamiento" class="java.lang.String"/>
+	<parameter name="diagnostico" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
 	<title>
-		<band height="212" splitType="Stretch">
+		<band height="214" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="-10" width="556" height="219" uuid="6b57c7c7-aa49-41ce-9f7a-6dd1449ebd25"/>
+				<graphicElement>
+					<pen lineColor="#0000FF"/>
+				</graphicElement>
+			</rectangle>
 			<staticText>
-				<reportElement x="0" y="90" width="150" height="25" uuid="57aed2b1-4f4e-40a3-a6ad-54dae8dd4c5a">
-					<property name="local_mesure_unitheight" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
+				<reportElement x="11" y="125" width="127" height="33" uuid="33274f5d-5b7e-4be2-a2ff-65d452a618ed"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Datos del Paciente:]]></text>
+				<text><![CDATA[Nombre y Apellido:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="120" width="158" height="33" uuid="33274f5d-5b7e-4be2-a2ff-65d452a618ed"/>
+				<reportElement x="74" y="177" width="50" height="35" uuid="1d3045ed-03d6-4253-a959-aeeb491b73ca"/>
 				<textElement>
-					<font size="12" isBold="false"/>
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nombres:]]></text>
-			</staticText>
-			<line>
-				<reportElement x="0" y="80" width="556" height="1" uuid="806ce5df-1219-4876-ae0c-ca7405b1f246">
-					<property name="local_mesure_unitheight" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-			</line>
-			<staticText>
-				<reportElement x="15" y="173" width="50" height="35" uuid="1d3045ed-03d6-4253-a959-aeeb491b73ca"/>
-				<textElement>
-					<font size="12" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Edad:]]></text>
+				<text><![CDATA[Correo:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="380" y="152" width="70" height="29" uuid="235bf8b6-1e1e-49c7-b59f-7a46c30b8209"/>
+				<reportElement x="375" y="133" width="120" height="34" uuid="665f25c2-8663-4951-b699-1ab863bdeb76"/>
 				<textElement>
-					<font size="12" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Fecha:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="380" y="114" width="120" height="34" uuid="665f25c2-8663-4951-b699-1ab863bdeb76"/>
-				<textElement>
-					<font size="12" isBold="false"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Sexo:]]></text>
 			</staticText>
 			<image hAlign="Center">
-				<reportElement x="0" y="0" width="76" height="70" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
+				<reportElement x="13" y="-7" width="91" height="80" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
 				<imageExpression><![CDATA["https://ignug.yavirac.edu.ec/assets/images/web/logo_login.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="121" y="0" width="279" height="25" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">
+				<reportElement x="111" y="0" width="330" height="35" forecolor="#0000FF" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Justified">
-					<font size="19" isBold="true"/>
+					<font size="18" isBold="true"/>
 				</textElement>
-				<text><![CDATA[		Bienestar Estudiantil]]></text>
+				<text><![CDATA[		BIENESTAR ESTUDIANTIL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="189" y="24" width="205" height="15" uuid="c226e44d-3bb5-4145-b0b3-903bf1d79fde"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Garcia Moreno S3-45 y Ambato]]></text>
+				<reportElement x="208" y="25" width="205" height="15" uuid="c226e44d-3bb5-4145-b0b3-903bf1d79fde"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[García Moreno S3-45 y Ambato]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="260" y="38" width="60" height="15" uuid="b96f7183-44f8-43ad-ba60-43d8fbf50b6e"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="261" y="45" width="60" height="15" uuid="b96f7183-44f8-43ad-ba60-43d8fbf50b6e"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
 				<text><![CDATA[Quito]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="192" y="80" width="180" height="30" uuid="61e55e77-6041-4f58-8f22-dd80c82b9165"/>
+				<reportElement x="201" y="77" width="180" height="30" forecolor="#0000FF" uuid="61e55e77-6041-4f58-8f22-dd80c82b9165"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[REPORTE MÉDICO]]></text>
+				<text><![CDATA[HISTORIA MÉDICA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="77" y="120" width="100" height="22" uuid="e633f6d1-63fc-43db-8574-cdc41dc2230b"/>
+				<reportElement x="133" y="126" width="100" height="22" uuid="e633f6d1-63fc-43db-8574-cdc41dc2230b"/>
 				<textFieldExpression><![CDATA[$P{nombrePaciente}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="77" y="176" width="100" height="30" uuid="00ab040e-f561-4379-8729-c5b3cdd87ba2"/>
-				<textFieldExpression><![CDATA[$P{edadPaciente}]]></textFieldExpression>
+				<reportElement x="132" y="179" width="100" height="30" uuid="00ab040e-f561-4379-8729-c5b3cdd87ba2"/>
+				<textFieldExpression><![CDATA[$P{emailPaciente}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="418" y="117" width="100" height="30" uuid="4f77f0b7-e69d-4ce9-9c2d-084e6e3a0646"/>
+				<reportElement x="418" y="134" width="100" height="30" uuid="4f77f0b7-e69d-4ce9-9c2d-084e6e3a0646"/>
 				<textFieldExpression><![CDATA[$P{generoPaciente}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="43" y="151" width="100" height="30" uuid="ba3467ed-771b-495a-870d-d4761106c29d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Identificación:]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="440" y="153" width="100" height="30" uuid="83f9ce70-68f8-4ca2-a493-47954b6eb15d"/>
-				<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="80" y="148" width="100" height="21" uuid="398cf1e0-ad57-492d-a1d8-dceb4f865a6e"/>
-				<textFieldExpression><![CDATA[$P{apellidoPaciente}]]></textFieldExpression>
+				<reportElement x="133" y="154" width="100" height="30" uuid="5eeb5692-e4ac-4472-b1c8-65228707b53c"/>
+				<textFieldExpression><![CDATA[$P{identificacion}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
 	<detail>
-		<band height="49">
-			<subreport>
-				<reportElement x="0" y="0" width="555" height="40" uuid="48559b24-380a-4617-bb7d-244d34e7848d"/>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["classpath:jrxml/subreportemedico.jasper"]]></subreportExpression>
-			</subreport>
+		<band height="81">
+			<rectangle>
+				<reportElement x="0" y="10" width="556" height="60" uuid="e88e67b0-8ce3-48b6-a225-e82de568ed18"/>
+				<graphicElement>
+					<pen lineColor="#0000FF"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="230" y="43" width="100" height="30" uuid="b3cad37a-ced7-411e-8893-3b1549ee9de1"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{sintomas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="10" width="556" height="30" backcolor="#05FBFF" uuid="f16d9bf2-351d-4190-be4d-e0f7957f644e"/>
+				<box>
+					<pen lineColor="#0000FF"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SÍNTOMAS]]></text>
+			</staticText>
+		</band>
+		<band height="70">
+			<rectangle>
+				<reportElement x="0" y="0" width="556" height="60" uuid="0d491490-c6af-4a47-a350-922bfcdabebc"/>
+				<graphicElement>
+					<pen lineColor="#0000FF"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="226" y="37" width="100" height="30" uuid="0dd61b95-0d67-45b0-874e-42ec698741ea"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tratamiento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="1" width="556" height="29" backcolor="#05FBFF" uuid="5bfa7465-ba0a-4e59-8f6e-4aee96747a0b"/>
+				<box>
+					<pen lineColor="#0000FF"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#0000FF"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#0000FF"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#0000FF"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#0000FF"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRATAMIENTO]]></text>
+			</staticText>
+		</band>
+		<band height="109">
+			<rectangle>
+				<reportElement x="0" y="0" width="556" height="70" uuid="d4b8b80f-179c-460c-86e6-c64c1f232bb8"/>
+				<graphicElement>
+					<pen lineColor="#0000FF"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="224" y="29" width="100" height="30" uuid="7f8d0482-30da-4941-818d-d6413c54f905"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{diagnostico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="1" width="556" height="29" backcolor="#05FBFF" uuid="6d290c58-ce14-40e0-8403-bd3b10a93ab4"/>
+				<box>
+					<pen lineColor="#0000FF"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIAGNÓSTICO]]></text>
+			</staticText>
 		</band>
 	</detail>
+	<lastPageFooter>
+		<band height="50">
+			<staticText>
+				<reportElement x="94" y="10" width="380" height="39" uuid="adc15ca4-9063-4663-a26b-4a52cedfdc96"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[El departamento de bienestar estudiantil se complace en atender a toda al comunidad academica del YAVIRAC.]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
 </jasperReport>

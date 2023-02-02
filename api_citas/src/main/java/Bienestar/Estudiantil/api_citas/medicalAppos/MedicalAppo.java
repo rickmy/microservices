@@ -26,8 +26,6 @@ public class MedicalAppo {
     private Boolean condition;
     private Integer patientId;
     private Integer doctorId;
-
-   
     private Integer treatmentId;
     private Integer symptomId;
     private Integer diagnosticId;

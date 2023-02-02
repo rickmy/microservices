@@ -36,6 +36,7 @@ public class MedicalAppoService {
  public MedicalAppoDTO findByIdReport( Long id){
 
     MedicalAppo medicalAppoDb= medicalAppoRepository.findById(id).orElse(new MedicalAppo());
+    System.out.print(medicalAppoDb);
     PatientDTO patientDTO=patientClient.findById(medicalAppoDb.getPatientId()); 
     SymptomDTO symptomDTO=symptomClient.findById(medicalAppoDb.getSymptomId());
     TreatmentDTO treatmentDTO=treatmentClient.findById(medicalAppoDb.getTreatmentId());

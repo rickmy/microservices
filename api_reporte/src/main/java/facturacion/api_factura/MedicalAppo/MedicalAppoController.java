@@ -21,13 +21,14 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
 
 
-@Tag(name = "Controlador del reporte")
+@Tag(name = "Controlador de reporte")
 @RestController
 @RequestMapping("api/report")
 @CrossOrigin({"*"})
 public class MedicalAppoController {
 @Autowired MedicalAppoService medicalAppoService;
 
+    @Operation(summary = "Obtiene un reporte de historia clinica")
     @GetMapping("/medicalAppo/{id}/")
     public ResponseEntity<byte[]> getMedicalAppoReporte(@PathVariable long id) throws JRException {
 
