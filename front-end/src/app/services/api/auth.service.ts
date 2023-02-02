@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, tap} from "rxjs";
 import {TokenAuth} from "../../models/auth/token-auth";
 import {ManagerMessageService} from "../../shared/services/manager-message.service";
+import {Router} from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
@@ -18,6 +19,7 @@ export class AuthService {
     constructor(
         private http: HttpClient,
         private managerMessageService: ManagerMessageService,
+        private router: Router
     ) {
     }
 
@@ -32,6 +34,7 @@ export class AuthService {
             }),
             tap((response: TokenAuth) => {
                 this.managerMessageService.showSuccess('Bienvenido a Bienestar Estudiantil!');
+                this.router.navigate(['./dashboard']);
             }),
             catchError((error) => {
                 this.managerMessageService.showErrorGeneric();

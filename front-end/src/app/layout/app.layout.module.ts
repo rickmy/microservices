@@ -17,6 +17,8 @@ import { AppFooterComponent } from './footer/app.footer.component';
 import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from "./sidebar/app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
+import {ToastModule} from "primeng/toast";
+import {BlockUIModule} from "primeng/blockui";
 
 @NgModule({
     declarations: [
@@ -39,7 +41,9 @@ import { AppLayoutComponent } from "./app.layout.component";
         InputSwitchModule,
         RippleModule,
         RouterModule,
-        AppConfigModule
+        AppConfigModule,
+        ToastModule,
+        BlockUIModule,
     ],
     exports: [AppLayoutComponent]
 })
