@@ -5,7 +5,7 @@ import { UpdateDiagnosticDto } from './dto/update-diagnostic.dto';
 
 @Injectable()
 export class DiagnosticService {
-  urlDiagnostics = 'http://127.0.0.1:8000/api/diagnostic';
+  urlDiagnostics = 'http://127.0.0.1:8000/api/diagnostic/';
   async findAll(): Promise<any> {
     const diagnostics = await axios
       .get(this.urlDiagnostics)
@@ -17,7 +17,7 @@ export class DiagnosticService {
 
   findOne(id: number) {
     const diagnostic = axios
-    .get(`${this.urlDiagnostics}/${id}`)
+    .get(`${this.urlDiagnostics}${id}`)
     .then((response) => {
       return response.data;
     })
@@ -32,16 +32,33 @@ export class DiagnosticService {
   
 
   update(id: number, updateDiagnosticDto: UpdateDiagnosticDto) {
-    return `This action updates a #${id} diagnostic`;
+    const diagnostic = axios
+    .patch(`${this.urlDiagnostics}${id}/`, updateDiagnosticDto)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+      throw new UnprocessableEntityException(error.response.data.message);
+    });
+    return diagnostic;
   }
 
   remove(id: number) {
-    return `This action removes a #${id} diagnostic`;
+    const diagnostic = axios
+    .delete(`${this.urlDiagnostics}${id}`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+      throw new UnprocessableEntityException(error.response.data.message);
+    });
+    return diagnostic;
   }
 
   async create(diagnostic: CreateDiagnosticDto) {
-    if (!diagnostic)
-      throw new UnprocessableEntityException('Solicitud invalida');
+    
     const newdiagnostic = await axios
       .post(this.urlDiagnostics, diagnostic)
       .then((response) => {
