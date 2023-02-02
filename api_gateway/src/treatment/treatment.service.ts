@@ -5,7 +5,7 @@ import { UpdateTreatmentDto } from './dto/update-treatment.dto';
 
 @Injectable()
 export class TreatmentService {
-  urlTreatments = 'http://localhost:8000/api/treatment';
+  urlTreatments = 'http://127.0.0.1:8000/api/treatment';
 
   async findAll(): Promise<any> {
     const treatments = await axios.get(this.urlTreatments).then((response) => {
@@ -15,7 +15,16 @@ export class TreatmentService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} treatment`;
+    const treatment = axios
+    .get(`${this.urlTreatments}/${id}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        throw new UnprocessableEntityException(error.response.data.message);
+      });
+    return treatment;
   }
 
   update(id: number, updateTreatmentDto: UpdateTreatmentDto) {

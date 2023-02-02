@@ -5,7 +5,7 @@ import { UpdateDiagnosticDto } from './dto/update-diagnostic.dto';
 
 @Injectable()
 export class DiagnosticService {
-  urlDiagnostics = 'http://localhost:8000/api/diagnostic';
+  urlDiagnostics = 'http://127.0.0.1:8000/api/diagnostic';
   async findAll(): Promise<any> {
     const diagnostics = await axios
       .get(this.urlDiagnostics)

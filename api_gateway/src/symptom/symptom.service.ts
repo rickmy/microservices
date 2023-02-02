@@ -5,10 +5,15 @@ import { UpdateSymptomDto } from './dto/update-symptom.dto';
 
 @Injectable()
 export class SymptomService {
-  urlSymptoms = 'http://localhost:8000/api/symptom';
+  urlSymptoms = 'http://127.0.0.1:8000/api/symptom';
   async findAll(): Promise<any> {
     const symptoms = await axios.get(this.urlSymptoms).then((response) => {
+      console.log(response);
       return response.data;
+
+    }).catch((error) => {
+      console.log(error);
+      throw new UnprocessableEntityException(error.response.data.message);
     });
     return symptoms;
   }
