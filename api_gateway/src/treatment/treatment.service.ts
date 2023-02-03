@@ -16,7 +16,7 @@ export class TreatmentService {
 
   findOne(id: number) {
     const treatment = axios
-    .get(`${this.urlTreatments}${id}`)
+      .get(`${this.urlTreatments}${id}`)
       .then((response) => {
         return response.data;
       })
@@ -29,7 +29,7 @@ export class TreatmentService {
 
   update(id: number, updateTreatmentDto: UpdateTreatmentDto) {
     const treatment = axios
-    .patch(`${this.urlTreatments}${id}/`, updateTreatmentDto)
+      .patch(`${this.urlTreatments}${id}/`, updateTreatmentDto)
       .then((response) => {
         return response.data;
       })
@@ -42,7 +42,7 @@ export class TreatmentService {
 
   remove(id: number) {
     const treatment = axios
-    .delete(`${this.urlTreatments}${id}`)
+      .delete(`${this.urlTreatments}${id}`)
       .then((response) => {
         return response.data;
       })

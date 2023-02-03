@@ -17,48 +17,44 @@ export class DiagnosticService {
 
   findOne(id: number) {
     const diagnostic = axios
-    .get(`${this.urlDiagnostics}${id}`)
-    .then((response) => {
-      return response.data;
-    })
-    .catch((error) => {
-      console.log(error.response.data);
-      throw new UnprocessableEntityException(error.response.data.message);
-    });
-   return diagnostic;
+      .get(`${this.urlDiagnostics}${id}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        throw new UnprocessableEntityException(error.response.data.message);
+      });
+    return diagnostic;
   }
-  
-
-  
 
   update(id: number, updateDiagnosticDto: UpdateDiagnosticDto) {
     const diagnostic = axios
-    .patch(`${this.urlDiagnostics}${id}/`, updateDiagnosticDto)
-    .then((response) => {
-      return response.data;
-    })
-    .catch((error) => {
-      console.log(error.response.data);
-      throw new UnprocessableEntityException(error.response.data.message);
-    });
+      .patch(`${this.urlDiagnostics}${id}/`, updateDiagnosticDto)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        throw new UnprocessableEntityException(error.response.data.message);
+      });
     return diagnostic;
   }
 
   remove(id: number) {
     const diagnostic = axios
-    .delete(`${this.urlDiagnostics}${id}`)
-    .then((response) => {
-      return response.data;
-    })
-    .catch((error) => {
-      console.log(error.response.data);
-      throw new UnprocessableEntityException(error.response.data.message);
-    });
+      .delete(`${this.urlDiagnostics}${id}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        throw new UnprocessableEntityException(error.response.data.message);
+      });
     return diagnostic;
   }
 
   async create(diagnostic: CreateDiagnosticDto) {
-    
     const newdiagnostic = await axios
       .post(this.urlDiagnostics, diagnostic)
       .then((response) => {

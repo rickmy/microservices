@@ -4,7 +4,6 @@ import { SymptomController } from './symptom.controller';
 import { AuthService } from 'src/auth/auth.service';
 
 @Module({
-  
   controllers: [SymptomController],
   providers: [SymptomService, AuthService],
 })

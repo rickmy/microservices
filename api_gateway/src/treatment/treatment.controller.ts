@@ -14,7 +14,6 @@ import { UpdateTreatmentDto } from './dto/update-treatment.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 @ApiTags('Tratamientos')
-
 @Controller('treatment')
 export class TreatmentController {
   constructor(private readonly treatmentService: TreatmentService) {}
@@ -39,7 +38,10 @@ export class TreatmentController {
 
   @Patch(':id')
   @UseGuards(AuthGuard)
-  update(@Param('id') id: string,@Body() updateTreatmentDto: UpdateTreatmentDto){
+  update(
+    @Param('id') id: string,
+    @Body() updateTreatmentDto: UpdateTreatmentDto,
+  ) {
     return this.treatmentService.update(+id, updateTreatmentDto);
   }
 

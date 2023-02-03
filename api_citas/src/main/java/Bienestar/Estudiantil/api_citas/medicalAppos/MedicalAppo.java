@@ -28,5 +28,4 @@ public class MedicalAppo {
     private Integer symptomId;
     private Integer diagnosticId;
     private Integer scheduleId;
-
 }  

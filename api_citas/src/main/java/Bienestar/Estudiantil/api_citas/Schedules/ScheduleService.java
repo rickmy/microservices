@@ -11,11 +11,8 @@ public class ScheduleService {
  return scheduleRepository.save(entity);
  }
 
- public Schedule findById( Integer id){
-
-Long longvalue = (long) id;//convertidor de id de long a integer
-
- return scheduleRepository.findById(longvalue).orElse(new Schedule());
+ public Schedule findById( Long id){
+ return scheduleRepository.findById(id).orElse(new Schedule());
 
  }
 

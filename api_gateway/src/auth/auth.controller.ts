@@ -11,7 +11,12 @@ import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { LoginDto, TokenDto } from './dto/login.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
-import { ApiBadRequestResponse, ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger/dist';
+import {
+  ApiBadRequestResponse,
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger/dist';
 import { RegisterDto } from './dto/register.dto';
 import { Headers, Request, UseGuards } from '@nestjs/common/decorators';
 import { AuthGuard } from './guards/auth.guard';
