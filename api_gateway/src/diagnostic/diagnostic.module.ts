@@ -4,7 +4,6 @@ import { DiagnosticController } from './diagnostic.controller';
 import { AuthService } from 'src/auth/auth.service';
 
 @Module({
-  
   controllers: [DiagnosticController],
   providers: [DiagnosticService, AuthService],
 })
