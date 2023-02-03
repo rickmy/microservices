@@ -1,5 +1,5 @@
 package Bienestar.Estudiantil.api_citas.Specialties;
-import java.sql.Date;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +15,7 @@ public class Specialty {
  @GeneratedValue(strategy = GenerationType.AUTO)
 
  private Long id;
- private String especialtyName;
- private Boolean condition;
+ private String especialtyName;//nombre del espaecialista
+ private Boolean condition;//status:aCTIVO O INACTIVO
  
 }

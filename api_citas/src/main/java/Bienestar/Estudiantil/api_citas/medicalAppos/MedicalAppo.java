@@ -19,8 +19,6 @@ public class MedicalAppo {
  @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long id;
-    private Date attentionDate;
-    private String serviceTime;
     private String reasonForAppointment;
     private String medicalObservations;
     private Boolean condition;
@@ -29,5 +27,6 @@ public class MedicalAppo {
     private Integer treatmentId;
     private Integer symptomId;
     private Integer diagnosticId;
+    private Integer scheduleId;
 
 }  
