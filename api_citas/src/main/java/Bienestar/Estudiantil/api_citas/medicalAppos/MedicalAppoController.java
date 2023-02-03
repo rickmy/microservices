@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import Bienestar.Estudiantil.api_citas.Patient.PatientClient;
 import Bienestar.Estudiantil.api_citas.medicalAppos.DTO.MedicalAppoDTO;
+import Bienestar.Estudiantil.api_citas.medicalAppos.DTO.CreateMedicalAppoDTO;
 
 @RestController
 @RequestMapping("api/medicalAppo")
@@ -38,9 +39,10 @@ public class MedicalAppoController {
    }
 
  @PostMapping("/")
- public MedicalAppo save(@RequestBody MedicalAppo entity){
+ public MedicalAppo save(@RequestBody CreateMedicalAppoDTO entity){
   return medicalAppoService.save(entity);
  }
+
  @PutMapping("/")
  public MedicalAppo update(@RequestBody MedicalAppo entity){
   return medicalAppoService.save(entity);

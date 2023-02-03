@@ -2,17 +2,22 @@ package Bienestar.Estudiantil.api_citas.medicalAppos;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import Bienestar.Estudiantil.api_citas.Diagnostic.DiagnosticClient;
 import Bienestar.Estudiantil.api_citas.Diagnostic.DiagnosticDTO;
 import Bienestar.Estudiantil.api_citas.Patient.PatientClient;
 import Bienestar.Estudiantil.api_citas.Patient.PatientDTO;
+import Bienestar.Estudiantil.api_citas.Schedules.Schedule;
+import Bienestar.Estudiantil.api_citas.Schedules.ScheduleService;
 import Bienestar.Estudiantil.api_citas.Symptom.SymptomClient;
 import Bienestar.Estudiantil.api_citas.Symptom.SymptomDTO;
 import Bienestar.Estudiantil.api_citas.Treatment.TreatmentClient;
 import Bienestar.Estudiantil.api_citas.Treatment.TreatmentDTO;
 import Bienestar.Estudiantil.api_citas.medicalAppos.DTO.MedicalAppoDTO;
+import feign.Response;
+import Bienestar.Estudiantil.api_citas.medicalAppos.DTO.CreateMedicalAppoDTO;
 
 @Service
 public class MedicalAppoService {
@@ -22,6 +27,7 @@ public class MedicalAppoService {
  @Autowired SymptomClient symptomClient;
  @Autowired TreatmentClient treatmentClient;
  @Autowired DiagnosticClient diagnosticClient;
+ @Autowired ScheduleService scheduleService;
 
  public MedicalAppo save(MedicalAppo entity){
  return medicalAppoRepository.save(entity);
@@ -63,6 +69,22 @@ public class MedicalAppoService {
     
  medicalAppoRepository.save(medicalAppo);
 return;
+ }
+ 
+ public ResponseEntity<MedicalAppo> create(CreateMedicalAppoDTO entity){
+    PatientDTO patientDTO = patientClient.findById(entity.getPatientId());
+    if(
+        patientDTO == null
+    ){
+        return ResponseEntity.badRequest().build();
+    }
+
+Schedule scheduleDB = scheduleService.findById(entity.getScheduleId());
+if(
+        DTO == null
+    ){
+        return ResponseEntity.badRequest().build();
+    }
  }
 
  public List<MedicalAppo> findAll(){
