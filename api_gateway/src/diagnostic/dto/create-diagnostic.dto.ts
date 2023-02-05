@@ -17,6 +17,6 @@ export class CreateDiagnosticDto {
   description: string;
 
   @IsNotEmpty({ message: 'El campo estado es requerido' })
-  @IsBoolean({ message: 'El campo estado debe ser un string' })
+  @IsBoolean({ message: 'El campo estado debe ser un boolean' })
   status: boolean;
 }
