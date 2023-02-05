@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-diagnostic.component.scss']
 })
 export class ListDiagnosticComponent implements OnInit {
-
+  diagnosticDialog: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
   }
+  showDialogCreate() {
+    this.diagnosticDialog = true;
+  }
+
+  hideDialogCreate(display: boolean) {
+    this.diagnosticDialog = display;
+  }
+  
+  
 
 }

@@ -1,1 +1,11 @@
-<p>list-diagnostic works!</p>
+<div class="card">
+    <div class="flex gap-2 justify-end">
+        <button pButton pRipple label="Crear" icon="pi pi-plus" class="p-button-outlined p-button-success" (click)="showDialogCreate()"></button>
+    </div>
+
+
+
+</div>
+
+
+<app-create-diagnostic [diagnosticDialog]="diagnosticDialog" (diagnosticDialogChange)="hideDialogCreate($event)" ></app-create-diagnostic>

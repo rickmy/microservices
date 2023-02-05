@@ -1,1 +1,14 @@
-<p>list-symptom works!</p>
+<div class="card">
+    <div class="flex gap-2 justify-end">
+        <button pButton pRipple label="Crear" icon="pi pi-plus" class="p-button-outlined p-button-success" (click)="showDialogCreate()"></button>
+    </div>
+
+
+
+</div>
+
+
+<app-create-symptom [symptomDialog]="symptomDialog" (symptomDialogChange)="hideDialogCreate($event)" ></app-create-symptom>
+
+
+
