@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListTreatmentComponent implements OnInit {
 
+  treatmentDialog: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  showDialogCreate() {
+    this.treatmentDialog = true;
+  }
+
+  hideDialogCreate(display: boolean) {
+    this.treatmentDialog = display;
   }
 
 }

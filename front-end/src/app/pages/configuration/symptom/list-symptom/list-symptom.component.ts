@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListSymptomComponent implements OnInit {
 
+  symptomDialog: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+
+  }
+  showDialogCreate() {
+    this.symptomDialog = true;
+  }
+
+  hideDialogCreate(display: boolean) {
+    this.symptomDialog = display;
   }
 
 }
+
+
