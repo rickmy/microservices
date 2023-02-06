@@ -31,4 +31,8 @@ export class DiagnosticService {
       }));
   }
 
+  findAllDiagnostic(): Observable<CreateDiagnosticModel[]> {
+    return this.http.get<CreateDiagnosticModel[]>(this.url, {headers: this.headers})
+  }
+
 }

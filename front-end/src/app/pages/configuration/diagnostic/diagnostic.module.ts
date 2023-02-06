@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DiagnosticRoutingModule } from './diagnostic-routing.module';
@@ -9,9 +9,16 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TableModule } from 'primeng/table';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
+
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+
   declarations: [
     CreateDiagnosticComponent,
     ListDiagnosticComponent
@@ -24,7 +31,9 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     DialogModule,
     ButtonModule,
     InputTextModule,
-    InputTextareaModule
+    InputTextareaModule,
+    TableModule,
+    SharedModule
 
   ]
 })

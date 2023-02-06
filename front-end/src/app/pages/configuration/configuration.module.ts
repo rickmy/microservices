@@ -18,8 +18,10 @@ import { ButtonModule } from 'primeng/button';
   imports: [
     CommonModule,
     ConfigurationRoutingModule,
-    RouterModule,SymptomModule,
-    TreatmentModule,DiagnosticModule,
+    RouterModule,
+    SymptomModule,
+    TreatmentModule,
+    DiagnosticModule,
     CardModule,
     RouterModule,
     ButtonModule
