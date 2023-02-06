@@ -20,6 +20,7 @@ import {AppInterceptor} from "./core/interceptor/app.interceptor";
 
 
 @NgModule({
+   
     declarations: [
         AppComponent, NotfoundComponent,
     ],

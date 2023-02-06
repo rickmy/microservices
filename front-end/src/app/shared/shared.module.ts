@@ -2,10 +2,13 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
+import { StatusPipe } from './pipes/status.pipe';
 
 
 @NgModule({
-    declarations: [],
+    declarations: [
+    StatusPipe
+  ],
     imports: [
         CommonModule,
         ToastModule,
@@ -13,6 +16,10 @@ import {MessageService} from "primeng/api";
     providers: [
         MessageService
     ],
+    exports: [
+        StatusPipe,
+        
+    ]
 })
 export class SharedModule {
 }
