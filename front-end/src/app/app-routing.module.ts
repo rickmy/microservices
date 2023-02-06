@@ -2,12 +2,10 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {LocationStrategy, PathLocationStrategy} from "@angular/common";
 import {AppLayoutComponent} from "./layout/app.layout.component";
+import {AuthGuard} from "./core/guards/auth.guard";
 
 const routes: Routes = [
-    {
-        path: 'auth',
-        loadChildren: () => import('./pages/authz/authz.module').then(m => m.AuthzModule)
-    },
+
     {
         path: '',
         component: AppLayoutComponent,
@@ -19,9 +17,22 @@ const routes: Routes = [
             {
                 path: 'patients',
                 loadChildren: () => import('./pages/patients/patients.module').then(m => m.PatientsModule)
+            },
+            {
+                path: 'doctor',
+                loadChildren: () => import('./pages/doctor/doctor.module').then(m => m.DoctorModule)
+            },
+            {
+                path: 'configuration',
+                loadChildren: () => import('./pages/configuration/configuration.module').then(m => m.ConfigurationModule)
             }
-        ]
-    }
+        ],
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'auth',
+        loadChildren: () => import('./pages/authz/authz.module').then(m => m.AuthzModule)
+    },
 ];
 
 @NgModule({

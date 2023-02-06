@@ -1,0 +1,47 @@
+<p-dialog [(visible)]="doctorDialog" [style]="{width: '450px'}" header="Creación de médicos" (onHide)="hideDialog()" [modal]="true" styleClass="p-fluid">
+    <form [formGroup]="formCreateDoctor" (ngSubmit)="saveDoctor()">
+        <div class="field">
+            <label for="dni">Cédula de identidad</label>
+            <input type="text" pInputText id="dni" formControlName="dni" required autofocus />
+            <small class="p-error" *ngIf="">Cédula de identidad es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="name">Nombre</label>
+            <input type="text" pInputText id="name" formControlName="name" required autofocus />
+            <small class="p-error" *ngIf="">Nombre es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="lastName">Apellido</label>
+            <input type="text" pInputText id="lastName" formControlName="lastName" required autofocus />
+            <small class="p-error" *ngIf="">Apellido es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="email">Correo electrónico</label>
+            <input type="text" pInputText id="email" formControlName="email" required autofocus />
+            <small class="p-error" *ngIf="">Correo electrónico es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="address">Dirección</label>
+            <input type="text" pInputText id="address" formControlName="address" required autofocus />
+            <small class="p-error" *ngIf="">Dirección es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="phone">Teléfono</label>
+            <input type="text" pInputText id="phone" formControlName="phone" required autofocus />
+            <small class="p-error" *ngIf="">Teléfono es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="codeSenecyt">Código Senecyt</label>
+            <input type="text" pInputText id="codeSenecyt" formControlName="codeSenecyt" required autofocus />
+            <small class="p-error" *ngIf="">Código de la senecyt es requerido.</small>
+        </div>
+
+        <div class="flex gap-2">
+            <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-outlined p-button-secondary" (click)="hideDialog()" type="button"></button>
+            <button pButton pRipple label="Guardar" [disabled]="formCreateDoctor.invalid" icon="pi pi-check" class="p-button-outlined p-button-success" type="submit"></button>
+        </div>
+
+    </form>
+
+
+</p-dialog>

@@ -12,7 +12,6 @@ public class ScheduleService {
  }
 
  public Schedule findById( Long id){
-
  return scheduleRepository.findById(id).orElse(new Schedule());
 
  }

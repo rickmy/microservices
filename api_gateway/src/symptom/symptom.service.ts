@@ -7,14 +7,16 @@ import { UpdateSymptomDto } from './dto/update-symptom.dto';
 export class SymptomService {
   urlSymptoms = 'http://127.0.0.1:8000/api/symptom/';
   async findAll(): Promise<any> {
-    const symptoms = await axios.get(this.urlSymptoms).then((response) => {
-      console.log(response);
-      return response.data;
-
-    }).catch((error) => {
-      console.log(error);
-      throw new UnprocessableEntityException(error.response.data.message);
-    });
+    const symptoms = await axios
+      .get(this.urlSymptoms)
+      .then((response) => {
+        console.log(response);
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+        throw new UnprocessableEntityException(error.response.data.message);
+      });
     return symptoms;
   }
 
@@ -33,27 +35,27 @@ export class SymptomService {
 
   update(id: number, updateSymptomDto: UpdateSymptomDto) {
     const symptom = axios
-    .patch(`${this.urlSymptoms}${id}/`, updateSymptomDto)
-    .then((response) => {
-      return response.data;
-    })
-    .catch((error) => {
-      console.log(error.response.data);
-      throw new UnprocessableEntityException(error.response.data.message);
-    });
+      .patch(`${this.urlSymptoms}${id}/`, updateSymptomDto)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        throw new UnprocessableEntityException(error.response.data.message);
+      });
     return symptom;
   }
 
   remove(id: number) {
     const symptom = axios
-    .delete(`${this.urlSymptoms}${id}`)
-    .then((response) => {
-      return response.data;
-    })
-    .catch((error) => {
-      console.log(error.response.data);
-      throw new UnprocessableEntityException(error.response.data.message);
-    });
+      .delete(`${this.urlSymptoms}${id}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        throw new UnprocessableEntityException(error.response.data.message);
+      });
     return symptom;
   }
 
@@ -71,7 +73,6 @@ export class SymptomService {
       .catch((error) => {
         console.log(error.response.data);
         throw new UnprocessableEntityException(error.response.data.message);
-        
       });
     return newsymptom;
   }

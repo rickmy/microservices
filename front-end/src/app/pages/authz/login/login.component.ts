@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../services/api/auth.service";
+import {SecurityService} from "../../../services/security.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-login',
@@ -14,12 +16,17 @@ export class LoginComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private authService: AuthService
+        private authService: AuthService,
+        private securityService: SecurityService,
+        private router: Router
     ) {
     }
 
     ngOnInit(): void {
         this.buildForm();
+        if (this.securityService.getAccessToken()) {
+            this.router.navigate(['/']);
+        }
     }
 
     buildForm() {
@@ -41,7 +48,6 @@ export class LoginComponent implements OnInit {
                 },
                 error: (err)=>{
                     this.loading = false;
-
                     console.log(err);
                 }
             });

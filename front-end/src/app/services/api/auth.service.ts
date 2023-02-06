@@ -5,6 +5,7 @@ import {catchError, Observable, tap} from "rxjs";
 import {TokenAuth} from "../../models/auth/token-auth";
 import {ManagerMessageService} from "../../shared/services/manager-message.service";
 import {Router} from "@angular/router";
+import {SecurityService} from "../security.service";
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +20,8 @@ export class AuthService {
     constructor(
         private http: HttpClient,
         private managerMessageService: ManagerMessageService,
-        private router: Router
+        private router: Router,
+        private securityService: SecurityService
     ) {
     }
 
@@ -30,14 +32,12 @@ export class AuthService {
             }, {headers: this.headers}
         ).pipe(
             tap((response: TokenAuth) => {
-                localStorage.setItem('token', response.token)
-            }),
-            tap((response: TokenAuth) => {
+                this.securityService.setAuthUser(response);
                 this.managerMessageService.showSuccess('Bienvenido a Bienestar Estudiantil!');
-                this.router.navigate(['./dashboard']);
+                this.router.navigate(['/']);
             }),
             catchError((error) => {
-                this.managerMessageService.showErrorGeneric();
+                this.managerMessageService.showError(error);
                 throw error;
             })
         )

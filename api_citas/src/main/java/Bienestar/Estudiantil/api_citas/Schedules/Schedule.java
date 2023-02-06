@@ -15,9 +15,9 @@ public class Schedule {
  @GeneratedValue(strategy = GenerationType.AUTO)
 
  private Long id;
- private Date availableDate;
- private String availableTime;
- private Boolean condition;
+ private Date availableDate; //fecha disponible
+ private String availableTime;//tiempo disponible
+ private Boolean condition;//status: Activo o inactivo
  private Integer doctorId;
   
 }

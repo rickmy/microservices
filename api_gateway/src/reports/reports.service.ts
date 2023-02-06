@@ -16,11 +16,11 @@ export class ReportsService {
       .then((response) => {
         console.log(response);
         return response.data;
-      
       })
       .catch((error) => {
-       console.log(error);throw new UnprocessableEntityException(error.response.data.message);
+        console.log(error);
+        throw new UnprocessableEntityException(error.response.data.message);
       });
-      return  document;
+    return document;
   }
 }

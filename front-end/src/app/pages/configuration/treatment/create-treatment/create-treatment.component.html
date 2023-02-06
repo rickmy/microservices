@@ -1,0 +1,21 @@
+<p-dialog [(visible)]="treatmentDialog" [style]="{width: '450px'}" header="Creación de Tratamiento" (onHide)="hideDialog()" [modal]="true" styleClass="p-fluid">
+    <form [formGroup]="formCreateTreatment" (ngSubmit)="saveTreatment()">
+        <div class="field">
+            <label for="name">Nombre</label>
+            <input type="text" pInputText id="name" formControlName="name" required autofocus />
+            <small class="p-error" *ngIf="">Nombre es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="description">Descripción</label>
+            <textarea id="description" pInputTextarea formControlName="description" required rows="3" cols="20"></textarea>
+        </div>
+
+        <div class="flex gap-2">
+            <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-outlined p-button-secondary" (click)="hideDialog()" type="button"></button>
+            <button pButton pRipple label="Guardar" [disabled]="formCreateTreatment.invalid" icon="pi pi-check" class="p-button-outlined p-button-success" type="submit"></button>
+        </div>
+
+    </form>
+
+    
+</p-dialog>

@@ -1,6 +1,7 @@
 package Bienestar.Estudiantil.api_citas.medicalAppos;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import Bienestar.Estudiantil.api_citas.Patient.PatientClient;
 import Bienestar.Estudiantil.api_citas.medicalAppos.DTO.MedicalAppoDTO;
+import Bienestar.Estudiantil.api_citas.medicalAppos.DTO.CreateMedicalAppoDTO;
 
 @RestController
 @RequestMapping("api/medicalAppo")
@@ -38,9 +40,10 @@ public class MedicalAppoController {
    }
 
  @PostMapping("/")
- public MedicalAppo save(@RequestBody MedicalAppo entity){
-  return medicalAppoService.save(entity);
+ public ResponseEntity<MedicalAppo> save(@RequestBody CreateMedicalAppoDTO entity){
+  return medicalAppoService.create(entity);
  }
+
  @PutMapping("/")
  public MedicalAppo update(@RequestBody MedicalAppo entity){
   return medicalAppoService.save(entity);

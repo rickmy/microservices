@@ -14,12 +14,15 @@ import {PhotoService} from './demo/service/photo.service';
 import {AuthzModule} from "./pages/authz/authz.module";
 import {RouterModule} from "@angular/router";
 import {AppoinmentModule} from "./pages/appoinment/appoinment.module";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {SharedModule} from "./shared/shared.module";
+import {AppInterceptor} from "./core/interceptor/app.interceptor";
+
 
 @NgModule({
+   
     declarations: [
-        AppComponent, NotfoundComponent
+        AppComponent, NotfoundComponent,
     ],
     imports: [
         AppRoutingModule,
@@ -31,7 +34,11 @@ import {SharedModule} from "./shared/shared.module";
         SharedModule
     ],
     providers: [
-        {provide: LocationStrategy, useClass: PathLocationStrategy},
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AppInterceptor,
+            multi: true
+        },
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService
     ],

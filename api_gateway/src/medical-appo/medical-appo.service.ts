@@ -20,7 +20,7 @@ export class MedicalAppoService {
   }
   async findOne(id: number): Promise<CreateMedicalAppoDto> {
     return await axios
-      .get(this.urlMedicalAppo + id + "/")
+      .get(this.urlMedicalAppo + id + '/')
       .then((res) => {
         return res.data;
       })
@@ -31,7 +31,7 @@ export class MedicalAppoService {
   }
   async update(id: number, updateMedicalAppoDto: UpdateMedicalAppoDto) {
     const actualizar = await axios
-      .put(this.urlMedicalAppo ,  { ...updateMedicalAppoDto, id })
+      .put(this.urlMedicalAppo, { ...updateMedicalAppoDto, id })
       .then((res) => {
         return res.data;
       })

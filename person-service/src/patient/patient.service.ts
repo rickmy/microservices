@@ -94,7 +94,7 @@ export class PatientService {
     const patientDB = await this.prisma.patient
       .findUnique({
         where: {
-          id,
+          id: id,
         },
       })
       .catch((err) => {
@@ -103,6 +103,9 @@ export class PatientService {
           `No se ha podido encontrar el paciente con id ${id}`,
         );
       });
+    if (!patientDB) {
+      return null;
+    }
     const oldYear = 20;
 
     const patient: PatientDto = {
