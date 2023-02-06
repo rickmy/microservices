@@ -11,7 +11,7 @@ import { PatientDto } from './dto/patient.dt';
 
 @Injectable()
 export class PatientService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
   async create(createPatientDto: CreatePatientDto): Promise<PatientEntity> {
     const dniExist = await this.findOneByDni(createPatientDto.dni);
     if (dniExist)

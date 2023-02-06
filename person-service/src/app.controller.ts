@@ -9,14 +9,4 @@ export class AppController {
     private readonly appService: AppService,
     private readonly prisma: PrismaService,
   ) {}
-
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
-
-  @Get('test')
-  async getTest(): Promise<Patient[]> {
-    return await this.prisma.patient.findMany();
-  }
 }

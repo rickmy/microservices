@@ -2,6 +2,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {LocationStrategy, PathLocationStrategy} from "@angular/common";
 import {AppLayoutComponent} from "./layout/app.layout.component";
+import {AuthGuard} from "./core/guards/auth.guard";
 
 const routes: Routes = [
     {
@@ -28,7 +29,8 @@ const routes: Routes = [
                 path: 'configuration',
                 loadChildren: () => import('./pages/configuration/configuration.module').then(m => m.ConfigurationModule)
             }
-        ]
+        ],
+        canActivate: [AuthGuard]
     }
 ];
 

@@ -1,9 +1,10 @@
-import { Component, OnDestroy, Renderer2, ViewChild } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter, Subscription } from 'rxjs';
-import { LayoutService } from "./service/app.layout.service";
-import { AppSidebarComponent } from "./sidebar/app.sidebar.component";
-import { AppTopBarComponent } from './navbar/app.topbar.component';
+import {Component, OnDestroy, Renderer2, ViewChild} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import {filter, Subscription} from 'rxjs';
+import {LayoutService} from "./service/app.layout.service";
+import {AppSidebarComponent} from "./sidebar/app.sidebar.component";
+import {AppTopBarComponent} from './navbar/app.topbar.component';
+import {BlockUiService} from "../services/block-ui.service";
 
 @Component({
     selector: 'app-layout',
@@ -23,7 +24,12 @@ export class AppLayoutComponent implements OnDestroy {
     loading = false;
 
 
-    constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router) {
+    constructor(
+        public layoutService: LayoutService,
+        public renderer: Renderer2,
+        public router: Router,
+        private blockUiService: BlockUiService
+    ) {
         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
             if (!this.menuOutsideClickListener) {
                 this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {
@@ -57,6 +63,10 @@ export class AppLayoutComponent implements OnDestroy {
                 this.hideMenu();
                 this.hideProfileMenu();
             });
+
+        this.blockUiService.getDisplay().subscribe((show: boolean) => {
+            this.loading = show;
+        });
     }
 
     hideMenu() {
@@ -81,8 +91,7 @@ export class AppLayoutComponent implements OnDestroy {
     blockBodyScroll(): void {
         if (document.body.classList) {
             document.body.classList.add('blocked-scroll');
-        }
-        else {
+        } else {
             document.body.className += ' blocked-scroll';
         }
     }
@@ -90,8 +99,7 @@ export class AppLayoutComponent implements OnDestroy {
     unblockBodyScroll(): void {
         if (document.body.classList) {
             document.body.classList.remove('blocked-scroll');
-        }
-        else {
+        } else {
             document.body.className = document.body.className.replace(new RegExp('(^|\\b)' +
                 'blocked-scroll'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
         }
@@ -121,3 +129,4 @@ export class AppLayoutComponent implements OnDestroy {
         }
     }
 }
+
