@@ -5,10 +5,7 @@ import {AppLayoutComponent} from "./layout/app.layout.component";
 import {AuthGuard} from "./core/guards/auth.guard";
 
 const routes: Routes = [
-    {
-        path: 'auth',
-        loadChildren: () => import('./pages/authz/authz.module').then(m => m.AuthzModule)
-    },
+
     {
         path: '',
         component: AppLayoutComponent,
@@ -31,7 +28,11 @@ const routes: Routes = [
             }
         ],
         canActivate: [AuthGuard]
-    }
+    },
+    {
+        path: 'auth',
+        loadChildren: () => import('./pages/authz/authz.module').then(m => m.AuthzModule)
+    },
 ];
 
 @NgModule({

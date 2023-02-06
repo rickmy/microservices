@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import {LoginResponse} from "../models/auth/login-response";
+import {TokenAuth} from "../models/auth/token-auth";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SecurityService {
 
-    setAuthUser(authUser: LoginResponse): void {
-        localStorage.setItem('currentUser', JSON.stringify(authUser));
+    setAuthUser(token: TokenAuth): void {
+        localStorage.setItem('currentUser', JSON.stringify(token));
     }
 
     setUser(user: any): void {
@@ -15,8 +16,8 @@ export class SecurityService {
     }
 
     getAccessToken(): string | null {
-        let tokens = JSON.parse(localStorage.getItem('currentUser')!) as LoginResponse;
-        return tokens?.accessToken;
+        let tokens = JSON.parse(localStorage.getItem('currentUser')!) as TokenAuth;
+        return tokens?.token;
     }
 
     getUser(): any {
