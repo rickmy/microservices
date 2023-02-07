@@ -57,6 +57,7 @@ export class DoctorService {
       }
       const doctors: ListDoctorDto[] = doctorsDb.map((doctor) => {
         return {
+          id: doctor.id,
           dni: doctor.dni,
           completeName: doctor.name + ' ' + doctor.lastName,
           email: doctor.email,

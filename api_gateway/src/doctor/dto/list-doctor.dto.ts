@@ -1,6 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class ListDoctorDto {
+  @ApiProperty({ description: 'Id del doctor', example: 1, type: Number })
+  id: number;
   @ApiProperty({ description: 'DNI', example: '1234567890' })
   dni: string;
   @ApiProperty({
