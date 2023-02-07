@@ -3,26 +3,34 @@ import {
   Injectable,
   UnprocessableEntityException,
 } from '@nestjs/common';
+import { RemoveDto } from 'src/core/DTOS/remove.dto';
+import { SpecialtyService } from 'src/specialty/specialty.service';
 import { PrismaService } from './../prisma/prisma.service';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
 import { ListDoctorDto } from './dto/list-doctor.dto';
-import { RemoveDoctorDto } from './dto/remove-doctor.dt';
 import { UpdateDoctorDto } from './dto/update-doctor.dto';
 import { DoctorEntity } from './entities/doctor.entity';
 
 @Injectable()
 export class DoctorService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly specialtyService: SpecialtyService,
+  ) {}
   async create(createDoctorDto: CreateDoctorDto): Promise<DoctorEntity> {
     try {
       const doctorDb = await this.findOneByDni(createDoctorDto.dni);
-      console.log(doctorDb, '------------------');
       if (doctorDb) {
-        throw new UnprocessableEntityException(
-          'El doctor ya existe en la base de datos',
+        throw new ForbiddenException('El doctor ya existe en la base de datos');
+      }
+      const specialtyDB = await this.specialtyService.findOne(
+        createDoctorDto.specialtyId,
+      );
+      if (!specialtyDB) {
+        throw new ForbiddenException(
+          'La especialidad no existe en la base de datos',
         );
       }
-      //TODO: Validar que la especilidad SI exista en la base de datos
       return await this.prisma.doctor.create({
         data: {
           ...createDoctorDto,
@@ -106,7 +114,7 @@ export class DoctorService {
       });
   }
 
-  async remove(id: number): Promise<RemoveDoctorDto> {
+  async remove(id: number): Promise<RemoveDto> {
     const doctorDb = await this.findOne(id);
     if (!doctorDb) {
       return {

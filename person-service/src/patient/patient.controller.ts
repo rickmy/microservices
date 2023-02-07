@@ -15,7 +15,7 @@ import { Put, UploadedFile, UseInterceptors } from '@nestjs/common/decorators';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { PatientDto } from './dto/patient.dt';
 
-@ApiTags('patient')
+@ApiTags('Pacientes')
 @Controller('patient')
 export class PatientController {
   constructor(private readonly patientService: PatientService) {}

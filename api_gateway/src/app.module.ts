@@ -9,6 +9,7 @@ import { TreatmentModule } from './treatment/treatment.module';
 import { SymptomModule } from './symptom/symptom.module';
 import { DiagnosticModule } from './diagnostic/diagnostic.module';
 import { ReportsModule } from './reports/reports.module';
+import { SpecialtyModule } from './specialty/specialty.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ReportsModule } from './reports/reports.module';
     SymptomModule,
     DiagnosticModule,
     ReportsModule,
+    SpecialtyModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -15,11 +15,11 @@ import {
   ApiTags,
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
+import { RemoveDto } from 'src/core/DTOS/remove.dto';
 import { DoctorService } from './doctor.service';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
 import { DoctorDto } from './dto/doctor.dto';
 import { ListDoctorDto } from './dto/list-doctor.dto';
-import { RemoveDoctorDto } from './dto/remove-doctor.dt';
 import { UpdateDoctorDto } from './dto/update-doctor.dto';
 @ApiTags('Doctor')
 @Controller('doctor')
@@ -82,10 +82,10 @@ export class DoctorController {
   @Delete(':id')
   @ApiOkResponse({
     description: 'La información del doctor',
-    type: RemoveDoctorDto,
+    type: RemoveDto,
   })
   @ApiParam({ name: 'id', description: 'Id del doctor', required: true })
-  remove(@Param('id') id: string): Promise<RemoveDoctorDto> {
+  remove(@Param('id') id: string): Promise<RemoveDto> {
     return this.doctorService.remove(+id);
   }
 }

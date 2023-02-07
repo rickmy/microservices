@@ -20,7 +20,7 @@ export class PatientService {
     const emailExist = await this.findOneByEmail(createPatientDto.email);
     if (emailExist)
       throw new UnprocessableEntityException('El email ya existe');
-
+    //TODO: crearle un suario y contraseña al paciente
     const patient = await this.prisma.patient.create({
       data: {
         ...createPatientDto,
