@@ -1,7 +1,12 @@
-import { Injectable, UnprocessableEntityException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  UnprocessableEntityException,
+} from '@nestjs/common';
 import { PrismaService } from './../prisma/prisma.service';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
 import { ListDoctorDto } from './dto/list-doctor.dto';
+import { RemoveDoctorDto } from './dto/remove-doctor.dt';
 import { UpdateDoctorDto } from './dto/update-doctor.dto';
 import { DoctorEntity } from './entities/doctor.entity';
 
@@ -59,33 +64,55 @@ export class DoctorService {
   }
 
   async findOneByDni(dni: string): Promise<DoctorEntity | null> {
-    return await this.prisma.doctor.findUnique({
+    const doctorDb = await this.prisma.doctor.findUnique({
       where: {
         dni: dni,
       },
     });
+    if (!doctorDb) {
+      throw new ForbiddenException('El doctor no existe en la base de datos');
+    }
+    return doctorDb;
   }
 
   async findOne(id: number): Promise<DoctorEntity | null> {
-    const doctosDB = await this.prisma.doctor.findUnique({
+    const doctorDb = await this.prisma.doctor.findUnique({
       where: {
         id: id,
       },
     });
-    if (!doctosDB) {
-      return null;
+    if (!doctorDb) {
+      throw new ForbiddenException('El doctor no existe en la base de datos');
     }
-    return doctosDB;
+    return doctorDb;
   }
 
-  update(id: number, updateDoctorDto: UpdateDoctorDto) {
-    return `This action updates a #${id} doctor`;
+  async update(
+    id: number,
+    updateDoctorDto: UpdateDoctorDto,
+  ): Promise<DoctorEntity> {
+    return await this.prisma.doctor
+      .update({
+        where: {
+          id: id,
+        },
+        data: {
+          ...updateDoctorDto,
+        },
+      })
+      .catch((error) => {
+        console.log(error);
+        throw new UnprocessableEntityException(error.message);
+      });
   }
 
-  async remove(id: number): Promise<boolean> {
+  async remove(id: number): Promise<RemoveDoctorDto> {
     const doctorDb = await this.findOne(id);
     if (!doctorDb) {
-      return false;
+      return {
+        status: false,
+        message: 'El doctor no existe en la base de datos',
+      };
     }
     await this.prisma.doctor.update({
       where: {
@@ -95,6 +122,9 @@ export class DoctorService {
         status: false,
       },
     });
-    return true;
+    return {
+      status: true,
+      message: 'El doctor se elimino correctamente',
+    };
   }
 }

@@ -28,15 +28,25 @@ export class DoctorService {
     return doctors;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} doctor`;
+  async findOne(id: number) {
+    const response = await axios.get(`${this.urlDoctors}/${id}`);
+    return response.data;
+  }
+  async findOneByDni(dni: string) {
+    const response = await axios.get(`${this.urlDoctors}/dni/${dni}`);
+    return response.data;
   }
 
-  update(id: number, updateDoctorDto: UpdateDoctorDto) {
-    return `This action updates a #${id} doctor`;
+  async update(id: number, updateDoctorDto: UpdateDoctorDto) {
+    const response = await axios.put(
+      `${this.urlDoctors}/${id}`,
+      updateDoctorDto,
+    );
+    return response.data;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} doctor`;
+  async remove(id: number) {
+    const response = await axios.delete(`${this.urlDoctors}/${id}`);
+    return response.data;
   }
 }
