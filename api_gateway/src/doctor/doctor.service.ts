@@ -1,18 +1,28 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import axios from 'axios';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
 import { UpdateDoctorDto } from './dto/update-doctor.dto';
 
 @Injectable()
 export class DoctorService {
-  urlPatients = 'http://localhost:3000/api/doctor';
+  urlDoctors = 'http://localhost:3000/api/doctor';
 
-  create(createDoctorDto: CreateDoctorDto) {
-    return 'This action adds a new doctor';
+  async create(doctor: CreateDoctorDto) {
+    if (!doctor) throw new UnprocessableEntityException('Solicitud invalida');
+    const newDoctor = await axios
+      .post(this.urlDoctors, doctor)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        throw new UnprocessableEntityException(error.response.data.message);
+      });
+    return newDoctor;
   }
 
   async findAll(): Promise<any> {
-    const doctors = await axios.get(this.urlPatients).then((response) => {
+    const doctors = await axios.get(this.urlDoctors).then((response) => {
       return response.data;
     });
     return doctors;
