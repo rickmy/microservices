@@ -8,6 +8,7 @@ import * as xlsx from 'xlsx';
 import { WorkBook, WorkSheet } from 'xlsx';
 import { PatientSex, PatientStatus } from '@prisma/client';
 import { PatientDto } from './dto/patient.dt';
+import { RemoveDto } from 'src/core/DTOS/remove.dto';
 
 @Injectable()
 export class PatientService {
@@ -144,7 +145,15 @@ export class PatientService {
       });
   }
 
-  async remove(id: number): Promise<string> {
+  async remove(id: number): Promise<RemoveDto> {
+    const patient = await this.findOneById(id);
+    if (!patient) {
+      return {
+        message: `No se ha podido eliminar el paciente`,
+        status: false,
+      };
+    }
+
     await this.prisma.patient
       .update({
         where: {
@@ -157,9 +166,12 @@ export class PatientService {
       .catch((err) => {
         console.log(err);
         throw new UnprocessableEntityException(
-          `No se ha podido eliminar el paciente con id ${id}`,
+          `No se ha podido eliminar el paciente `,
         );
       });
-    return 'El paciente ha sido eliminado';
+    return {
+      message: `Se ha eliminado el paciente`,
+      status: true,
+    };
   }
 }

@@ -78,7 +78,7 @@ export class DoctorService {
       },
     });
     if (!doctorDb) {
-      throw new ForbiddenException('El doctor no existe en la base de datos');
+      return null;
     }
     return doctorDb;
   }

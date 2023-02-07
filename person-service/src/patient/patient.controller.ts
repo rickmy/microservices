@@ -14,6 +14,7 @@ import { PatientEntity } from './entities/patient.entity';
 import { Put, UploadedFile, UseInterceptors } from '@nestjs/common/decorators';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { PatientDto } from './dto/patient.dt';
+import { RemoveDto } from 'src/core/DTOS/remove.dto';
 
 @ApiTags('Pacientes')
 @Controller('patient')
@@ -68,7 +69,9 @@ export class PatientController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string): Promise<string> {
+  @ApiOkResponse({ type: RemoveDto, description: 'Paciente eliminado' })
+  @ApiParam({ name: 'id', type: 'number', required: true })
+  remove(@Param('id') id: string): Promise<RemoveDto> {
     return this.patientService.remove(+id);
   }
 }
