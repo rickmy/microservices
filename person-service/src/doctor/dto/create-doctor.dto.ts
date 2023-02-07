@@ -1,16 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-  MaxLength,
-  Min,
-  MinLength,
-} from 'class-validator';
+import { IsEmail, IsNotEmpty, IsNumber, IsString, Min } from 'class-validator';
 
 export class CreateDoctorDto {
   @IsString({ message: 'El DNI debe ser un string' })
+  @IsNotEmpty({ message: 'El DNI es requerido.' })
   @ApiProperty({ description: 'DNI', example: '1234567890' })
   dni: string;
   @IsString({ message: 'El nombre debe ser un string' })

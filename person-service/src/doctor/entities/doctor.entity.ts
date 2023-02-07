@@ -21,5 +21,6 @@ export class DoctorEntity implements Doctor {
   codeSenecyt: number;
   @ApiProperty({ example: 1, description: 'Id de la especilidad' })
   specialtyId: number;
+  @ApiProperty({ example: true, description: 'Estado del doctor' })
   status: boolean;
 }

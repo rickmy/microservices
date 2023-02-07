@@ -16,6 +16,7 @@ import {
 } from '@nestjs/swagger';
 import { DoctorService } from './doctor.service';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
+import { ListDoctorDto } from './dto/list-doctor.dto';
 import { UpdateDoctorDto } from './dto/update-doctor.dto';
 import { DoctorEntity } from './entities/doctor.entity';
 @ApiTags('Doctor')
@@ -31,7 +32,7 @@ export class DoctorController {
   @Get()
   @ApiOkResponse({
     description: 'Lista de doctores',
-    type: DoctorEntity,
+    type: ListDoctorDto,
     isArray: true,
   })
   @ApiBadRequestResponse({ description: 'Error en la petición' })
@@ -39,11 +40,15 @@ export class DoctorController {
   @ApiUnprocessableEntityResponse({
     description: 'Error no se puede procesar su solicitud',
   })
-  findAll(): Promise<DoctorEntity[] | null> {
+  findAll(): Promise<ListDoctorDto[]> {
     return this.doctorService.findAll();
   }
 
   @Get(':id')
+  @ApiOkResponse({
+    description: 'La información del doctor',
+    type: DoctorEntity,
+  })
   findOne(@Param('id') id: string) {
     return this.doctorService.findOne(+id);
   }
