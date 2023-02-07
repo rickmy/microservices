@@ -3,7 +3,6 @@ export interface CreateDoctorModel {
     name: string;
     lastName: string;
     email: string;
-    address: string;
     codeSenecyt: number;
     specialtyId: number;
 }

@@ -21,12 +21,11 @@ export class CreateDoctorComponent implements OnInit {
 
     ngOnInit(): void {
         this.formCreateDoctor = this.fb.group({
-            name: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(150)]],
-            lastName: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(150)]],
-            email: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(150)]],
-            address: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(150)]],
-            phone: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(150)]],
-            codeSenecyt: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(150)]],
+            dni: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
+            name: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
+            lastName: ['',[Validators.required, Validators.minLength(4), Validators.maxLength(150)]],
+            email: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
+            codeSenecyt: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
 
 
         });

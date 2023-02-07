@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DoctorRoutingModule } from './doctor-routing.module';
 import {RouterModule} from "@angular/router";
@@ -11,11 +11,20 @@ import {ListDoctorComponent} from "./list-doctor/list-doctor.component";
 import {InputTextModule} from "primeng/inputtext";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {TableModule} from "primeng/table";
+import { EditDoctorComponent } from './edit-doctor/edit-doctor.component';
+import {SharedModule} from "../../shared/shared.module";
+import {ConfirmPopupModule} from "primeng/confirmpopup";
+import {ConfirmationService} from "primeng/api";
 
 
 @NgModule({
+
+    schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+    ],
+
     declarations: [
-        CreateDoctorComponent,ListDoctorComponent
+        CreateDoctorComponent,ListDoctorComponent, EditDoctorComponent
     ],
     imports: [
         CommonModule,
@@ -25,8 +34,13 @@ import {TableModule} from "primeng/table";
         ButtonModule,
         DialogModule,
         FormsModule,ReactiveFormsModule,InputTextModule,TableModule,
-        InputTextareaModule
+        InputTextareaModule,SharedModule,ConfirmPopupModule
 
+    ],
+
+    providers: [
+
+        ConfirmationService
     ]
 })
 export class DoctorModule { }

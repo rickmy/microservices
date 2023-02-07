@@ -19,11 +19,11 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     { label: 'Panel de control', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
                     { label: 'Pacientes', icon: 'pi pi-fw pi-users', routerLink: ['/patients'] },
-                    { label: 'Médico', icon: 'pi pi-fw pi-user', routerLink: ['/doctor'] },
+                    { label: 'Doctores', icon: 'pi pi-fw pi-users', routerLink: ['/doctor'] },
                     { label: 'Configuración', icon: 'pi pi-fw pi-bookmark', routerLink: ['/configuration'] },
                     { label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/uikit/invalidstate'] },
                     { label: 'Button', icon: 'pi pi-fw pi-box', routerLink: ['/uikit/button'] },
-                    { label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table'] },
+                    { label: 'Cerrar Sesión', icon: 'pi pi-fw pi-sign-out  ', routerLink: ['/auth/login'] },
 
                 ]
             }
