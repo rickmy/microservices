@@ -47,7 +47,6 @@ export class AppInterceptor implements HttpInterceptor {
                     if (error.status === 500){
                         return throwError(() => Error('Error en el servidor'));
                     }
-                    this.managerMessageService.showError(error.error.message);
                     return throwError(() => Error(error.error.message));
                 }),
                 finalize(() => {

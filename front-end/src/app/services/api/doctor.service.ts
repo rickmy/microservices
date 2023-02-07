@@ -41,7 +41,6 @@ export class DoctorService {
     findAllDoctor(): Observable<ListDoctorModel[]> {
         return this.http.get<ListDoctorModel[]>(this.url, {headers: this.headers})
             .pipe(
-
                 catchError((err) => {
                     this.managerMessageService.showError(err);
                     throw err;

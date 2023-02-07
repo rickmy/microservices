@@ -1,4 +1,26 @@
-<p>create-patient works!</p>
+<p-dialog [(visible)]="patientDialog" [style]="{width: '600px'}" header="Crear Paciente" (onHide)="hideDialog()" [resizable]="false" [modal]="true" styleClass="p-fluid">
+    <form [formGroup]="formPatient" (ngSubmit)="savePatient()">
+
+        <div class="field">
+            <label for="dni">Identificación<span class="text-red-500 mx-1">*</span></label>
+            <input type="text" pInputText id="dni" formControlName="dni" pKeyFilter="int"/>
+            <small class="invalid-feedback" *ngIf="form['dni'].touched">
+                <p class="p-error" *ngIf="form['dni'].errors?.['required']">Identificación es requerida.</p>
+                <p class="p-error" *ngIf="form['dni'].errors?.['minlength']">Identificación debe tener mínimo 10 caracatéres.</p>
+                <p class="p-error" *ngIf="form['dni'].errors?.['maxlength']">Identificación es muy larga.</p>
+            </small>
+        </div>
+        <div class="field">
+            <label for="firstName">Nombre<span class="text-red-500 mx-1">*</span></label>
+            <input type="text" pInputText id="firstName" formControlName="firstName"/>
+
+        </div>
+        <div class="field">
+            <label for="middleName">Segundo Nombre</label>
+            <input type="text" pInputText id="middleName" formControlName="firstName"/>
+        </div>
 
 
-<button pButton pRipple type="button" label="Success" class="p-button-raised p-button-success p-button-text"></button>
+    </form>
+
+</p-dialog>
