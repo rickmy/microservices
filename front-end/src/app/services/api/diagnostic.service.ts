@@ -9,6 +9,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class DiagnosticService {
+  updateStatus(id: number, estado: boolean) {
+    throw new Error('Method not implemented.');
+  }
 
   url = environment.api_url + 'diagnostic';
   headers = new HttpHeaders({
@@ -33,6 +36,25 @@ export class DiagnosticService {
 
   findAllDiagnostic(): Observable<CreateDiagnosticModel[]> {
     return this.http.get<CreateDiagnosticModel[]>(this.url, {headers: this.headers})
+    .pipe(
+      tap((data) => this.managerMessageService.showSuccess('Diagnósticos cargados con éxito!')),
+      catchError((err) => {
+        this.managerMessageService.showError(err);
+        throw err;
+      }));
+
   }
+
+  editDiagnosticById(id: number): Observable<CreateDiagnosticModel[]> {
+    return this.http.get<CreateDiagnosticModel[]>(this.url + '/' + id, {headers: this.headers})
+    .pipe(
+      tap((data) => this.managerMessageService.showSuccess('Diagnóstico cargado con éxito!')),
+      catchError((err) => {
+        this.managerMessageService.showError(err);
+        throw err;
+      }));
+  }
+
+
 
 }

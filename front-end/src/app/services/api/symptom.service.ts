@@ -31,4 +31,14 @@ export class SymptomService {
         throw err;
       }));
   }
+
+  findAllSymptom(): Observable<CreateSymptomModel[]> {
+    return this.http.get<CreateSymptomModel[]>(this.url, {headers: this.headers})
+    .pipe(
+      tap((data) => this.managerMessageService.showSuccess('Síntomas cargados con éxito!')),
+      catchError((err) => {
+        this.managerMessageService.showError(err);
+        throw err;
+      }));
+  }
 }

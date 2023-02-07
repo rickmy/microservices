@@ -19,25 +19,25 @@ export class TreatmentController {
   constructor(private readonly treatmentService: TreatmentService) {}
 
   @Post()
-  @UseGuards(AuthGuard)
+  //@UseGuards(AuthGuard)
   create(@Body() createTreatmentDto: CreateTreatmentDto) {
     return this.treatmentService.create(createTreatmentDto);
   }
 
   @Get()
-  @UseGuards(AuthGuard)
+  //@UseGuards(AuthGuard)
   findAll() {
     return this.treatmentService.findAll();
   }
 
   @Get(':id')
-  @UseGuards(AuthGuard)
+  //@UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
     return this.treatmentService.findOne(+id);
   }
 
   @Patch(':id')
-  @UseGuards(AuthGuard)
+  //@UseGuards(AuthGuard)
   update(
     @Param('id') id: string,
     @Body() updateTreatmentDto: UpdateTreatmentDto,
@@ -46,7 +46,7 @@ export class TreatmentController {
   }
 
   @Delete(':id')
-  @UseGuards(AuthGuard)
+  //@UseGuards(AuthGuard)
   remove(@Param('id') id: string) {
     return this.treatmentService.remove(+id);
   }

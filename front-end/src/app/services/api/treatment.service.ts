@@ -31,4 +31,14 @@ export class TreatmentService {
       }));
   }
 
+  findAllTreatment(): Observable<CreateTreatmentModel[]> {
+    return this.http.get<CreateTreatmentModel[]>(this.url, {headers: this.headers})
+    .pipe(
+      tap((data) => this.managerMessageService.showSuccess('Tratamientos cargados con éxito!')),
+      catchError((err) => {
+        this.managerMessageService.showError(err);
+        throw err;
+      }));
+  }
+
 }

@@ -8,14 +8,15 @@ import { DiagnosticService } from 'src/app/services/api/diagnostic.service';
   styleUrls: ['./list-diagnostic.component.scss']
 })
 export class ListDiagnosticComponent implements OnInit {
+  public estadoActivo: CreateDiagnosticModel["status"] = true;
   diagnosticDialog: boolean = false;
   constructor(
     private diagnosticService: DiagnosticService
   ) { }
 
   diagnostics: CreateDiagnosticModel[] = [];
-  selectedDiagnostics: CreateDiagnosticModel[] = [];
-
+  
+  
   ngOnInit(): void {
 
     this.findAllDiagnostic();
@@ -24,6 +25,8 @@ export class ListDiagnosticComponent implements OnInit {
   showDialogCreate() {
     this.diagnosticDialog = true;
   }
+
+  
 
   hideDialogCreate(display: boolean) {
     this.diagnosticDialog = display;
@@ -35,8 +38,10 @@ export class ListDiagnosticComponent implements OnInit {
       (data) => {
         this.diagnostics = data;
       }
-
     );
-
   }
+
+  
+  
+  
 }

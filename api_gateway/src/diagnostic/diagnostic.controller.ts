@@ -25,7 +25,7 @@ export class DiagnosticController {
   }
 
   @Get()
-  //@UseGuards(AuthGuard)
+  @UseGuards(AuthGuard)
   findAll() {
     return this.diagnosticService.findAll();
   }

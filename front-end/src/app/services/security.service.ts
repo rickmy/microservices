@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import {LoginResponse} from "../models/auth/login-response";
 import {TokenAuth} from "../models/auth/token-auth";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SecurityService {
 
+    constructor(
+        private router: Router
+    ) { }
     setAuthUser(token: TokenAuth): void {
         localStorage.setItem('currentUser', JSON.stringify(token));
     }
@@ -27,6 +31,6 @@ export class SecurityService {
 
     logout() {
         localStorage.clear();
-        //TODO: redirect to login
+        this.router.navigate(['/auth/login']);
     }
 }

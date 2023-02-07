@@ -9,6 +9,7 @@ import {catchError, finalize, Observable, throwError} from 'rxjs';
 import {SecurityService} from "../../services/security.service";
 import {map} from "rxjs/operators";
 import {BlockUiService} from "../../services/block-ui.service";
+import {ManagerMessageService} from "../../shared/services/manager-message.service";
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
@@ -17,6 +18,7 @@ export class AppInterceptor implements HttpInterceptor {
     constructor(
         protected securityService: SecurityService,
         private blockUiService: BlockUiService,
+        private managerMessageService: ManagerMessageService
     ) { }
 
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -45,6 +47,7 @@ export class AppInterceptor implements HttpInterceptor {
                     if (error.status === 500){
                         return throwError(() => Error('Error en el servidor'));
                     }
+                    this.managerMessageService.showError(error.error.message);
                     return throwError(() => Error(error.error.message));
                 }),
                 finalize(() => {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CreateTreatmentModel } from 'src/app/models/treatment/create-treatment-model';
+import { TreatmentService } from 'src/app/services/api/treatment.service';
 
 @Component({
   selector: 'app-list-treatment',
@@ -8,10 +10,18 @@ import { Component, OnInit } from '@angular/core';
 export class ListTreatmentComponent implements OnInit {
 
   treatmentDialog: boolean = false;
+  treatments: CreateTreatmentModel[] = [];
 
-  constructor() { }
+  constructor(
+    
+    private treatmentService: TreatmentService
+
+  ) { }
 
   ngOnInit(): void {
+
+    this.findAllTreatment();
+
   }
 
   showDialogCreate() {
@@ -22,4 +32,13 @@ export class ListTreatmentComponent implements OnInit {
     this.treatmentDialog = display;
   }
 
+  findAllTreatment():void {
+    this.treatmentService.findAllTreatment().subscribe(
+      (data) => {
+        this.treatments = data;
+      }
+
+    );
+
+  }
 }
