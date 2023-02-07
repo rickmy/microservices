@@ -12,12 +12,14 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TableModule } from 'primeng/table';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { EditSymptomComponent } from './edit-symptom/edit-symptom.component';
 
 
 @NgModule({
   declarations: [
     CreateSymptomComponent,
     ListSymptomComponent,
+    EditSymptomComponent,
     
   ],
   imports: [

@@ -10,6 +10,7 @@ import { SymptomService } from 'src/app/services/api/symptom.service';
 export class ListSymptomComponent implements OnInit {
 
   symptomDialog: boolean = false;
+  symptom: CreateSymptomModel;
   
 
   constructor(
@@ -32,6 +33,10 @@ export class ListSymptomComponent implements OnInit {
   hideDialogCreate(display: boolean) {
     this.symptomDialog = display;
   }
+
+  
+
+  
 
   findAllSymptom():void {
     this.symptomService.findAllSymptom().subscribe(

@@ -11,6 +11,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TableModule } from 'primeng/table';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { EditDiagnosticComponent } from './edit-diagnostic/edit-diagnostic.component';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService } from 'primeng/api';
 
 
 @NgModule({
@@ -21,7 +24,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
   declarations: [
     CreateDiagnosticComponent,
-    ListDiagnosticComponent
+    ListDiagnosticComponent,
+    EditDiagnosticComponent
   ],
   imports: [
     CommonModule,
@@ -33,8 +37,15 @@ import { SharedModule } from 'src/app/shared/shared.module';
     InputTextModule,
     InputTextareaModule,
     TableModule,
-    SharedModule
+    SharedModule,
+    ConfirmPopupModule
 
+  ],
+  
+  providers: [
+
+    ConfirmationService
   ]
+
 })
 export class DiagnosticModule { }

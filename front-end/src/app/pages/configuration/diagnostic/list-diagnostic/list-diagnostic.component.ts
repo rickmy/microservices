@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
 import { CreateDiagnosticModel } from 'src/app/models/diagnostic/create-diagnostic-model';
+import { Diagnostic } from 'src/app/models/diagnostic/diagnostic.model';
 import { DiagnosticService } from 'src/app/services/api/diagnostic.service';
 
 @Component({
@@ -10,8 +12,11 @@ import { DiagnosticService } from 'src/app/services/api/diagnostic.service';
 export class ListDiagnosticComponent implements OnInit {
   public estadoActivo: CreateDiagnosticModel["status"] = true;
   diagnosticDialog: boolean = false;
+  diagnosticUpdateDialog: boolean = false;
+  selectDiagnostic: Diagnostic;
   constructor(
-    private diagnosticService: DiagnosticService
+    private diagnosticService: DiagnosticService,
+    private confirmService: ConfirmationService
   ) { }
 
   diagnostics: CreateDiagnosticModel[] = [];
@@ -26,8 +31,6 @@ export class ListDiagnosticComponent implements OnInit {
     this.diagnosticDialog = true;
   }
 
-  
-
   hideDialogCreate(display: boolean) {
     this.diagnosticDialog = display;
     this.findAllDiagnostic();
@@ -40,6 +43,48 @@ export class ListDiagnosticComponent implements OnInit {
       }
     );
   }
+
+  showDialogUpdate(selectDiagnostic: Diagnostic) {
+    this.selectDiagnostic = selectDiagnostic;
+    console.log(this.selectDiagnostic);
+    this.diagnosticUpdateDialog = true;
+  }
+
+  hideDialogUpdate(display: boolean) {
+    this.diagnosticUpdateDialog = display;
+    this.findAllDiagnostic();
+    this.selectDiagnostic = null;
+  }
+
+  confirm(event: Event, data: Diagnostic) {
+    this.confirmService.confirm({
+        target: event.target,
+        message: '¿Seguro que desea eliminar el diagnóstico?',
+        icon: 'pi pi-exclamation-triangle',
+        acceptLabel: 'Si, eliminar',
+        rejectLabel: 'No, cancelar',
+        acceptButtonStyleClass: 'p-button-outlined p-button-danger',
+        rejectButtonStyleClass: 'p-button-outlined p-button-secondary',
+
+        accept: () => {
+            data.status = false;
+            this.deleteDiagnostic(data.id, data);
+        },
+        reject: () => {
+            //reject action
+        }
+    });
+}
+
+deleteDiagnostic(id: number, data:Diagnostic) {
+  this.diagnosticService.deleteDiagnosticById(id, data).subscribe(
+    (data) => {
+      this.findAllDiagnostic();
+    }
+  );
+}
+
+
 
   
   

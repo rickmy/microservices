@@ -1,4 +1,4 @@
-export interface CreateSymptomModel {
+export interface Diagnostic{
     id: number;
     name: string;
     description: string;

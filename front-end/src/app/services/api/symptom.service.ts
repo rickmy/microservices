@@ -32,6 +32,17 @@ export class SymptomService {
       }));
   }
 
+  edit(data: CreateSymptomModel) : Observable<CreateSymptomModel> {
+    return this.http.put<CreateSymptomModel>(this.url + '/' + data.id, data, {headers: this.headers})
+    .pipe(
+      tap((data) => this.managerMessageService.showSuccess('Síntoma editado con éxito!')),
+      catchError((err) => {
+        this.managerMessageService.showError(err.message);
+        throw err;
+      }));
+  }
+  
+
   findAllSymptom(): Observable<CreateSymptomModel[]> {
     return this.http.get<CreateSymptomModel[]>(this.url, {headers: this.headers})
     .pipe(
@@ -41,4 +52,6 @@ export class SymptomService {
         throw err;
       }));
   }
+
+  
 }
