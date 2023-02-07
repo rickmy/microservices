@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'api_catalog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'catalog',
+        'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': '123',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'PASSWORD': '6jagWfDoJrYqS60KoebT',
+        'HOST': 'containers-us-west-157.railway.app',
+        'PORT': '7139'
     }
 }
 
