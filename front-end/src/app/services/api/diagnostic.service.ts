@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
 import { CreateDiagnosticModel } from 'src/app/models/diagnostic/create-diagnostic-model';
+import { Diagnostic } from 'src/app/models/diagnostic/diagnostic.model';
 import { ManagerMessageService } from 'src/app/shared/services/manager-message.service';
 import { environment } from 'src/environments/environment';
 
@@ -49,6 +50,26 @@ export class DiagnosticService {
     return this.http.get<CreateDiagnosticModel[]>(this.url + '/' + id, {headers: this.headers})
     .pipe(
       tap((data) => this.managerMessageService.showSuccess('Diagnóstico cargado con éxito!')),
+      catchError((err) => {
+        this.managerMessageService.showError(err);
+        throw err;
+      }));
+  }
+
+  updateDiagnosticById(id: number, data: Diagnostic): Observable<Diagnostic> {
+    return this.http.patch<Diagnostic>(this.url + '/' + id, data, {headers: this.headers})
+    .pipe(
+      tap((data) => this.managerMessageService.showSuccess('Diagnóstico actualizado con éxito!')),
+      catchError((err) => {
+        this.managerMessageService.showError(err);
+        throw err;
+      }));
+  }
+
+  deleteDiagnosticById(id: number, data:Diagnostic): Observable<Diagnostic> {
+    return this.http.patch<Diagnostic>(this.url + '/' + id, data, {headers: this.headers})
+    .pipe(
+      tap((data) => this.managerMessageService.showSuccess('Diagnóstico eliminado con éxito!')),
       catchError((err) => {
         this.managerMessageService.showError(err);
         throw err;
