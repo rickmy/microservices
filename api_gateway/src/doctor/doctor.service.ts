@@ -1,15 +1,21 @@
 import { Injectable } from '@nestjs/common';
+import axios from 'axios';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
 import { UpdateDoctorDto } from './dto/update-doctor.dto';
 
 @Injectable()
 export class DoctorService {
+  urlPatients = 'http://localhost:3000/api/doctor';
+
   create(createDoctorDto: CreateDoctorDto) {
     return 'This action adds a new doctor';
   }
 
-  findAll() {
-    return `This action returns all doctor`;
+  async findAll(): Promise<any> {
+    const doctors = await axios.get(this.urlPatients).then((response) => {
+      return response.data;
+    });
+    return doctors;
   }
 
   findOne(id: number) {
