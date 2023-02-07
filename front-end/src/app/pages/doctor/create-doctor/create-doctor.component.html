@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="doctorDialog" [style]="{width: '450px'}" header="Creación de médicos" (onHide)="hideDialog()" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="doctorDialog" [style]="{width: '600px'}" header="Creación de médicos" (onHide)="hideDialog()" [modal]="true" styleClass="p-fluid">
     <form [formGroup]="formCreateDoctor" (ngSubmit)="saveDoctor()">
         <div class="field">
             <label for="dni">Cédula de identidad</label>
@@ -26,19 +26,14 @@
             <small class="p-error" *ngIf="">Dirección es requerido.</small>
         </div>
         <div class="field">
-            <label for="phone">Teléfono</label>
-            <input type="text" pInputText id="phone" formControlName="phone" required autofocus />
-            <small class="p-error" *ngIf="">Teléfono es requerido.</small>
-        </div>
-        <div class="field">
             <label for="codeSenecyt">Código Senecyt</label>
-            <input type="text" pInputText id="codeSenecyt" formControlName="codeSenecyt" required autofocus />
+            <input type="number" pInputText id="codeSenecyt" formControlName="codeSenecyt" required autofocus />
             <small class="p-error" *ngIf="">Código de la senecyt es requerido.</small>
         </div>
 
         <div class="flex gap-2">
             <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-outlined p-button-secondary" (click)="hideDialog()" type="button"></button>
-            <button pButton pRipple label="Guardar" [disabled]="formCreateDoctor.invalid" icon="pi pi-check" class="p-button-outlined p-button-success" type="submit"></button>
+            <button pButton pRipple label="Guardar"  icon="pi pi-check" class="p-button-outlined p-button-success" type="submit"></button>
         </div>
 
     </form>

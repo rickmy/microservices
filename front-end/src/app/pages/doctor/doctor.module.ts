@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { DoctorRoutingModule } from './doctor-routing.module';
 import {RouterModule} from "@angular/router";
 import { CardModule } from 'primeng/card';
@@ -11,6 +10,7 @@ import {CreateDoctorComponent} from "./create-doctor/create-doctor.component";
 import {ListDoctorComponent} from "./list-doctor/list-doctor.component";
 import {InputTextModule} from "primeng/inputtext";
 import {InputTextareaModule} from "primeng/inputtextarea";
+import {TableModule} from "primeng/table";
 
 
 @NgModule({
@@ -24,8 +24,9 @@ import {InputTextareaModule} from "primeng/inputtextarea";
         CardModule,
         ButtonModule,
         DialogModule,
-        FormsModule,ReactiveFormsModule,InputTextModule,
+        FormsModule,ReactiveFormsModule,InputTextModule,TableModule,
         InputTextareaModule
+
     ]
 })
 export class DoctorModule { }

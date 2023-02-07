@@ -40,7 +40,7 @@ export class CreateDoctorComponent implements OnInit {
     saveDoctor() {
         console.log(this.formCreateDoctor.value);
         this.doctorService.save(this.formCreateDoctor.value).subscribe(
-            (data:CreateDoctorModel) => {
+            (data) => {
                 console.log(data);
                 this.hideDialog();
             });
