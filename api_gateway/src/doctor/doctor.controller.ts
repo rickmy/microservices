@@ -6,6 +6,7 @@ import {
   Param,
   Delete,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
@@ -15,6 +16,7 @@ import {
   ApiTags,
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { RemoveDto } from 'src/core/DTOS/remove.dto';
 import { DoctorService } from './doctor.service';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
@@ -27,6 +29,7 @@ export class DoctorController {
   constructor(private readonly doctorService: DoctorService) {}
 
   @Post()
+  @UseGuards(AuthGuard)
   create(@Body() createDoctorDto: CreateDoctorDto) {
     return this.doctorService.create(createDoctorDto);
   }
@@ -42,6 +45,7 @@ export class DoctorController {
   @ApiUnprocessableEntityResponse({
     description: 'Error no se puede procesar su solicitud',
   })
+  @UseGuards(AuthGuard)
   findAll(): Promise<ListDoctorDto[]> {
     return this.doctorService.findAll();
   }
@@ -52,6 +56,7 @@ export class DoctorController {
     type: DoctorDto,
   })
   @ApiParam({ name: 'id', description: 'Id del doctor', required: true })
+  @UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
     return this.doctorService.findOne(+id);
   }
@@ -62,6 +67,7 @@ export class DoctorController {
     type: DoctorDto,
   })
   @ApiParam({ name: 'dni', description: 'Dni del doctor', required: true })
+  @UseGuards(AuthGuard)
   findOneByDni(@Param('dni') dni: string) {
     return this.doctorService.findOneByDni(dni);
   }
@@ -72,6 +78,7 @@ export class DoctorController {
     description: 'La información del doctor',
     type: DoctorDto,
   })
+  @UseGuards(AuthGuard)
   update(
     @Param('id') id: string,
     @Body() updateDoctorDto: UpdateDoctorDto,
@@ -85,6 +92,7 @@ export class DoctorController {
     type: RemoveDto,
   })
   @ApiParam({ name: 'id', description: 'Id del doctor', required: true })
+  @UseGuards(AuthGuard)
   remove(@Param('id') id: string): Promise<RemoveDto> {
     return this.doctorService.remove(+id);
   }
