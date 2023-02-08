@@ -26,8 +26,6 @@ export class CreateDoctorComponent implements OnInit {
             lastName: ['',[Validators.required, Validators.minLength(4), Validators.maxLength(150)]],
             email: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
             codeSenecyt: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
-
-
         });
     }
 

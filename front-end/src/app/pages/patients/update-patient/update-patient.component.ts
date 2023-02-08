@@ -1,16 +1,16 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {CreatePatientModel} from "../../../models/patient/create-patient-model";
 import {PatientService} from "../../../services/api/patient.service";
+import {PatientModel} from "../../../models/patient/patient-model";
 
 @Component({
-    selector: 'app-create-patient',
-    templateUrl: './create-patient.component.html',
-    styleUrls: ['./create-patient.component.scss']
+  selector: 'app-update-patient',
+  templateUrl: './update-patient.component.html',
+  styleUrls: ['./update-patient.component.scss']
 })
-export class CreatePatientComponent implements OnInit {
+export class UpdatePatientComponent implements OnInit {
     @Input() patientDialog: boolean = false;
-
+    @Input() patient: PatientModel;
     @Output() patientDialogChange = new EventEmitter<boolean>();
     formPatient: FormGroup;
 
@@ -33,6 +33,15 @@ export class CreatePatientComponent implements OnInit {
             secondSurname:[null, [Validators.minLength(3), Validators.maxLength(50)]],
             email:[null, [Validators.required, Validators.email]],
         });
+        this.formPatient.patchValue({
+            dni: this.patient.dni,
+            firstName: this.patient.firstName,
+            middleName: this.patient.middleName,
+            firstSurname: this.patient.firstSurname,
+            secondSurname: this.patient.secondSurname,
+            email: this.patient.email,
+        });
+        console.log(this.patient)
     }
 
     get form(): { [key:string]: AbstractControl} {
@@ -43,9 +52,12 @@ export class CreatePatientComponent implements OnInit {
         if(this.formPatient.invalid){
             return;
         }
-        const patient : CreatePatientModel = this.formPatient.value;
-        console.log(this.formPatient.value);
-        this.patientService.postCreatePatient(patient)
+        const patient = {
+            ...this.patient,
+            ...this.formPatient.value,
+        }
+        console.log(patient)
+        this.patientService.putUpdatePatient(patient)
             .subscribe({
                 next: (data: any) => {
                     console.log(data)

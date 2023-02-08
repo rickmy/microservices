@@ -1,6 +1,8 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import axios from 'axios';
+import * as FormData from 'form-data';
 import { CreatePatientDto } from './dto/create-patient.dto';
+import { PatientDto } from './dto/patient.dt';
 import { UpdatePatientDto } from './dto/update-patient.dto';
 
 @Injectable()
@@ -26,16 +28,27 @@ export class PatientsService {
     return patient;
   }
 
-  update(id: number, updatePatientDto: UpdatePatientDto) {
-    return `This action updates a #${id} patient`;
+  async update(id: number, updatePatientDto: UpdatePatientDto) {
+    const result = await axios.put(
+      `${this.urlPatients}/${id}`,
+      updatePatientDto,
+    );
+    return result.data;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} patient`;
+  async remove(id: number) {
+    const result = await axios.delete(`${this.urlPatients}/${id}`);
+    return result.data;
   }
 
-  getHello(): string {
-    return 'Hello World!';
+  async loadPatients(file: Express.Multer.File): Promise<PatientDto[]> {
+    const formData = new FormData();
+    formData.append('file', file.buffer, file.originalname);
+    const result = await axios.post(
+      `${this.urlPatients}/loadPatients`,
+      formData,
+    );
+    return result.data;
   }
 
   async create(patient: CreatePatientDto) {

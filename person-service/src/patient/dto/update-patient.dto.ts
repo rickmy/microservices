@@ -33,37 +33,36 @@ export class UpdatePatientDto extends PartialType(CreatePatientDto) {
   firstSurname: string;
 
   @IsString({ message: 'El apellido materno debe ser un string' })
-  @IsNotEmpty({ message: 'El apellido materno es requerido.' })
+  @IsOptional()
   @ApiProperty({ description: 'Apellido materno', example: 'Perez' })
   secondSurname: string;
 
   @IsEnum(PatientSex)
-  @IsNotEmpty({ message: 'El sexo es requerido.' })
+  @IsOptional()
   @ApiProperty({ description: 'Sexo', example: PatientSex.Masculino })
   sex: PatientSex;
 
   @IsString({ message: 'La fecha de nacimiento debe ser un string' })
-  @IsNotEmpty({ message: 'La fecha de nacimiento es requerida.' })
+  @IsOptional()
   @ApiProperty({ description: 'Fecha de nacimiento', example: '1990-01-01' })
   DateOfBirth: string;
 
   @IsEnum(CivilStatus, { message: 'El estado civil debe ser un string' })
-  @IsNotEmpty({ message: 'El estado civil es requerido.' })
+  @IsOptional()
   @ApiProperty({ description: 'Estado civil', example: CivilStatus.Soltero_a })
   civilStatus: CivilStatus;
 
   @IsString({ message: 'La direccion debe ser un string' })
-  @IsNotEmpty({ message: 'La direccion es requerida.' })
+  @IsOptional()
   @ApiProperty({ description: 'Direccion', example: 'Calle 1' })
   address: string;
 
   @IsString({ message: 'El telefono debe ser un string' })
-  @IsNotEmpty({ message: 'El telefono es requerido.' })
+  @IsOptional()
   @ApiProperty({ description: 'Telefono', example: '0987654321' })
   phone: string;
 
   @IsNumber({}, { message: 'El id de la discapacidad debe ser un numero' })
-  @IsEmpty({ message: 'El id de la discapacidad puede o no ser enviado.' })
   @IsOptional()
   @ApiProperty({
     description: 'Id de la discapacidad',
@@ -75,9 +74,6 @@ export class UpdatePatientDto extends PartialType(CreatePatientDto) {
     {},
     { message: 'El porcentaje de la discapacidad debe ser un numero' },
   )
-  @IsEmpty({
-    message: 'El porcentaje de la discapacidad puede o no ser enviado.',
-  })
   @IsOptional()
   @ApiProperty({
     description: 'porcentaje de discapacidad',

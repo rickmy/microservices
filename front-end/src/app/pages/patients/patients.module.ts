@@ -13,13 +13,17 @@ import {DialogModule} from "primeng/dialog";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ConfirmationService} from "primeng/api";
 import {KeyFilterModule} from "primeng/keyfilter";
+import {FileUploadModule} from "primeng/fileupload";
+import { UpdatePatientComponent } from './update-patient/update-patient.component';
+import {ConfirmPopupModule} from "primeng/confirmpopup";
 
 
 @NgModule({
     declarations: [
 
         CreatePatientComponent,
-        ListPatientComponent
+        ListPatientComponent,
+        UpdatePatientComponent
     ],
     imports: [
         CommonModule,
@@ -32,7 +36,9 @@ import {KeyFilterModule} from "primeng/keyfilter";
         DialogModule,
         FormsModule,
         ReactiveFormsModule,
-        KeyFilterModule
+        KeyFilterModule,
+        FileUploadModule,
+        ConfirmPopupModule
     ],
     providers: [
         ConfirmationService

@@ -1,48 +1,76 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  UseGuards,
-  Headers,
-} from '@nestjs/common';
-import { PatientsService } from './patients.service';
+/* eslint-disable prettier/prettier */
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from 'src/auth/guards/auth.guard';
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiOkResponse,
+  ApiParam,
+  ApiTags,
+} from '@nestjs/swagger/dist';
+import { Put, UploadedFile, UseInterceptors } from '@nestjs/common/decorators';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { PatientDto } from './dto/patient.dt';
+import { RemoveDto } from 'src/core/DTOS/remove.dto';
+import { PatientsService } from './patients.service';
+
 @ApiTags('Pacientes')
 @Controller('patients')
 export class PatientsController {
-  constructor(private readonly patientsService: PatientsService) {}
+  constructor(private readonly patientService: PatientsService) {}
 
   @Post()
-  create(@Body() createPatientDto: CreatePatientDto) {
-    return this.patientsService.create(createPatientDto);
+  @ApiOkResponse({ type: PatientDto, description: 'Paciente creado' })
+  create(@Body() createPatientDto: CreatePatientDto): Promise<PatientDto> {
+    return this.patientService.create(createPatientDto);
+  }
+
+  @Post('loadPatients')
+  @UseInterceptors(FileInterceptor('file'))
+  @ApiOkResponse({
+    type: PatientDto,
+    description: 'Paciente creado',
+    isArray: true,
+  })
+  @ApiBody({
+    description: 'Archivo de excel con los pacientes',
+    type: 'file',
+  })
+  loadPatients(
+    @UploadedFile() file: Express.Multer.File,
+  ): Promise<PatientDto[]> {
+    return this.patientService.loadPatients(file);
   }
 
   @Get()
-  @UseGuards(AuthGuard)
-  findAll() {
-    return this.patientsService.findAll();
+  @ApiOkResponse({
+    type: PatientDto,
+    description: 'Pacientes encontrado',
+    isArray: true,
+  })
+  findAll(): Promise<PatientDto[]> {
+    return this.patientService.findAll();
   }
 
   @Get(':id')
-  @UseGuards(AuthGuard)
+  @ApiOkResponse({ type: PatientDto, description: 'Paciente encontrado' })
+  @ApiBadRequestResponse({ description: 'Paciente no encontrado' })
   findOne(@Param('id') id: string) {
-    return this.patientsService.findOne(+id);
+    return this.patientService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
+  @ApiOkResponse({ type: PatientDto, description: 'Paciente actualizado' })
+  @ApiParam({ name: 'id', type: 'number' })
   update(@Param('id') id: string, @Body() updatePatientDto: UpdatePatientDto) {
-    return this.patientsService.update(+id, updatePatientDto);
+    return this.patientService.update(+id, updatePatientDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.patientsService.remove(+id);
+  @ApiOkResponse({ type: RemoveDto, description: 'Paciente eliminado' })
+  @ApiParam({ name: 'id', type: 'number', required: true })
+  remove(@Param('id') id: string): Promise<RemoveDto> {
+    return this.patientService.remove(+id);
   }
 }
