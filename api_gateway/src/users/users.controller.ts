@@ -13,12 +13,21 @@ import { UsersService } from './users.service';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { UserDto } from './dto/user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Post()
+  @ApiOkResponse({
+    description: 'crea un usuario',
+    type: UserDto,
+  })
+  create(@Body() user: CreateUserDto, @Headers('authorization') token: string) {
+    return this.usersService.create(user, token);
+  }
   @Get()
   @UseGuards(AuthGuard)
   @ApiOkResponse({

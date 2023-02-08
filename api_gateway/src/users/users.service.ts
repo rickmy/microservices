@@ -6,6 +6,13 @@ import { UpdateUserDto } from './dto/update-user.dto';
 @Injectable()
 export class UsersService {
   urlAuthUser = 'http://localhost:8081/api/user/';
+
+  async create(createUserDto: CreateUserDto, token: string) {
+    const user = await axios.post(this.urlAuthUser, createUserDto, {
+      headers: { Authorization: token },
+    });
+    return user.data;
+  }
   async getAllUsers(token: string) {
     const users = await axios.get(this.urlAuthUser, {
       headers: { Authorization: token },

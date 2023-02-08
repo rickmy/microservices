@@ -6,11 +6,15 @@ import {
   Patch,
   Param,
   Delete,
+  Headers,
+  UseGuards,
 } from '@nestjs/common';
 import { RoleService } from './role.service';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
-
+import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('roles')
 @Controller('role')
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}
@@ -21,8 +25,9 @@ export class RoleController {
   }
 
   @Get()
-  findAll() {
-    return this.roleService.findAll();
+  @UseGuards(AuthGuard)
+  findAll(@Headers('Authorization') token: string) {
+    return this.roleService.findAll(token);
   }
 
   @Get(':id')

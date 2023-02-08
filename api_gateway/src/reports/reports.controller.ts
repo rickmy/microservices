@@ -1,21 +1,17 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { ReportsService } from './reports.service';
-import { CreateReportDto } from './dto/create-report.dto';
-import { UpdateReportDto } from './dto/update-report.dto';
-
+import { ApiOkResponse, ApiParam, ApiTags } from '@nestjs/swagger';
+@ApiTags('reportes')
 @Controller('reports')
 export class ReportsController {
   constructor(private readonly reportsService: ReportsService) {}
 
   @Get(':id')
+  @ApiParam({ name: 'id', description: 'Id de la cita medica' })
+  @ApiOkResponse({
+    description: 'reporte',
+    type: File,
+  })
   findOne(@Param('id') id: string) {
     return this.reportsService.findOne(+id);
   }
