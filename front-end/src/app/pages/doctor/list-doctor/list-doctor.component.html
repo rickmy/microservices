@@ -1,6 +1,6 @@
 <div class="card">
     <div class="flex gap-2 justify-content-end mb-4">
-        <button pButton pRipple label="Crear" icon="pi pi-plus" class="p-button-outlined p-button-success" (click)="showDialogCreate()"></button>
+        <button pButton pRipple label="Crear" icon="pi pi-plus" class="p-button-success" (click)="showDialogCreate()"></button>
     </div>
     <p-table #dt [value]="doctors" [rows]="10" [paginator]="true" [globalFilterFields]="['dni','name','lastName','email','address','codeSenecyt']"
              [rowHover]="true" dataKey="id">
@@ -32,7 +32,7 @@
                 <td>{{doctor.codeSenecyt}}</td>
                 <td>{{doctor.specialty}}</td>
 
-                <td>
+                <td class="flex gap-2">
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2" (click)="showDialogUpdate(doctor)" ></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirm($event,doctor.id)"></button>
                 </td>
