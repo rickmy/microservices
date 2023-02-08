@@ -1,6 +1,7 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from '../service/app.layout.service';
+import {SecurityService} from "../../services/security.service";
 
 @Component({
     selector: 'app-menu',
@@ -10,7 +11,10 @@ export class AppMenuComponent implements OnInit {
 
     model: any[] = [];
 
-    constructor(public layoutService: LayoutService) { }
+    constructor(
+        public layoutService: LayoutService,
+        private securityService: SecurityService
+    ) { }
 
     ngOnInit() {
         this.model = [
@@ -21,12 +25,13 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Pacientes', icon: 'pi pi-fw pi-users', routerLink: ['/patients'] },
                     { label: 'Doctores', icon: 'pi pi-fw pi-users', routerLink: ['/doctor'] },
                     { label: 'Configuración', icon: 'pi pi-fw pi-bookmark', routerLink: ['/configuration'] },
-                    { label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/uikit/invalidstate'] },
-                    { label: 'Button', icon: 'pi pi-fw pi-box', routerLink: ['/uikit/button'] },
-                    { label: 'Cerrar Sesión', icon: 'pi pi-fw pi-sign-out  ', routerLink: ['/auth/login'] },
-
+                    {label: 'Cerrar Sesión', icon: 'pi pi-fw pi-sign-out  ', command: () => {this.logout()}}
                 ]
             }
         ];
+    }
+
+    logout() {
+        this.securityService.logout();
     }
 }
