@@ -33,6 +33,10 @@ export class AuthService {
         ).pipe(
             tap((response: TokenAuth) => {
                 this.securityService.setAuthUser(response);
+                var base64Url = response.token.split('.')[1];
+                var base64 = base64Url.replace('-', '+').replace('_', '/');
+                let json = JSON.parse(window.atob(base64));
+                this.securityService.setUser(json.sub, json.rol);
                 this.managerMessageService.showSuccess('Bienvenido a Bienestar Estudiantil!');
                 this.router.navigate(['/']);
             }),

@@ -15,7 +15,11 @@ export class SecurityService {
         localStorage.setItem('currentUser', JSON.stringify(token));
     }
 
-    setUser(user: any): void {
+    setUser(name:string,role:string): void {
+        let user = {
+            name: name,
+            role: role
+        }
         localStorage.setItem('userResource', JSON.stringify(user));
     }
 
