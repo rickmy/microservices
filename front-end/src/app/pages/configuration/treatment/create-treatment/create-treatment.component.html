@@ -16,15 +16,15 @@
                 <p class="p-error" *ngIf="form['description'].errors?.['required']">Descripción es requerida.</p>
                 <p class="p-error" *ngIf="form['description'].errors?.['minlength']">Debe tener mínimo 5 caracatéres.</p>
                 <p class="p-error" *ngIf="form['description'].errors?.['maxlength']">Descripción es muy larga.</p>
-            </small>          
+            </small>
         </div>
 
         <div class="flex gap-2">
-            <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-outlined p-button-secondary" (click)="hideDialog()" type="button"></button>
-            <button pButton pRipple label="Guardar" [disabled]="formCreateTreatment.invalid" icon="pi pi-check" class="p-button-outlined p-button-success" type="submit"></button>
+            <button pButton pRipple label="Cancelar" icon="pi pi-times" class=" p-button-secondary" (click)="hideDialog()" type="button"></button>
+            <button pButton pRipple label="Guardar" [disabled]="formCreateTreatment.invalid" icon="pi pi-check" class="p-button-success" type="submit"></button>
         </div>
 
     </form>
 
-    
+
 </p-dialog>

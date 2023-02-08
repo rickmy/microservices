@@ -77,8 +77,8 @@ export class ListPatientComponent implements OnInit {
             icon: 'pi pi-exclamation-triangle',
             acceptLabel: 'Si, eliminar',
             rejectLabel: 'No, cancelar',
-            acceptButtonStyleClass: 'p-button-outlined p-button-danger',
-            rejectButtonStyleClass: 'p-button-outlined p-button-help',
+            acceptButtonStyleClass: 'p-button-danger',
+            rejectButtonStyleClass: 'p-button-help',
             accept: () => {
 
                 this.deletePatient(id);

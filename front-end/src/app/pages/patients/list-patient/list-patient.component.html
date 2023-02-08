@@ -2,9 +2,9 @@
     <div class="flex justify-content-end gap-2">
         <p-fileUpload name="myfile" [chooseIcon]="'pi pi-upload'" mode="basic" chooseLabel="Importar"
                       accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-                      styleClass="p-button-outlined p-button-info" [customUpload]="true"
+                      styleClass="p-button-help" [customUpload]="true"
                       (uploadHandler)="upLoadPatients($event)" [auto]="true"></p-fileUpload>
-        <button pButton label="Nuevo Paciente" class="p-button-outlined p-button-success" icon="pi pi-plus"
+        <button pButton label="Nuevo Paciente" class="p-button-success" icon="pi pi-plus"
                 (click)="dPatientCreate = true"></button>
     </div>
 
@@ -47,9 +47,9 @@
                 <td>{{patient.email}}</td>
                 <td class="flex gap-2">
                     <button pButton pRipple icon="pi pi-pencil" (click)="showDialogUpdatePatient(patient)"
-                            class="p-button-outlined p-button-rounded p-button-success"></button>
+                            class="p-button-rounded p-button-warning"></button>
                     <button pButton pRipple icon="pi pi-trash" (click)="confirm($event,patient.id)"
-                            class="p-button-outlined p-button-rounded p-button-danger"></button>
+                            class="p-button-rounded p-button-danger"></button>
                 </td>
             </tr>
         </ng-template>

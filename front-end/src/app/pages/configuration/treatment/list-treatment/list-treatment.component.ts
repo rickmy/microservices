@@ -14,10 +14,10 @@ export class ListTreatmentComponent implements OnInit {
   treatmentUpdateDialog: boolean = false;
   treatmentDialog: boolean = false;
   selectTreatment: Treatment;
-  
+
 
   constructor(
-    
+
     private treatmentService: TreatmentService,
     private confirmationService: ConfirmationService
 
@@ -59,8 +59,8 @@ export class ListTreatmentComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: 'Si, eliminar',
       rejectLabel: 'No, cancelar',
-      acceptButtonStyleClass: 'p-button-outlined p-button-danger',
-      rejectButtonStyleClass: 'p-button-outlined p-button-secondary',
+      acceptButtonStyleClass: 'p-button-danger',
+      rejectButtonStyleClass: 'p-button-secondary',
 
 
       accept: () => {

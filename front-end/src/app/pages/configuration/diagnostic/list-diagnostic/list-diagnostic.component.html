@@ -1,6 +1,6 @@
 <div class="card">
     <div class="flex gap-2 justify-content-end mb-4">
-        <button pButton pRipple label="Crear" icon="pi pi-plus" class="p-button-outlined p-button-success" (click)="showDialogCreate()"></button>
+        <button pButton pRipple label="Crear" icon="pi pi-plus" class="p-button-success" (click)="showDialogCreate()"></button>
     </div>
     <p-table #dt [value]="diagnostics" [rows]="10" [paginator]="true" [globalFilterFields]="['name','description']"
              [rowHover]="true" dataKey="id">
@@ -26,9 +26,9 @@
                 <td>{{diagnostic.name}}</td>
                 <td>{{diagnostic.description}}</td>
                 <td>{{diagnostic.status | status}}</td>
-                <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-outlined p-button-rounded p-button-success mr-2" (click)="showDialogUpdate(diagnostic)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger" (click)="confirm($event, diagnostic)"></button>
+                <td class="flex gap-2">
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning" (click)="showDialogUpdate(diagnostic)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirm($event, diagnostic)"></button>
                 </td>
             </tr>
         </ng-template>

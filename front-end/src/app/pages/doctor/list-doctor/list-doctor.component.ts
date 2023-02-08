@@ -65,8 +65,8 @@ export class ListDoctorComponent implements OnInit {
             icon: 'pi pi-exclamation-triangle',
             acceptLabel: 'Si, eliminar',
             rejectLabel: 'No, cancelar',
-            acceptButtonStyleClass: 'p-button-outlined p-button-danger',
-            rejectButtonStyleClass: 'p-button-outlined p-button-secondary',
+            acceptButtonStyleClass: 'p-button-danger',
+            rejectButtonStyleClass: 'p-button-secondary',
 
             accept: () => {
 

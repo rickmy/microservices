@@ -14,7 +14,7 @@ export class ListSymptomComponent implements OnInit {
   symptomDialog: boolean = false;
   symptomUpdateDialog: boolean = false;
   selectSymptom: Symptom;
-  
+
   constructor(
 
      private symptomService: SymptomService,
@@ -57,8 +57,8 @@ export class ListSymptomComponent implements OnInit {
         icon: 'pi pi-exclamation-triangle',
         acceptLabel: 'Si, eliminar',
         rejectLabel: 'No, cancelar',
-        acceptButtonStyleClass: 'p-button-outlined p-button-danger',
-        rejectButtonStyleClass: 'p-button-outlined p-button-secondary',
+        acceptButtonStyleClass: 'p-button-danger',
+        rejectButtonStyleClass: 'p-button-secondary',
 
         accept: () => {
             data.status = false;
@@ -67,7 +67,7 @@ export class ListSymptomComponent implements OnInit {
         reject: () => {
             //reject action
         }
-    });    
+    });
   }
   findAllSymptom():void {
     this.symptomService.findAllSymptom().subscribe(
@@ -83,7 +83,7 @@ export class ListSymptomComponent implements OnInit {
       }
     );
   }
-  
+
 }
 
 
