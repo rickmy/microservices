@@ -2,7 +2,7 @@
     <form [formGroup]="formEditDoctor" (ngSubmit)="saveDoctor()">
 
         <div class="field">
-            <label for="name">Nombre</label>
+            <label for="name">Nombre <span class="text-red-500 mx-1">*</span></label>
             <input type="text" pInputText id="name" formControlName="name" required autofocus />
             <small class="invalid-feedback" *ngIf="form['name'].touched">
                 <p class="p-error" *ngIf="form['name'].errors?.['required']">Nombre es requerido.</p>
@@ -11,9 +11,9 @@
             </small>
         </div>
         <div class="field">
-            <label for="lastName">Apellido</label>
+            <label for="lastName">Apellido <span class="text-red-500 mx-1">*</span></label>
             <input type="text" pInputText id="lastName" formControlName="lastName" required autofocus />
-            <<small class="invalid-feedback" *ngIf="form['lastName'].touched">
+            <small class="invalid-feedback" *ngIf="form['lastName'].touched">
             <p class="p-error" *ngIf="form['lastName'].errors?.['required']">Apellido es requerido.</p>
             <p class="p-error" *ngIf="form['lastName'].errors?.['minlength']">Apellido debe tener mínimo 4 caracatéres.</p>
             <p class="p-error" *ngIf="form['lastName'].errors?.['maxlength']">Apellido es muy larga.</p>
@@ -24,8 +24,7 @@
         <div class="field">
             <label for="address">Dirección</label>
             <input type="text" pInputText id="address" formControlName="address" required autofocus />
-
-            <<small class="invalid-feedback" *ngIf="form['address'].touched">
+            <small class="invalid-feedback" *ngIf="form['address'].touched">
             <p class="p-error" *ngIf="form['adrress'].errors?.['required']">Dirección es requerido.</p>
             <p class="p-error" *ngIf="form['adrress'].errors?.['minlength']">Dirección debe tener mínimo 5 caracatéres.</p>
             <p class="p-error" *ngIf="form['adrress'].errors?.['maxlength']">Dirección es muy larga.</p>

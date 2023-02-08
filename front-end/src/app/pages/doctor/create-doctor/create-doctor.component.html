@@ -1,7 +1,7 @@
 <p-dialog [(visible)]="doctorDialog" [style]="{width: '600px'}" header="Creación de médicos" (onHide)="hideDialog()" [modal]="true" styleClass="p-fluid">
     <form [formGroup]="formCreateDoctor" (ngSubmit)="saveDoctor()">
         <div class="field">
-            <label for="dni">Cédula de identidad</label>
+            <label for="dni">Cédula de identidad <span class="text-red-500 mx-1">*</span> </label>
             <input type="text" pInputText id="dni" formControlName="dni" required autofocus />
             <small class="invalid-feedback" *ngIf="form['dni'].touched">
                 <p class="p-error" *ngIf="form['dni'].errors?.['required']">Identificación es requerido.</p>
@@ -10,7 +10,7 @@
             </small>
         </div>
         <div class="field">
-            <label for="name">Nombre</label>
+            <label for="name">Nombre <span class="text-red-500 mx-1">*</span> </label>
             <input type="text" pInputText id="name" formControlName="name" required autofocus />
             <small class="invalid-feedback" *ngIf="form['name'].touched">
                 <p class="p-error" *ngIf="form['name'].errors?.['required']">Nombre es requerido.</p>
@@ -19,7 +19,7 @@
             </small>
         </div>
         <div class="field">
-            <label for="lastName">Apellido</label>
+            <label for="lastName">Apellido <span class="text-red-500 mx-1">*</span> </label>
             <input type="text" pInputText id="lastName" formControlName="lastName" required autofocus />
             <small class="invalid-feedback" *ngIf="form['lastName'].touched">
                 <p class="p-error" *ngIf="form['lastName'].errors?.['required']">Apellido es requerido.</p>
@@ -28,7 +28,7 @@
             </small>
         </div>
         <div class="field">
-            <label for="email">Correo electrónico</label>
+            <label for="email">Correo electrónico <span class="text-red-500 mx-1">*</span> </label>
             <input type="text" pInputText id="email" formControlName="email" required autofocus />
             <small class="invalid-feedback" *ngIf="form['email'].touched">
                 <p class="p-error" *ngIf="form['email'].errors?.['required']">Correo electrónico  es requerido.</p>
@@ -37,7 +37,7 @@
             </small>
         </div>
         <div class="field">
-            <label for="codeSenecyt">Código Senecyt</label>
+            <label for="codeSenecyt">Código Senecyt <span class="text-red-500 mx-1">*</span> </label>
             <input type="number" pInputText id="codeSenecyt" formControlName="codeSenecyt" required autofocus />
             <small class="invalid-feedback" *ngIf="form['codeSenecyt'].touched">
                 <p class="p-error" *ngIf="form['codeSenecyt'].errors?.['required']">Código senecyt es requerido.</p>
