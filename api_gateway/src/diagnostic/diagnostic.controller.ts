@@ -19,7 +19,7 @@ export class DiagnosticController {
   constructor(private readonly diagnosticService: DiagnosticService) {}
 
   @Post()
-  //@UseGuards(AuthGuard)
+  @UseGuards(AuthGuard)
   create(@Body() createDiagnosticDto: CreateDiagnosticDto) {
     return this.diagnosticService.create(createDiagnosticDto);
   }
@@ -31,13 +31,13 @@ export class DiagnosticController {
   }
 
   @Get(':id')
-  //@UseGuards(AuthGuard)
+  @UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
     return this.diagnosticService.findOne(+id);
   }
 
   @Patch(':id')
-  //@UseGuards(AuthGuard)
+  @UseGuards(AuthGuard)
   update(
     @Param('id') id: string,
     @Body() updateDiagnosticDto: UpdateDiagnosticDto,
@@ -46,7 +46,7 @@ export class DiagnosticController {
   }
 
   @Delete(':id')
-  //@UseGuards(AuthGuard)
+  @UseGuards(AuthGuard)
   remove(@Param('id') id: string) {
     return this.diagnosticService.remove(+id);
   }
