@@ -1,0 +1,9 @@
+<div class="card">
+    <form [formGroup]="formDonwload" class="flex flex row gap-2 py-4" (ngSubmit)="getReportPDF()">
+        <span class="p-float-label">
+            <input type="text" pKeyFilter="int" pInputText formControlName="id" name="idMedicalAppo" id="idMedicalAppo">
+            <label >Número de la cita medica</label>
+        </span>
+        <button pButton label="Generar Reporte" class="p-button-help" icon="pi pi-print"></button>
+    </form>
+</div>

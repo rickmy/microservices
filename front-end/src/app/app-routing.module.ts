@@ -25,6 +25,10 @@ const routes: Routes = [
             {
                 path: 'configuration',
                 loadChildren: () => import('./pages/configuration/configuration.module').then(m => m.ConfigurationModule)
+            },
+            {
+                path: 'reports',
+                loadChildren: ()=> import('./pages/report/report.module').then(m => m.ReportModule)
             }
         ],
         canActivate: [AuthGuard]

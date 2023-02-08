@@ -25,6 +25,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Pacientes', icon: 'pi pi-fw pi-user', routerLink: ['/patients'] },
                     { label: 'Doctores', icon: 'pi pi-fw pi-users', routerLink: ['/doctor'] },
                     { label: 'Configuración', icon: 'pi pi-fw pi-cog', routerLink: ['/configuration'] },
+                    { label: 'Reportes', icon: 'pi pi-fw pi-folder', routerLink: ['/reports'] },
                     {label: 'Cerrar Sesión', icon: 'pi pi-fw pi-sign-out  ', command: () => {this.logout()}}
                 ]
             }
