@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { CreateDiagnosticModel } from 'src/app/models/diagnostic/create-diagnostic-model';
 import { EditDoctorModel } from 'src/app/models/doctor/edit-doctor-model';
 import { DoctorService } from 'src/app/services/api/doctor.service';
@@ -24,11 +24,15 @@ export class EditDoctorComponent implements OnInit {
 
     ngOnInit(): void {
         this.formEditDoctor = this.fb.group({
-            name: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-            lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-            address: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]]
+            name: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+            lastName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+            address: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]]
         });
         this.findDoctorById(this.listDoctorModel.id)
+    }
+
+    get form(): { [key:string]: AbstractControl} {
+        return this.formEditDoctor.controls;
     }
     findDoctorById(id: number){
         this.doctorService.findDoctorById(id).subscribe({
