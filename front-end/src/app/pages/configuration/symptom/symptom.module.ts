@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SymptomRoutingModule } from './symptom-routing.module';
 import { CreateSymptomComponent } from './create-symptom/create-symptom.component';
 import { ListSymptomComponent } from './list-symptom/list-symptom.component';
@@ -13,13 +12,15 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TableModule } from 'primeng/table';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EditSymptomComponent } from './edit-symptom/edit-symptom.component';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService } from 'primeng/api';
 
 
 @NgModule({
   declarations: [
     CreateSymptomComponent,
     ListSymptomComponent,
-    EditSymptomComponent,
+    EditSymptomComponent
     
   ],
   imports: [
@@ -33,7 +34,13 @@ import { EditSymptomComponent } from './edit-symptom/edit-symptom.component';
     InputTextModule,
     InputTextareaModule,
     TableModule,
-    SharedModule
+    SharedModule,
+    ConfirmPopupModule
+  ],
+  
+  providers: [
+
+    ConfirmationService
   ]
 })
 export class SymptomModule { }

@@ -28,21 +28,18 @@
                     <td>{{symptom.description}}</td>
                     <td>{{symptom.status | status}}</td>
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="findSymptomById()"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-outlined p-button-rounded p-button-success mr-2" (click)="showDialogUpdate(symptom)" ></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger" (click)="confirm($event, symptom)"></button>
                 </td>
                 </tr>
         </ng-template>
         
     </p-table>
-
-
-
 </div>
 
-
+<p-confirmPopup></p-confirmPopup>
 <app-create-symptom [symptomDialog]="symptomDialog" (symptomDialogChange)="hideDialogCreate($event)" ></app-create-symptom>
-
+<app-edit-symptom *ngIf="symptomUpdateDialog" [symptomDialog]="symptomUpdateDialog" (symptomDialogChange)="hideDialogUpdate($event)" [symptom]="selectSymptom"></app-edit-symptom>
 
 
 

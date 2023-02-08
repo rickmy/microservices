@@ -12,12 +12,16 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TableModule } from 'primeng/table';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { EditTreatmentComponent } from './edit-treatment/edit-treatment.component';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService } from 'primeng/api';
 
 
 @NgModule({
   declarations: [
     CreateTreatmentComponent,
-    ListTreatmentComponent
+    ListTreatmentComponent,
+    EditTreatmentComponent
   ],
   imports: [
     CommonModule,
@@ -30,8 +34,13 @@ import { SharedModule } from 'src/app/shared/shared.module';
     InputTextModule,
     InputTextareaModule,
     TableModule,
-    SharedModule
+    SharedModule,
+    ConfirmPopupModule
 
+  ],
+
+  providers: [
+    ConfirmationService
   ]
 })
 export class TreatmentModule { }

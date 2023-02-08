@@ -40,7 +40,7 @@ export class EditDiagnosticComponent implements OnInit {
 
   saveDiagnostic() {
     console.log(this.formDiagnostic.value);
-    const diagnostic : Diagnostic={
+    const diagnostic : Diagnostic = {
       id: this.diagnostic.id,
       name: this.formDiagnostic.value.name,
       description: this.formDiagnostic.value.description,

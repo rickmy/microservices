@@ -10,10 +10,10 @@ import { DiagnosticService } from 'src/app/services/api/diagnostic.service';
   styleUrls: ['./list-diagnostic.component.scss']
 })
 export class ListDiagnosticComponent implements OnInit {
-  public estadoActivo: CreateDiagnosticModel["status"] = true;
   diagnosticDialog: boolean = false;
   diagnosticUpdateDialog: boolean = false;
   selectDiagnostic: Diagnostic;
+
   constructor(
     private diagnosticService: DiagnosticService,
     private confirmService: ConfirmationService

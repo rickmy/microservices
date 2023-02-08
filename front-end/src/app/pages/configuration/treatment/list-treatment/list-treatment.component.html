@@ -29,8 +29,8 @@
                     <td>{{treatment.description}}</td>
                     <td>{{treatment.status | status}}</td>
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-outlined p-button-rounded p-button-success mr-2" (click)="showDialogUpdate(treatment)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger" (click)="confirm($event, treatment)"></button>
                 </td>
                 </tr>
         </ng-template>
@@ -38,8 +38,8 @@
     </p-table>
 </div>
 
-
-<app-create-treatment [treatmentDialog]="treatmentDialog" (treatmentDialogChange)="hideDialogCreate($event)" ></app-create-treatment>
-
+<p-confirmPopup></p-confirmPopup>
+<app-create-treatment [treatmentDialog]="treatmentDialog" (treatmentDialogChange)="hideDialogCreate($event)"></app-create-treatment>
+<app-edit-treatment *ngIf="treatmentUpdateDialog" [treatmentDialog]="treatmentUpdateDialog" (treatmentDialogChange)="hideDialogUpdate($event)" [treatment]="selectTreatment"></app-edit-treatment>
 
 

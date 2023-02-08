@@ -1,5 +1,5 @@
-<p-dialog [(visible)]="symptomDialog" [style]="{width: '450px'}" header="Actualizar Síntoma" (onHide)="hideDialog()" [modal]="true" styleClass="p-fluid">
-    <form [formGroup]="formSymptom" (ngSubmit)="saveSymptom()">
+<p-dialog [(visible)]="treatmentDialog" [style]="{width: '450px'}" header="Actualizar Tratamiento" (onHide)="hideDialog()" [modal]="true" styleClass="p-fluid">
+    <form [formGroup]="formTreatment" (ngSubmit)="saveTreatment()">
         <div class="field">
             <label for="name">Nombre</label>
             <input type="text" pInputText id="name" formControlName="name" required autofocus />
@@ -12,7 +12,7 @@
 
         <div class="flex gap-2">
             <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-outlined p-button-secondary" (click)="hideDialog()" type="button"></button>
-            <button pButton pRipple label="Actualizar" [disabled]="formSymptom.invalid" icon="pi pi-check" class="p-button-outlined p-button-info" type="submit"></button>
+            <button pButton pRipple label="Actualizar" [disabled]="formTreatment.invalid" icon="pi pi-check" class="p-button-outlined p-button-info" type="submit"></button>
         </div>
 
     </form>
