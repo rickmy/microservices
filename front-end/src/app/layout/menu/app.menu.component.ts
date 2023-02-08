@@ -22,9 +22,9 @@ export class AppMenuComponent implements OnInit {
                 label: 'Menú',
                 items: [
                     { label: 'Panel de control', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
-                    { label: 'Pacientes', icon: 'pi pi-fw pi-users', routerLink: ['/patients'] },
+                    { label: 'Pacientes', icon: 'pi pi-fw pi-user', routerLink: ['/patients'] },
                     { label: 'Doctores', icon: 'pi pi-fw pi-users', routerLink: ['/doctor'] },
-                    { label: 'Configuración', icon: 'pi pi-fw pi-bookmark', routerLink: ['/configuration'] },
+                    { label: 'Configuración', icon: 'pi pi-fw pi-cog', routerLink: ['/configuration'] },
                     {label: 'Cerrar Sesión', icon: 'pi pi-fw pi-sign-out  ', command: () => {this.logout()}}
                 ]
             }
