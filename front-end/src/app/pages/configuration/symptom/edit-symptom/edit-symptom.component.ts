@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Symptom } from 'src/app/models/symptom/symptom.model';
 import { SymptomService } from 'src/app/services/api/symptom.service';
 
@@ -37,6 +37,9 @@ export class EditSymptomComponent implements OnInit {
     });
   }
 
+  get form(): { [key:string]: AbstractControl} {
+    return this.formSymptom.controls;
+}
   hideDialog() {
     this.symptomDialog = false;
     this.symptomDialogChange.emit(this.symptomDialog);

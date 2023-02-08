@@ -1,13 +1,22 @@
 <p-dialog [(visible)]="diagnosticDialog" [style]="{width: '450px'}" header="Actualizar Diagnóstico" (onHide)="hideDialog()" [modal]="true" styleClass="p-fluid">
     <form [formGroup]="formDiagnostic" (ngSubmit)="saveDiagnostic()">
         <div class="field">
-            <label for="name">Nombre</label>
+            <label for="name">Nombre<span class="text-red-500 mx-1">*</span></label>
             <input type="text" pInputText id="name" formControlName="name" required autofocus />
-            <small class="p-error" *ngIf="">Nombre es requerido.</small>
+            <small class="invalid-feedback" *ngIf="form['name'].touched">
+                <p class="p-error" *ngIf="form['name'].errors?.['required']">Nombre es requerido.</p>
+                <p class="p-error" *ngIf="form['name'].errors?.['minlength']">Debe tener mínimo 5 caracatéres.</p>
+                <p class="p-error" *ngIf="form['name'].errors?.['maxlength']">Identificación es muy larga.</p>
+            </small>
         </div>
         <div class="field">
-            <label for="description">Descripción</label>
-            <textarea id="description" pInputTextarea formControlName="description" required rows="3" cols="20"></textarea>
+            <label for="description">Descripción<span class="text-red-500 mx-1">*</span></label>
+            <input type="text" pInputText id="description" formControlName="description" pKeyFilter="string" />
+            <small class="invalid-feedback" *ngIf="form['description'].touched">
+                <p class="p-error" *ngIf="form['description'].errors?.['required']">Descripción es requerida.</p>
+                <p class="p-error" *ngIf="form['description'].errors?.['minlength']">Debe tener mínimo 5 caracatéres.</p>
+                <p class="p-error" *ngIf="form['description'].errors?.['maxlength']">Descripción es muy larga.</p>
+            </small>
         </div>
 
         <div class="flex gap-2">
