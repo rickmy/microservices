@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreateDiagnosticModel } from 'src/app/models/diagnostic/create-diagnostic-model';
 import { Diagnostic } from 'src/app/models/diagnostic/diagnostic.model';
 import { DiagnosticService } from 'src/app/services/api/diagnostic.service';
@@ -32,6 +32,10 @@ export class EditDiagnosticComponent implements OnInit {
       description: this.diagnostic.description
     });
   }
+
+  get form(): { [key:string]: AbstractControl} {
+    return this.formDiagnostic.controls;
+}
 
   hideDialog() {
     this.diagnosticDialog = false;

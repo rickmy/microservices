@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { DoctorService } from 'src/app/services/api/doctor.service';
 import {CreateDoctorModel} from "../../../models/doctor/create-doctor-model";
 
@@ -21,14 +21,19 @@ export class CreateDoctorComponent implements OnInit {
 
     ngOnInit(): void {
         this.formCreateDoctor = this.fb.group({
-            dni: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
-            name: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
-            lastName: ['',[Validators.required, Validators.minLength(4), Validators.maxLength(150)]],
-            email: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
-            codeSenecyt: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
+            dni: ['',[Validators.required, Validators.minLength(10), Validators.maxLength(15)]],
+            name: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+            lastName: ['',[Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+            email: ['',[Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
+            codeSenecyt: ['',[Validators.required, Validators.minLength(4), Validators.maxLength(6)]],
+
+
         });
     }
 
+    get form(): { [key:string]: AbstractControl} {
+        return this.formCreateDoctor.controls;
+    }
     hideDialog() {
         this.doctorDialog = false;
         this.doctorDialogChange.emit(this.doctorDialog);

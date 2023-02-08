@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Treatment } from 'src/app/models/treatment/treatment.model';
 import { TreatmentService } from 'src/app/services/api/treatment.service';
 
@@ -30,6 +30,9 @@ export class EditTreatmentComponent implements OnInit {
     });
 
   }
+  get form(): { [key:string]: AbstractControl} {
+    return this.formTreatment.controls;
+}
   hideDialog() {
     this.treatmentDialog = false;
     this.treatmentDialogChange.emit(this.treatmentDialog);
