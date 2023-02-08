@@ -10,6 +10,9 @@ import { SymptomModule } from './symptom/symptom.module';
 import { DiagnosticModule } from './diagnostic/diagnostic.module';
 import { ReportsModule } from './reports/reports.module';
 import { SpecialtyModule } from './specialty/specialty.module';
+import { UsersModule } from './users/users.module';
+import { RoleModule } from './role/role.module';
+import { AuthorityModule } from './authority/authority.module';
 
 @Module({
   imports: [
@@ -22,6 +25,9 @@ import { SpecialtyModule } from './specialty/specialty.module';
     DiagnosticModule,
     ReportsModule,
     SpecialtyModule,
+    UsersModule,
+    RoleModule,
+    AuthorityModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -38,17 +38,6 @@ export class AuthController {
     return this.authService.login(login);
   }
 
-  @Post('registerPatient')
-  @ApiOkResponse({ type: null })
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard)
-  registerPatient(
-    @Body() registerDto: RegisterDto,
-    @Headers('Authorization') token: string,
-  ): Promise<any> {
-    return this.authService.registerPatient(registerDto, token);
-  }
-
   @Get()
   findAll() {
     return this.authService.findAll();

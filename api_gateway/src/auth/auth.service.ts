@@ -33,26 +33,6 @@ export class AuthService {
       });
   }
 
-  async registerPatient(registerDto: RegisterDto, token: string): Promise<any> {
-    return await axios
-      .post(
-        this.urlAuth + '/api/user/',
-        {
-          ...registerDto,
-        },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      )
-      .then((response) => {
-        return response.data;
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-        throw new UnprocessableEntityException(error.response.data.message);
-      });
-  }
-
   async verifyToken(token: string, route: string): Promise<boolean> {
     console.log(route);
     return await axios

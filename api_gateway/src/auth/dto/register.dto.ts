@@ -6,6 +6,7 @@ import {
   IsString,
   MinLength,
 } from 'class-validator';
+import { RoleDto } from 'src/role/dto/role.dto';
 
 export class RegisterDto {
   @ApiProperty({ example: 'username', description: 'Username', required: true })
@@ -28,10 +29,5 @@ export class RegisterDto {
   })
   @IsArray({ message: 'Roles must be an array' })
   @IsNotEmpty({ message: 'Roles must not be empty' })
-  roles: RolDto[];
-}
-
-export class RolDto {
-  @IsNumber({}, { message: 'Id must be a number' })
-  id: number;
+  roles: RoleDto[];
 }

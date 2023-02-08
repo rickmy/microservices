@@ -9,7 +9,12 @@ import {
   ApiParam,
   ApiTags,
 } from '@nestjs/swagger/dist';
-import { Put, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common/decorators';
+import {
+  Put,
+  UploadedFile,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common/decorators';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { PatientDto } from './dto/patient.dt';
 import { RemoveDto } from 'src/core/DTOS/remove.dto';

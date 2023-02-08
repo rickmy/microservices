@@ -9,9 +9,13 @@ import { WorkBook, WorkSheet } from 'xlsx';
 import { PatientSex, PatientStatus } from '@prisma/client';
 import { PatientDto } from './dto/patient.dt';
 import { RemoveDto } from 'src/core/DTOS/remove.dto';
+import axios from 'axios';
 
 @Injectable()
 export class PatientService {
+  urlAuthz = 'http://localhost:8081/api/user/';
+  token =
+    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTc0NzczOTk3Niwicm9sIjoiUk9MRV9BRE1JTiJ9.E4ccEqUjzC2pmr7Sl1KeGMRaPU3Sk02wR0Vsc4kGjOjsX9au9UVeIn8-akK6-zU0O89-VdaKB3WLZW-4aUa0HQ';
   constructor(private prisma: PrismaService) {}
   async create(createPatientDto: CreatePatientDto): Promise<PatientEntity> {
     const dniExist = await this.findOneByDni(createPatientDto.dni);
@@ -22,6 +26,22 @@ export class PatientService {
     if (emailExist)
       throw new UnprocessableEntityException('El email ya existe');
     //TODO: crearle un suario y contraseña al paciente
+    const responseAuthz = await axios.post(
+      this.urlAuthz,
+      {
+        name: createPatientDto.firstName + ' ' + createPatientDto.firstSurname,
+        username: createPatientDto.email,
+        password: createPatientDto.dni,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      },
+    );
+    if (responseAuthz.data.status === 'error') {
+      throw new UnprocessableEntityException(responseAuthz.data.message);
+    }
     const patient = await this.prisma.patient.create({
       data: {
         ...createPatientDto,

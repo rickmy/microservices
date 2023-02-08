@@ -3,6 +3,7 @@ import {
   Injectable,
   UnprocessableEntityException,
 } from '@nestjs/common';
+import axios from 'axios';
 import { RemoveDto } from 'src/core/DTOS/remove.dto';
 import { SpecialtyService } from 'src/specialty/specialty.service';
 import { PrismaService } from './../prisma/prisma.service';
@@ -13,6 +14,9 @@ import { DoctorEntity } from './entities/doctor.entity';
 
 @Injectable()
 export class DoctorService {
+  urlAuthz = 'http://localhost:8081/api/user/';
+  token =
+    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTc0NzczOTk3Niwicm9sIjoiUk9MRV9BRE1JTiJ9.E4ccEqUjzC2pmr7Sl1KeGMRaPU3Sk02wR0Vsc4kGjOjsX9au9UVeIn8-akK6-zU0O89-VdaKB3WLZW-4aUa0HQ';
   constructor(
     private readonly prisma: PrismaService,
     private readonly specialtyService: SpecialtyService,
@@ -30,6 +34,22 @@ export class DoctorService {
         throw new ForbiddenException(
           'La especialidad no existe en la base de datos',
         );
+      }
+      const responseAuthz = await axios.post(
+        this.urlAuthz,
+        {
+          name: createDoctorDto.name + ' ' + createDoctorDto.lastName,
+          username: createDoctorDto.email,
+          password: createDoctorDto.dni,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${this.token}`,
+          },
+        },
+      );
+      if (responseAuthz.data.status === 'error') {
+        throw new UnprocessableEntityException(responseAuthz.data.message);
       }
       return await this.prisma.doctor.create({
         data: {
