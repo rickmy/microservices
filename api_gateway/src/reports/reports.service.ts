@@ -1,11 +1,6 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
-import { ApiUnprocessableEntityResponse } from '@nestjs/swagger';
 import axios from 'axios';
-import { constants } from 'buffer';
-import { throwError } from 'rxjs/internal/observable/throwError';
-import { CreateReportDto } from './dto/create-report.dto';
-import { UpdateReportDto } from './dto/update-report.dto';
-
+import { writeFile, writeFileSync } from 'fs';
 @Injectable()
 export class ReportsService {
   URL = 'http://localhost:8083/api/report/medicalAppo/';
@@ -13,9 +8,10 @@ export class ReportsService {
   findOne(id: number) {
     const document = axios
       .get(this.URL + id + '/')
-      .then((response) => {
+      .then(async (response) => {
         console.log(response);
-        return response.data;
+        const data = response.data;
+        return data;
       })
       .catch((error) => {
         console.log(error);

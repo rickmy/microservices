@@ -11,9 +11,10 @@ import {ManagerMessageService} from "../../shared/services/manager-message.servi
 export class ReportService {
 
     api_url = environment.api_url + 'reports';
+    api_url2 =  'http://localhost:8083/api/report/medicalAppo/';
 
     headers = new HttpHeaders({
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/pdf',
     })
 
     constructor(
@@ -23,12 +24,12 @@ export class ReportService {
     }
 
     getReportById(id: number): Observable<Blob> {
-        return this.http.get<Blob>(this.api_url + '/' + id, {headers: this.headers})
+        return this.http.get<Blob>(this.api_url2  + id+ '/', {headers: this.headers})
             .pipe(
                 map((data: any) => {return data;},),
                 catchError((error: any) => {
                     this.managerMessage.showError(error);
-                    return error;
+                    throw error;
                 })
             );
 

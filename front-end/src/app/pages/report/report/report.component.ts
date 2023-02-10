@@ -30,8 +30,12 @@ export class ReportComponent implements OnInit {
         this.reportService.getReportById(data.id)
             .subscribe({
                 next: (res) => {
+                    console.log(res)
                     let filePath = window.URL.createObjectURL(res);
                     window.open(filePath)
+                },
+                error: (err) => {
+                    console.log(err);
                 }
             })
     }

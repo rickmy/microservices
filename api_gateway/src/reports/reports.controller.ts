@@ -10,7 +10,6 @@ export class ReportsController {
   @ApiParam({ name: 'id', description: 'Id de la cita medica' })
   @ApiOkResponse({
     description: 'reporte',
-    type: File,
   })
   findOne(@Param('id') id: string) {
     return this.reportsService.findOne(+id);
